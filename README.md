@@ -97,6 +97,7 @@ Sofia Robb
       * [Command line parameters: A Special Built-in List](pfb.md/#command-line-parameters-a-special-built-in-list)
       * [What kind of object am I working with?](pfb.md/#what-kind-of-object-am-i-working-with)
    * [<a href="problemsets/Python_01_problemset.md">Link to Python 1 Problem Set</a>](problemsets/Python_01_problemset.md)
+* [Python 2](pfb.md/#python-2)
    * [Operators](pfb.md/#operators)
       * [Arithmetic Operators](pfb.md/#arithmetic-operators)
       * [Assignment Operators](pfb.md/#assignment-operators)

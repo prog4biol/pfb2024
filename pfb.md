@@ -356,7 +356,7 @@ We'll cover `dir()` in more detail later
 
 -------
 
- Python 2
+# Python 2
 
 ## Operators
 
