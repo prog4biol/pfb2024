@@ -1,4 +1,4 @@
-# Programming For Biology 2023
+# Programming For Biology 2024
 
 [programmingforbiology.org](http://programmingforbiology.org)
 
