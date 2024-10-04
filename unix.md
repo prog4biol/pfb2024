@@ -37,13 +37,11 @@ What are our tips for having a successful programming course?
 
 ---
 
-# Unix (linux, mac OS)
+# Unix 1
 
-## Unix 1
+## Unix Overview
 
-### Unix Overview
-
-#### What is the Command Line?
+### What is the Command Line?
 
 Underlying the pretty Mac OSX Graphical User Interface (GUI) is the operating system (OS). It's based on BSD which is a version of Unix. Linux is pretty similar and also a very common OS in bioinformatics and you'll run into dialects by Red Hat, Ubuntu and others.
 
@@ -56,14 +54,14 @@ In this course, we will be writing Python scripts and running them from the comm
 
 The Unix OS is complicated and there are always more things to learn about it. We'll just cover enough to get you going and show you 
 
-### The Basics
+## The Basics
 
-#### Logging into Your Workstation
+### Logging into Your Workstation
 
 
 Your workstation is an iMac. To log into it, provide your user name and password. Your username is 'student' and the password is 'pfb2024'
 
-#### Bringing up the command line 
+### Bringing up the command line 
 
 
 To bring up the command line, use the Finder to navigate to _Applications->Utilities_ and double-click on the _Terminal_ application. This will bring up a window like the following:
@@ -78,7 +76,7 @@ You can open many Terminal windows at once. This is often helpful. A common way 
 You will be using the Terminal application a lot, so I suggest that you drag its icon into the shortcuts bar at the bottom of your screen.
 
 
-#### OK. I've Logged in.  What Now?
+### OK. I've Logged in.  What Now?
 
 
 The terminal window is running **shell** called "zsh". (Mac recently changed from bash) The shell is a loop that:
@@ -92,7 +90,7 @@ The terminal window is running **shell** called "zsh". (Mac recently changed fro
 There are many different shells with bizarre names like **bash**, **sh**, **csh**, **tcsh**, **ksh**, and **zsh**.  The "sh" part means shell.  Each shell has slightly different syntax and features. Your accounts are set up to use **zsh**.  It's very similar to **bash** which is  standard on linux systems.
 
 
-#### Command Line Prompt
+### Command Line Prompt
 
 
 Most of bioinformatics is done by running command line software in a shell, so you should take some time to learn to use the shell effectively.
@@ -122,7 +120,7 @@ What you see depends on how the system administrator has customized your login. 
 
 The prompt tells you the shell is ready for you to type a command.  Most commands run almost instantly, but if you run a long command, the prompt will not reappear until it is finished and the system is ready to accept your next request.
 
-#### Issuing Commands
+### Issuing Commands
 
 
 You type in a command and press the &lt;Enter&gt; key to execute it.  If the command has output, it will appear on the screen.  Example:
@@ -152,7 +150,7 @@ Some programs will take a long time to run. After you issue their command names,
 ```
 > The command will now run in the background until it is finished. If it has any output, the output will be printed to the terminal window. You may wish to capture the output in a file (called redirection). We'll describe this later.
 
-#### command line Editing
+### command line Editing
 
 Most shells offer command line editing.  Up until the comment you press \<Enter\>, you can go back over the command line and edit it using the keyboard.  Here are the most useful keystrokes:
 
@@ -183,7 +181,7 @@ fd2ps    fdesign  fdformat fdlist   fdmount  fdmountd fdrawcmd fdumount
 ```
 > If you hit tab after typing a command, but before pressing \<Enter\>, **zsh** will prompt you with a list of file names. This is because many commands operate on files.
 
-#### Wildcards
+### Wildcards
 
 You can use wildcards when referring to files.  `*` stands for zero or more characters.  `?` stands for any single character.  For example, to list all files with the extension ".txt", run `ls` with the wildcard pattern "*.txt"
 
@@ -202,7 +200,7 @@ final_exam_questions.txt  genebridge.txt            genomics_problem.txt
 
 You can also search for a range of characters e.g. `[a-e]` or `[1-5]`.
 
-### Directories and how they are organized
+## Directories and how they are organized
 
 A computer comes with a place to store scripts, data, images, OS and other files. It used to be floppy disks, then hard drives and these days it's often a solid state drive (SSD). Let's talk about how the storage is organized to help you find what you are working on. Directories or folders are created inside other directories. One directory is special. This is the **root directory** because it is not inside any other directories (it's written `/`). Files that go together are created inside a directory to keep them organized. This creates a structure that can be drawn like a branching tree. We find it clearer to turn it upside down to look like branching roots. 
 
@@ -214,7 +212,7 @@ A computer comes with a place to store scripts, data, images, OS and other files
 
 
 
-#### Home Sweet Home (your home directory `~`)
+### Home Sweet Home (your home directory `~`)
 
 When you first log in, you'll be in your personal directory (or folder), called the **home directory**. This directory has the same name as your login name, and on mac OS is located inside the directory `/Users`.  (On linux, it's typically in `/home`). If your username is `dbrown`, your home directory would be `/Users/dbrown`. This is a filepath or a path. Unix if full of abbreviations to save on typing common things. The shell allows you to abbreviate it as `~username` (where "username" is your user name or someone elses), or simply as `~`.  The weird character (called "tilde" or "twiddle") is at the upper left corner of your keyboard.
 
@@ -238,7 +236,7 @@ You can modify the way a command works with switches. These are single letters t
 > Don't go deleting the hidden files. Many of them are essential configuration files for commands and other programs.  For example, the `.zshrc` file contains configuration information for the **zsh** shell. You can edit it (a bit later, when you know what you're doing) in order to change things like the command prompt and command search path.
 
 
-#### Changing to a New Directory
+### Changing to a New Directory
 
 
 You can move around from directory to directory using the `cd` command (for change directory).  Give the name of the directory you want to move to, or give no name to move back to your home directory.  Use the `pwd` command (print working directory) to see where you are (or, if configured, this information will appear in the prompt):
@@ -274,7 +272,7 @@ If you get lost, the `pwd` command prints out the full path to the current direc
 /Users/lstein
 ```
 
-#### Absolute and relative paths
+### Absolute and relative paths
 
 We can type a path in two ways, an absolute path always starts with a `/` character and reads from the root directory. A relative path starts with another character and reads from the directory you are currently in. Here are two ways to get to a directory called `Music` in the home directory of the user `dbrown`. From `Documents` we can go up a directory and down into `Music` (relative path) or go from `/` to `Users` to `dbrown` to `Music` (absolute path). 
 
@@ -287,7 +285,7 @@ dbrown@WideIsLove Music %
 
 >  Which of these paths would work for a different user as well as for `dbrown`?
 
-### Essential Unix Commands
+## Essential Unix Commands
 
 
 With the exception of a few commands that are built directly into the shell (e.g. `history`, `for`, `if`), all Unix commands are actually executable programs.  When you type the name of a command, the shell will search through all the directories listed in the PATH environment variable for an executable of the same name.  If found, the shell will execute the command. Otherwise, it will give a "command not found" error.
@@ -295,7 +293,7 @@ With the exception of a few commands that are built directly into the shell (e.g
 
 Most commands live in `/bin`, `/sbin`, `/usr/bin`, `/usr/sbin/` or `/usr/local/bin`.
 
-#### Getting Information About Commands
+### Getting Information About Commands
 
 
 The `man` command will give a brief synopsis of a command. Let's get information about the command `wc`
@@ -318,7 +316,7 @@ DESCRIPTION
 ...
 ```
 
-#### Finding Out What Commands are on Your Computer
+### Finding Out What Commands are on Your Computer
 
 The `apropos` command will search for commands matching a keyword or phrase. Here's an example that looks for commands related to 'column'
 
@@ -332,7 +330,7 @@ modes
 ```
 
 
-#### Arguments and Command Line Switches 
+### Arguments and Command Line Switches 
 
 
 Many commands take arguments.  Arguments are often the names of one or more files to operate on.  Most commands also take command line "switches" or "options", which fine-tune what the command does.  Some commands recognize "short switches" that consist of a minus sign `-` followed by one or more single characters, while others recognize "long switches" consisting of two minus signs `--` followed by a whole word. 
@@ -356,7 +354,7 @@ You can cluster one-character switches by concatenating them together, as shown 
 
 Many commands will give a brief usage summary when you call them with the `-h` or `--help` switch.
 
-#### Spaces, tabs and newline Characters
+### Spaces, tabs and newline Characters
 
 The shell uses spaces to separate arguments.  If you want to embed a space (see below for other whitespace or non-printing characters like a tab or newline etc) in an argument, put single quotes around it.  For example:
 
@@ -379,11 +377,11 @@ Certain special non-printing characters have _escape codes_ associated with them
 
 
 
-### Useful Commands
+## Useful Commands
 
 Here are some commands that are used extremely frequently.  Use `man` to learn more about them.  Some of these commands may be useful for solving the problem set ;-)
 
-#### Manipulating  Directories
+### Manipulating  Directories
 
 | Command | Description                                                  |
 | ------- | ------------------------------------------------------------ |
@@ -396,7 +394,7 @@ Here are some commands that are used extremely frequently.  Use `man` to learn m
 | `chmod` | Change the permissions of a file or directory.               |
 
 
-#### Reading files
+### Reading files
 
 | Command           | Description                                                  |
 | ----------------- | ------------------------------------------------------------ |
@@ -406,7 +404,7 @@ Here are some commands that are used extremely frequently.  Use `man` to learn m
 | `head`            | View the first few lines of a file.  You can control how many lines to view `head -3` prints the first three lines. |
 | `tail`            | View the end of a file.  You can control how many lines to view.  You can also use `tail -f` to view a file that you are writing to. |
 
-#### Analyzing, processing files
+### Analyzing, processing files
 | Command | Description                                                  |
 | ------- | ------------------------------------------------------------ |
 | `wc`              | Count words, lines and/or characters in one or more files.   |
@@ -417,7 +415,7 @@ Here are some commands that are used extremely frequently.  Use `man` to learn m
 | `gzip` (`gunzip`) | Compress (uncompress) a file.                                |
 | `tar`             | Archive or unarchive an entire directory into a single file. |
 
-#### Editing files
+### Editing files
 | Command | Description                                                  |
 | ------- | ------------------------------------------------------------ |
 | `tr`              | Substitute one character for another.  Also useful for deleting characters. |
@@ -426,14 +424,14 @@ Here are some commands that are used extremely frequently.  Use `man` to learn m
 | `echo`            | print text to the screen. E.g. `echo 'Hello World!'` |
 
 
-#### Connecting to other computers
+### Connecting to other computers
 
 | Command                | Description                                                  |
 | ---------------------- | ------------------------------------------------------------ |
 | `ssh`                  | A secure (encrypted) way to log into machines.               |
 | `scp`                  | A secure way to copy (cp) files to and from remote machines. |
 
-#### Standard I/O and Redirection
+### Standard I/O and Redirection
 
 
 Unix commands print output to the terminal (screen) for you to see, and accept input from the keyboard (that is, from _you_!)
@@ -450,7 +448,7 @@ Every Unix program starts out with three connections to the outside world.  Thes
 
 The word "initially" might lead you to think that standard input, output, and error can somehow be detached from their starting places and reattached somewhere else.  And you'd be right.  You can attach one or more of these three streams to a file, a device, or even to another program.  This sounds esoteric, but it is actually very useful.
 
-#### A Simple Example
+### A Simple Example
 
 
 The `wc` program counts lines, characters, and words in data sent to its standard input.  You can use it interactively like this:
@@ -485,7 +483,7 @@ Now if you `cat` the file _count.txt_, you'll see that the data has been recorde
       2943    2998     419272
 ```
 
-#### Redirection Meta-Characters
+### Redirection Meta-Characters
 
 Here's the complete list of redirection commands for `zsh`:
 
@@ -507,7 +505,7 @@ These can be combined.  For example, this command redirects standard input from 
 
 
 
-#### Filters, Filenames, and Standard Input
+### Filters, Filenames, and Standard Input
 
 Many Unix commands act as filters, taking data from a file or standard input, transforming the data, and writing the results to standard output.  Most filters are designed so that if they are called with one or more filenames on the command line, they will use those files as input.  Otherwise they will act on standard input.  For example, these two commands are equivalent:
 
@@ -526,7 +524,7 @@ Sometimes you want a filter to act on a series of files, one of which happens to
 This example searches for "gatttgc" in three places.  First it looks in file `big_file.fasta`, then in `bigger_file.fasta`, and lastly in standard input (which, since it isn't redirected, will come from the keyboard).
 
 
-#### Standard I/O and Pipes
+### Standard I/O and Pipes
 
 
 The coolest thing about the Unix shell is its ability to chain commands together into mini pipelines.  Here's an example:
@@ -540,7 +538,7 @@ There are two commands here. `grep` searches a file or standard input for lines 
 
 What does this pipe do?  It prints out the number of lines in which the string "gatttgc" appears in the file `big_file.fasta`.
 
-#### More Pipe Idioms
+### More Pipe Idioms
 
 Pipes are very powerful. Here are some common command line idioms.
 
@@ -604,20 +602,10 @@ Pipe the output of `tail -f` (which monitors a growing file and prints out the n
 
 
 
-
-
-
-
-
-
-
-
-
-
 <div style="page-break-after: always;"></div>  
 
 
-### Permissions
+## Permissions
 
 Often several different users work on the same computer. To help them work without disrupting each other, a set of permissions is attached to files and directories. These permissions allow or prevent reading, writing or executing a file. There are permissions for the user, group and other.  You can view permissions with an `ls -l` command.
 
@@ -689,7 +677,7 @@ rehash    # this rebuilds set of paths for the shell
 <div style="page-break-after: always;"></div>  
 
 
-### More Unix
+## More Unix
 
 Here are a few more advanced Unix commands that are very useful, and when you have time you should investigate further. We list the page numbers for the Linux Phrasebook Second Edition by Scott Granneman or links to online tutorials.
 
@@ -701,22 +689,22 @@ Here are a few more advanced Unix commands that are very useful, and when you ha
 ---
 
 
-### [Link to Unix 1 Problem Set](problemsets/Unix_01_problemset.md)
+## [Link to Unix 1 Problem Set](problemsets/Unix_01_problemset.md)
 
 
 <div style="page-break-after: always;"></div>  
 
 
 ---
-## Unix 2
+# Unix 2
 
 
-### Text Editors
+## Text Editors
 
 
 It is often necessary to create and write to a file while using the terminal. This makes it essential to use a terminal text editor. There are many text editors out there. Some of our favorite are Emacs and vim. We are going to start you out with a simple text editor called  `vi`
 
-### Introduction to vi
+## Introduction to vi
 
 What is **vi**?
 
@@ -738,7 +726,7 @@ Why do I care about command line text editors?
 
 
 
-#### Getting Started with vi
+### Getting Started with vi
 
 
 
@@ -834,7 +822,7 @@ __vi has two modes.__
 
  
 
-#### Creating, Writing, And Saving a File Walk through
+### Creating, Writing, And Saving a File Walk through
 
 
 
@@ -893,7 +881,7 @@ If, instead you want to exit, since you are already in Command Mode you can use 
 
 
 
-#### Common Activities and vi Commands
+### Common Activities and vi Commands
 
 Enter into **Command Mode** for all commands. If you are unsure that you are in **command mode**, just press the `<esc>` key. It will not hurt if you are already in **Command Mode**
 
@@ -963,7 +951,7 @@ Remember to enter into **Command Mode** with `<esc>` key
 
 
 
-#### Other Useful Tips
+### Other Useful Tips
 
 |key stroke | meaning | 
 |-----------|---------|  
@@ -974,7 +962,7 @@ Remember to enter into **Command Mode** with `<esc>` key
 
   
 
-#### Mug of vi
+### Mug of vi
 
 
 
@@ -986,43 +974,44 @@ Remember to enter into **Command Mode** with `<esc>` key
 
 
 
+<div style="page-break-after: always;"></div>  
 
-## Git for Beginners
+# Git for Beginners
 
 Git is a tool for managing files and versions of files. It is a _Version Control System_. It allows you to keep track of changes. You are going to be using Git to manage your course work and keep your copy of the lecture notes and files up to date. Git can help you do very complex task with files. We are going to keep it simple.
 
 
-### The Big Picture.
+## The Big Picture.
 
 
 A Version Control System is good for Collaborations, Storing Versions, Restoring Previous Versions, and Managing Backups.
 
-#### Collaboration  
+### Collaboration  
 
 Using a Version Control System makes it possible to edit a document with others without the fear of overwriting someone's changes, even if more than one person is working on the same part of the document. All the changes can be merged into one document. These documents are all stored one place. 
 
 
-#### Storing Versions 
+### Storing Versions 
 
 A Version Control System allows you to save versions of your files and to attach notes to each version. Each save will contain information about the lines that were added or altered.
 
-#### Restoring Previous Versions  
+### Restoring Previous Versions  
 
 Since you are keeping track of versions, it is possible to revert all the files in a project or just one file to a previous version.
 
 
-#### Backup  
+### Backup  
 
 A Version Control System makes it so that you work locally and sync your work remotely. This means you will have a copy of your project on your computer and the Version Control System Server you are using.
 
-#### The Details
+### The Details
 
 git is the Version Control System we will be using for tracking changes in our files.
 
 [GitHub](https://github.com/) is the Version Control System Server we will be using. They provide free account for all public projects.
 
 
-### The Basics
+## The Basics
 
 Usually you have a local copy of your project/repository and a remote copy. The __local__ repository is stored on your computer and the __remote__ is on a online service like GitHub.
 
@@ -1039,14 +1028,14 @@ Github requires authentication with the use of ssh keys. Essentially, our github
 
  [Here is a great GitHub Tutoral](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account). 
 
-### Adding a new SSH key to your GitHub account
+## Adding a new SSH key to your GitHub account
 
 
 
 
  Here is a summary of the steps:
 
-### Generating a new SSH KEY
+## Generating a new SSH KEY
 Make your key and add your email address.
 ```
 $ ssh-keygen -t ed25519 -C "your_email@example.com"
@@ -1089,7 +1078,7 @@ Host *
 ```
 
 
-### Adding a new SSH key to your GitHub account
+## Adding a new SSH key to your GitHub account
 Print the contents of your PUBLIC ssh key file (our lock) and paste them into your github account
 
 ```
@@ -1098,7 +1087,7 @@ $ cat  ~/.ssh/id_ed25519.pub
 
 
 
-### Paste into your GitHub account
+## Paste into your GitHub account
 
 1.  Go to Settings 
 
@@ -1118,7 +1107,7 @@ $ cat  ~/.ssh/id_ed25519.pub
 
 
 
-### Creating a new repository 
+## Creating a new repository 
 
 A repository is a project that contains all of the project files, and stores each file's revision history. Repositories can have multiple collaborators. Repositories usually have two components, one __remote__ and one __local__.
 
@@ -1195,7 +1184,7 @@ Add some files to your new repository:
 That is all there is to it! There are more complicated things you can do, but we won't get into those. You will know when you are ready to learn more about git when you figure out there is something you want to do but don't know how. There are thousands of online tutorials for you to search and follow.
 
 
-#### Keeping track of differences between local and remote repositories
+### Keeping track of differences between local and remote repositories
 
 If you are ever wondering what do you need to add to your remote repository use the `git status` command. This will provide you with a list of files that have been modified, deleted, and those that are untracked. Untracked files are those that have never been added to the staging area with `git add`
 
@@ -1204,7 +1193,7 @@ If you are ever wondering what do you need to add to your remote repository use 
 | `git status` | To see a list of files that have been modified, deleted, and those that are untracked |
 
 
-#### Deleting and moving files
+### Deleting and moving files
 
 |command | description |
 | ------ |-------------|
@@ -1213,7 +1202,7 @@ If you are ever wondering what do you need to add to your remote repository use 
 
 > these two commands will update your index as well as change your local files. If you use just `rm` or `mv` you will have to update the index with add/commit. 
 
-#### Get a copy of file on your remote
+### Get a copy of file on your remote
 
 Sometimes you really really mess up a file, or you delete it by mistake. You have a small heart attack then you remember that you have a good copy in your remote github repo. How do you get it in your local repo?
 
@@ -1223,14 +1212,14 @@ git checkout <filename>
 > Whew, what a life saver!  
 
 
-#### Tips
+### Tips
 
 1. Adding files over 50M will break your git repo. Don't add large files. Don't blindly use `git add -A` when there might be large files present. You will be very sad if you do.  
 2. Don't clone a git repository into another git repository. This makes git really unhappy. 
 3. Don't be afraid to ask your questions on Google. git can be complicated and a lot of people ask a lot of questions that get answered in online forums, or GitHub will have a tutorial
 
 
-### Cloning a Repository
+## Cloning a Repository
 
 Sometimes you want to download and use someone else's repository. This is different from above where we created our own repository. This is just a copy of someone else's repository
 
@@ -1247,7 +1236,7 @@ Let's do it!
 
 Now you have a copy of the course material on your computer!
 
-#### Bringing Changes in from the Remote Repository to your Local Repository
+### Bringing Changes in from the Remote Repository to your Local Repository
 
 If changes are made to any of these files in the online, remote repository, and you want to update your local copy, you can _pull_ the changes.
 `git pull`  
