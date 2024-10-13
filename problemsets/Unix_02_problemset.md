@@ -1,8 +1,10 @@
 # Unix 2 Problem Set
 
-1. Go to GitHub and create a free accout.
+You might have already completed 1 and 2 while following along with the lecture.
 
-2. Look back at the notes and create your SSH key and add it to your github account.
+1. You may have completed this while following along with lecture. You don't need to do this again. Go to GitHub and create a free accout.
+
+2. You may have completed this while following along with lecture. You don't need to do this again. Look back at the notes and create your SSH key and add it to your github account.
    [Notes for key creation](https://github.com/prog4biol/pfb2023/blob/master/unix.md#generating-a-new-ssh-key)
  
  #### Create Key and passphrase
@@ -41,37 +43,38 @@ Paste the contents of your public "Lock" to GitHub with a title
 cat ~/.ssh/id_ed25519.pub
 ```
 
-3. Create your first repository for your problem set code. [Notes for repository creation](https://github.com/prog4biol/pfb2023/blob/master/unix.md#git-for-beginners).
+3. You may have completed this while following along with lecture. You don't need to do this again.
+   Create your first repository for your problem set code. [Notes for repository creation](https://github.com/prog4biol/pfb2023/blob/master/unix.md#git-for-beginners).
    **NOTE: Don't create a repository inside of another repostitory.**
-   - Create a new Repository by clicking "New" on the repository github page. https://github.com/YOURUSERNAME/repositories 
-   - Create a local (your machine) directory with `mkdir <dirname>` 
-   - move into the new directory with `cd <dirname>` 
+   - Move to your home directory (`cd ~`), then create a new Repository by clicking "New" on the repository github page. https://github.com/YOURUSERNAME/repositories 
+   - Create a local (your machine) directory with `mkdir PFB_problemsets`.  
+   - move into the new directory with `cd PFB_problemsets` 
    - start setting up your repository with the code produced by github. Start with `git init`. 
-   - **Don't `git init` in your home directory. Make a new directory (something like pfb_problemsets or problemsets or problem_sets), change directory into the new directory, then `git init`** 
+   - **Don't `git init` in your home directory. Make a new directory mentioned above (PFB_problemsets), change directory into PFB_problemsets, then `git init`** 
    - Now link it to your remote repository with `git remote add`.
 
-3. Move any files you created in Unix_01 Problem set to your local problemset git repository.
+3. Move any files you created for Unix_01 Problem set that are not already in your local problemset git repository to your local repository (PFB_problemsets). You can use the `mv` command.
 
-4. Push all the new files in your local repository to your remote repository
+4. **Push** all the new files in your local repository to your remote repository
    - `git status` to see all the files you need to add
    - `git add <filename>`  or  `git add <filename1> <filename2> <filename3> ...`  
-   - `git commit -m 'adding previous problem set files'`
+   - `git commit -m 'adding unix01 problem set files'`
    - `git push`
    - Visit the your GitHub repository website (on github.com) and see the files from your local repository that you just pushed up to your remote repository.
 
 
 
-6. Create a directory call `files` in your ProblemSets directory. 
+5. Create a directory call `files` in your ProblemSets directory. 
 
-7. Move the file you renamed from `sequences.nt.fa` to `cancer_genes.fasta` to your `files` directory
+6. Move the file you renamed (in Unix01 problem set) from `sequences.nt.fa` to `cancer_genes.fasta` to your `files` directory
 
-8. ADD/COMMIT/PUSH `cancer_genes.fasta` to your remote repository
+7. ADD/COMMIT/PUSH `cancer_genes.fasta` to your remote repository
   - `git add files/cancer_genes.fasta`
   - `git commit -m 'adding cancer_genes.fasta'`
   - `git push`
   - Visit the your GitHub repository website (on github.com) and see the file from your local repository that you just pushed up to your remote repository.
 
-9. Using your vi text editor create a fasta file and name it `mysequences.txt`. Make sure it ends up in your problem sets files directory.
+8. Using your **vi** text editor create a fasta file and name it `mysequences.txt`. Make sure it ends up in your problem sets files directory.
 
 This is fasta file format:
 ```
