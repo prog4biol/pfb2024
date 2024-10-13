@@ -1112,12 +1112,12 @@ $ cat  ~/.ssh/id_ed25519.pub
 A repository is a project that contains all of the project files, and stores each file's revision history. Repositories can have multiple collaborators. Repositories usually have two components, one __remote__ and one __local__.
 
 
-Follow Steps 1 and 2 to create the __remote repository__.   
+Use Steps 1 and 2 below to create the __remote repository__.   
 
-Follow Step 3 to create your __local repository__ and **link it** to the __remote repository__.   
+Then, use Step 3 to create your __local repository__ and **link it** to the __remote repository__.   
 
 
-1. Navigate to GitHub --> Create Account / Log In --> Go To Repositories --> Click 'New'  
+1. Navigate to GitHub --> Create Account / Log In --> Click on your icon --> Click "Your Repositories" --> Click 'New'  
 
   ![To create a new repository click the 'New' Button in the top right corner.](images/github-newRepoButton.png)  
 
@@ -1126,7 +1126,12 @@ Follow Step 3 to create your __local repository__ and **link it** to the __remot
   ![Fill in the form and click the 'Create Repository Button'](images/github-newRepoForm.png)  
 
 
-3. Create a directory on your computer `cd ~; mkdir PFB_problemsets`, navigate into it, and then follow the instructions provided.  
+3. Create a directory on your computer in your home directory
+   ```
+   cd ~ 
+   mkdir PFB_problemsets
+   ```
+4. Now follow the directions provided by github.     
 
   ![Create a directory on your computer and follow these instructions.](images/github-newRepoInstructions.png)  
     
