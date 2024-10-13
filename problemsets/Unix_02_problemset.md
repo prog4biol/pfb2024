@@ -5,7 +5,7 @@ You might have already completed 1 and 2 while following along with the lecture.
 1. You may have completed this while following along with lecture. You don't need to do this again. Go to GitHub and create a free accout.
 
 2. You may have completed this while following along with lecture. You don't need to do this again. Look back at the notes and create your SSH key and add it to your github account.
-   [Notes for key creation](https://github.com/prog4biol/pfb2023/blob/master/unix.md#generating-a-new-ssh-key)
+   [Notes for key creation](https://github.com/prog4biol/pfb2024/blob/master/unix.md#generating-a-new-ssh-key)
  
  #### Create Key and passphrase
 ```
@@ -44,7 +44,7 @@ cat ~/.ssh/id_ed25519.pub
 ```
 
 3. You may have completed this while following along with lecture. You don't need to do this again.
-   Create your first repository for your problem set code. [Notes for repository creation](https://github.com/prog4biol/pfb2023/blob/master/unix.md#git-for-beginners).
+   Create your first repository for your problem set code. [Notes for repository creation](https://github.com/prog4biol/pfb2024/blob/master/unix.md#git-for-beginners).
    **NOTE: Don't create a repository inside of another repostitory.**
    - Move to your home directory (`cd ~`), then create a new Repository by clicking "New" on the repository github page. https://github.com/YOURUSERNAME/repositories 
    - Create a local (your machine) directory with `mkdir PFB_problemsets`.  
