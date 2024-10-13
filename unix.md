@@ -1168,22 +1168,23 @@ __Command Review__
 
 
 
-__Follow Me__
+__Using your new repository__
 
-Create a **local** repository that is linked to a **remote**. `git remote add` connects your local to the remote. Before this command the local will know nothing about your remote and vice versa. 
+You created a **local** repository above. It is linked to a **remote**. The `git remote add` command connects your local to the remote. Before this command the local will not know anything about your remote and vice versa. 
 
-1. Create a new remote repository on github.
-2. Follow all instructions given to you on github.
+**Review**
+1. You created a new remote repository on the github website.
+2. You followed all the instructions given to you on github when you created your repository.
 
-Add some files to your new repository:
+Now we will add some files to your new repository:
 
-3. Change directory to your local repository
-4. Create a new file with vi: `vi git_exercises.txt`
-5. Add a line of text to the new file.
-6. Save `:w` and Exit `:q`
-7. (Add) Stage your changes. `git add git_exercises.txt`
-8. (Commit) Become sure you want your changes. `git commit -m 'added a line of text'`
-9. (Push) Sync/Upload your changes to the __remote__ repository. `git push origin main`
+1. Change directory to your local repository
+2. Create a new file with vi: `vi git_exercises.txt`
+3. Add a line of text to the new file.
+4. Save `:w` and Exit `:q`
+5. (Add) Stage your changes. `git add git_exercises.txt`
+6. (Commit) Become sure you want your changes. `git commit -m 'added a line of text'`
+7. (Push) Sync/Upload your changes to the __remote__ repository. `git push origin main`
 
 
 That is all there is to it! There are more complicated things you can do, but we won't get into those. You will know when you are ready to learn more about git when you figure out there is something you want to do but don't know how. There are thousands of online tutorials for you to search and follow.
