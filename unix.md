@@ -1236,7 +1236,7 @@ Let's do it!
 1. Go to our [PFB GitHub Repository](https://github.com/prog4biol/pfb2024)
 2. Click the 'Code' or 'Download' Button
 3. Copy the URL
-    ~[Clone PFB2024](images/github-clone.png)
+    [Clone PFB2024](images/github-clone.png)
 4. _Clone_ the repository to your local machine
    `git clone git@github.com:prog4biol/pfb2024.git`
 
