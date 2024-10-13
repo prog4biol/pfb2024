@@ -1093,9 +1093,9 @@ $ cat  ~/.ssh/id_ed25519.pub
 
   ![Settings](images/github-userbar-account-settings.png)
 
-2.  In the "Access" section of the sidebar, click  SSH and GPG keys.
+2.  In the "Access" section of the sidebar, click  "SSH and GPG keys".
 
-3.  Click New SSH key or Add SSH key. 
+3.  Click New SSH key or Add SSH key. https://github.com/settings/keys
 ![Add SSH key](images/github-ssh-add-ssh-key-with-auth.png)
 
 4.  Add a title, for example "PFB CSHL KEY" 
