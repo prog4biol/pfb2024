@@ -1172,11 +1172,11 @@ __Using your new repository__
 
 You created a **local** repository above. It is linked to a **remote**. The `git remote add` command connects your local to the remote. Before this command the local will not know anything about your remote and vice versa. 
 
-**Review**
+**Review:**
 1. You created a new remote repository on the github website.
 2. You followed all the instructions given to you on github when you created your repository.
 
-Now we will add some files to your new repository:
+**Now we will add some files to your new repository:**
 
 1. Change directory to your local repository
 2. Create a new file with vi: `vi git_exercises.txt`
@@ -1236,7 +1236,7 @@ Let's do it!
 1. Go to our [PFB GitHub Repository](https://github.com/prog4biol/pfb2024)
 2. Click the 'Code' or 'Download' Button
 3. Copy the URL
-    [Clone PFB2024](images/github-clone.png)
+   ![Clone PFB2024](images/github-clone.png)
 4. _Clone_ the repository to your local machine
    `git clone git@github.com:prog4biol/pfb2024.git`
 
