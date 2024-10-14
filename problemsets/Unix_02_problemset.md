@@ -130,6 +130,6 @@ ATTCTTGGCCTTAAATTGGCCTTG
 22. Make sure all your files are synced with your remote repository. (`git status`)
 23. Here is a way to ENSURE that you don't mistakenly commit a large file. Get help from TA if you do not know where your .git directory is
 ```
-cd .git/hooks/
+cd ~/PFB_problemsets/.git/hooks/
 wget https://raw.githubusercontent.com/prog4biol/pfb2024/master/setup/pre-commit
 ```
