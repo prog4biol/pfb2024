@@ -5,29 +5,26 @@ useful commands
 
 | command         | description                              |
 | --------------- | ---------------------------------------- |
-| `ls`            | list directory contents                  |
-| `cd`            | change directory                         |
-| `mkdir`         | make a directory                         |
-| `rm`            | remove, or delete files and directories. Use caution, it is easy to delete more that you want. |
-| `head`          | prints the top few lines to the terminal window |
-| `tail`          | prints the last few lines to the terminal window |
-| `sort`          | sorts the lines                          |
-| `uniq`          | prints the unique lines                  |
-| `grep`          | filnds the lines that contain a pattern  |
-| `wc`            | counts the number of lines, characters and words |
-| `mv`            | move files                               |
-| `cp`            | copy files                               |
-| `date`          | returns the current date and time        |
-| `pwd`           | return working directory name            |
-| `ssh`           | remote login                             |
-| `scp`           | remote secure copy                       |
-| `~`             | shortcut for your home directory         |
 | `man <command>` | manual page for the command e.g. `man ls` to get the man page for `ls` |
-| `cut`           | cut out selected portions of each line of a file |   
-| `curl`           | transfer a URL | 
- 
-
-
+| `cd`            | change directory                         |
+| `cp`            | copy files                               |
+| `curl`          | transfer a URL |
+| `cut`           | cut out selected portions of each line of a file |
+| `date`          | returns the current date and time        |
+| `grep`          | filnds the lines that contain a pattern  |
+| `head`          | prints the top few lines to the terminal window |
+| `ls`            | list directory contents                  |
+| `mkdir`         | make a directory                         |
+| `mv`            | move files                               |
+| `pwd`           | return working directory name            |
+| `rm`            | remove, or delete files and directories. Use caution, it is easy to delete more that you want. |
+| `scp`           | remote secure copy                       |
+| `sort`          | sorts the lines                          |
+| `ssh`           | remote login                             |
+| `tail`          | prints the last few lines to the terminal window |
+| `uniq`          | prints the unique lines                  |
+| `wc`            | counts the number of lines, characters and words |
+| `~`             | shortcut for your home directory         |
 
 
 ### Try these examples
