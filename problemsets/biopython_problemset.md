@@ -62,7 +62,7 @@ This will create a file `uniprot_sprot.fasta`
 Here is a way to ENSURE that you don't mistakenly commit a large file. Get help from TA if you do not know where your .git directory is
 ```
 cd .git/hooks/
-wget https://raw.githubusercontent.com/prog4biol/pfb2023/master/setup/pre-commit
+wget https://raw.githubusercontent.com/prog4biol/pfb2024/master/setup/pre-commit
 ```
 
 
@@ -84,7 +84,7 @@ Here the genus is _Salmonella_ and the species is _paratyphi_. There is also a s
 
 __Running BLAST Locally__
 These questions will take some research and set up. Spend some time reading about how to run blast and ask for help as needed.
-1. Blast a protein such as [purH](https://raw.githubusercontent.com/prog4biol/pfb2023/master/files/purH.aa.fa) against the S. paratyphi B proteins. You can do this remotely or locally with a blast binary or with biopython.
+1. Blast a protein such as [purH](https://raw.githubusercontent.com/prog4biol/pfb2024/master/files/purH.aa.fa) against the S. paratyphi B proteins. You can do this remotely or locally with a blast binary or with biopython.
 2. Print the E-value and the score and the length of the alignment and the % similiarity (not % identity)
 
 
