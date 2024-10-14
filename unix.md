@@ -992,7 +992,8 @@ Remember to enter into **Command Mode** with `<esc>` key
 |`nx`       | delete n characters (eg 5x deletes five characters)  |  
 |`dd`       | delete the current line  |  
 |`dn`       | d followed by a movement command. Delete to where the movement command would have taken you. (eg d5w means delete 5 words)|  
-
+|`yy`       | "yank" (copy) a line |
+|`p`        | "paste" a line that was deleted or yanked |
 
 
 __Undoing__
