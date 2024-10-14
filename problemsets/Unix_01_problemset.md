@@ -23,6 +23,7 @@ useful commands
 | `scp`           | remote secure copy                       |
 | `~`             | shortcut for your home directory         |
 | `man <command>` | manual page for the command e.g. `man ls` to get the man page for `ls` |
+| `cut`           | cut out selected portions of each line of a file |   
 
 
 
