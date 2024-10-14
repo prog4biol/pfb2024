@@ -5,6 +5,7 @@ useful commands
 
 | command         | description                              |
 | --------------- | ---------------------------------------- |
+| `pwd`           | prints the present working directory     |
 | `ls`            | list directory contents                  |
 | `cd`            | change directory                         |
 | `mkdir`         | make a directory                         |
