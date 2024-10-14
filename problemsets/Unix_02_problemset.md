@@ -65,7 +65,7 @@ cat ~/.ssh/id_ed25519.pub
 
 
 
-5. Create a directory call `files` in your ProblemSets directory. 
+5. Create a directory call `files` in your PFB_problemsets directory. 
 
 6. Move the file you renamed (in Unix01 problem set) from `sequences.nt.fa` to `cancer_genes.fasta` to your `files` directory
 
