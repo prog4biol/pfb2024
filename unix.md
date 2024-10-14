@@ -43,12 +43,11 @@ What are our tips for having a successful programming course?
 
 ### What is the Command Line?
 
-Underlying the pretty Mac OSX Graphical User Interface (GUI) is the operating system (OS). It's based on BSD which is a version of Unix. Linux is pretty similar and also a very common OS in bioinformatics and you'll run into dialects by Red Hat, Ubuntu and others.
+Underlying the pretty Mac OSX Graphical User Interface (GUI) is the operating system (OS). It's based on BSD (Berkeley Standard Distribution), which is a version of Unix. Linux is pretty similar and also a very common OS in bioinformatics and you'll run into dialects by Red Hat, Ubuntu and others.
 
 The command line gives you access to the internals of the OS, and is also a convenient way to write custom software and scripts.  
 
-
-Most bioinformatics tools are written to run on the command line and have no Graphical User Interface. In many cases, a command line tool is more versatile than a graphical tool, because you can easily combine command line tools into automated scripts that accomplish custom tasks sequentially without human intervention.  
+Most bioinformatics tools are written to run on the command line and have no Graphical User Interface. In many cases, a command-line tool is more versatile than a graphical tool because you can easily combine command line tools into automated scripts that accomplish custom tasks sequentially without human intervention.  
 
 In this course, we will be writing Python scripts and running them from the command line.
 
@@ -150,9 +149,9 @@ Some programs will take a long time to run. After you issue their command names,
 ```
 > The command will now run in the background until it is finished. If it has any output, the output will be printed to the terminal window. You may wish to capture the output in a file (called redirection). We'll describe this later.
 
-### command line Editing
+### Command Line Editing
 
-Most shells offer command line editing.  Up until the comment you press \<Enter\>, you can go back over the command line and edit it using the keyboard.  Here are the most useful keystrokes:
+Most shells offer command line editing.  Up until the moment you press \<Enter\>, you can go back over the command line and edit it using the keyboard.  Here are the most useful keystrokes:
 
 - _Backspace_: Delete the previous character and back up one.
 - _Left arrow_, right arrow: Move the text insertion point (cursor) one character to the left or right.
@@ -202,9 +201,9 @@ You can also search for a range of characters e.g. `[a-e]` or `[1-5]`.
 
 ## Directories and how they are organized
 
-A computer comes with a place to store scripts, data, images, OS and other files. It used to be floppy disks, then hard drives and these days it's often a solid state drive (SSD). Let's talk about how the storage is organized to help you find what you are working on. Directories or folders are created inside other directories. One directory is special. This is the **root directory** because it is not inside any other directories (it's written `/`). Files that go together are created inside a directory to keep them organized. This creates a structure that can be drawn like a branching tree. We find it clearer to turn it upside down to look like branching roots. 
+A computer comes with a place to store scripts, data, images, OS, and other files. It used to be floppy disks, then hard drives and these days it's often a solid state drive (SSD). Let's talk about how the storage is organized to help you find what you are working on. Directories or folders are created inside other directories. One directory is special. This is the **root directory** because it is not inside any other directories (it's written `/`). Files that go together are created inside a directory to keep them organized. This creates a structure that can be drawn like a branching tree. We find it clearer to turn it upside down to look like branching roots. 
 
-**Example diagram of a linux directory structure starting from the root directory**
+**Example diagram of a Linux directory structure starting from the root directory**
 
 ![directory_structure](images/directory_structure.png)
 
@@ -214,7 +213,7 @@ A computer comes with a place to store scripts, data, images, OS and other files
 
 ### Home Sweet Home (your home directory `~`)
 
-When you first log in, you'll be in your personal directory (or folder), called the **home directory**. This directory has the same name as your login name, and on mac OS is located inside the directory `/Users`.  (On linux, it's typically in `/home`). If your username is `dbrown`, your home directory would be `/Users/dbrown`. This is a filepath or a path. Unix if full of abbreviations to save on typing common things. The shell allows you to abbreviate it as `~username` (where "username" is your user name or someone elses), or simply as `~`.  The weird character (called "tilde" or "twiddle") is at the upper left corner of your keyboard.
+When you first log in, you'll be in your personal directory (or folder), called the **home directory**. This directory has the same name as your login name, and on macOS is located inside the directory `/Users`.  (On Linux, it's typically in `/home`). If your username is `dbrown`, your home directory would (probably) be `/Users/dbrown`. This is a filepath or a path. Unix if full of abbreviations to save on typing common things. The shell allows you to abbreviate it as `~username` (where "username" is your user name or someone elses), or simply as `~`. The weird character (called "tilde" or "twiddle") is at the upper left corner of your keyboard. The `$HOME` variable is usually set to your home directory.
 
 In your home directory, you have permission to save, delete, open and move files and other directories. In general, you can read but not write or modify files elsewhere in the system.
 
@@ -288,10 +287,9 @@ dbrown@WideIsLove Music %
 ## Essential Unix Commands
 
 
-With the exception of a few commands that are built directly into the shell (e.g. `history`, `for`, `if`), all Unix commands are actually executable programs.  When you type the name of a command, the shell will search through all the directories listed in the PATH environment variable for an executable of the same name.  If found, the shell will execute the command. Otherwise, it will give a "command not found" error.
+With the exception of a few commands that are built directly into the shell (e.g. `history`, `for`, `if`), all Unix commands are actually executable programs.  When you type the name of a command, the shell will search through all the directories listed in the `$PATH` environment variable for an executable of the same name.  If found, the shell will execute the command. Otherwise, it will give a "command not found" error.
 
-
-Most commands live in `/bin`, `/sbin`, `/usr/bin`, `/usr/sbin/` or `/usr/local/bin`.
+Most commands live in `/bin`, `/sbin`, `/usr/bin`, `/usr/sbin/` or `/usr/local/bin`. You can use the `which` command to find a program's location, e.g., `which ls` may show `/bin/ls`.
 
 ### Getting Information About Commands
 
@@ -329,6 +327,31 @@ fix132x43 (1)        - fix problems with certain (132 column) graphics
 modes
 ```
 
+On some systems, you can also use `tldr` (too long didn't read). On macOS, you can use Homebrew (https://brew.sh/) `brew install tldr` to see help documentation:
+
+```
+$ tldr wc
+
+wc
+
+Count lines, words, or bytes.
+More information: <https://keith.github.io/xcode-man-pages/wc.1.html>.
+
+- Count lines in file:
+    wc -l path/to/file
+
+- Count words in file:
+    wc -w path/to/file
+
+- Count characters (bytes) in file:
+    wc -c path/to/file
+
+- Count characters in file (taking multi-byte character sets into account):
+    wc -m path/to/file
+
+- Use `stdin` to count lines, words and characters (bytes) in that order:
+    find . | wc
+```
 
 ### Arguments and Command Line Switches 
 
@@ -419,6 +442,7 @@ Here are some commands that are used extremely frequently.  Use `man` to learn m
 | Command | Description                                                  |
 | ------- | ------------------------------------------------------------ |
 | `tr`              | Substitute one character for another.  Also useful for deleting characters. |
+| `nano`            | Very basic and easy to use text editor |
 | `emacs`           | Run the Emacs text editor (good for experts).                |
 | `vi`              | Run the vi text editor (confusing even for experts).         |
 | `echo`            | print text to the screen. E.g. `echo 'Hello World!'` |
@@ -503,6 +527,21 @@ These can be combined.  For example, this command redirects standard input from 
 (~) 66% grep root /etc/passwd > search.out 2> search.err
 ```
 
+For instance, the `find` command will look for files/directories/links. 
+When you try to look in a directory where you don't have permissions, you will get an error.
+So, if I look from `/` for a file, I will get lots of error messages for directories that I can't read and that I'd like to ignore.
+I can redirect to a file:
+
+```
+$ find / -name passwd.txt 2>err
+```
+
+That might actually produce a very large _err_ file, and I don't actually care about the errors.
+Instead, I can redirect them to a special filehandle called `/dev/null`, which throws them away entirely:
+
+```
+$ find / -name passwd.txt 2>/dev/null
+```
 
 
 ### Filters, Filenames, and Standard Input
@@ -622,9 +661,9 @@ drwx------+  3 dbrown  staff   96 Oct 15 14:09 Documents
 
 The series of characters at the beginning of the line describe the permissions. The first character is 
 
-```
-d (directory) l for link - for file
-```
+* `d`: directory
+* `l`: link
+* `-`: file
 
 Then there are three triples of characters (- means not allowed, a letter means you have read, write, exectute permission). x for a directory means you can access the directory
 
@@ -646,7 +685,7 @@ The `chmod` command (change mode) alters permissions. You add permissions with `
 
 You can alter permissions for user `u`, group `g`, other `o` or all `a`
 
-To make the print.py file executable (i.e. runnable like a programme) you write
+To make the print.py file executable (i.e. runnable like a program) you write
 
 ```
 dbrown@WideIsLove ~ % ls -l print.py 
@@ -657,7 +696,7 @@ dbrown@WideIsLove ~ % ls -l print.py
 dbrown@WideIsLove ~ % 
 ```
 
-To stop others from reading or executing the python script, you write
+To stop others from reading or executing the Python script, you write
 
 ```
 dbrown@WideIsLove ~ % chmod o-rx print.py 
@@ -665,14 +704,31 @@ dbrown@WideIsLove ~ % ls -l print.py
 -rwxr-x---  1 dbrown  staff  23 Oct 16 13:37 print.py
 ```
 
-To convert a script into an exectuable programme, you'll need to make it executable with chmod and then add the current directory to your PATH (we'll see how to do this later) for you, you can type the command in your terminal window.
+To convert a script into an exectuable program, you'll need to make it executable with `chmod` and then add the current directory to your `$PATH` (we'll see how to do this later) for you, you can type the command in your terminal window.
 
 ```
-export PATH=".:${PATH}"       # add '.', the current dir to the list of paths
-                              # the OS looks for programmes in
+export PATH=".:${PATH}" # add '.', the current dir to the list of paths
+                        # the OS looks for programs in
 rehash    # this rebuilds set of paths for the shell
 ```
 
+NOTE: You must use the `$` when you want the shell to interpolate the value of the variable called `PATH`, but you do _not_ use it when setting the value.
+
+You can use `echo` to inspect your `$PATH` variable, which is a colon-separated list of directories where the OS will search for executables.
+You can pipe this output to `tr` to change the colon (`:`) to newlines to make it readable:
+
+```
+$ echo $PATH | tr : '\n'
+/Library/Frameworks/Python.framework/Versions/3.12/bin
+/opt/homebrew/bin
+/opt/homebrew/sbin
+/usr/local/bin
+/usr/bin
+/bin
+/usr/sbin
+/sbin
+/Users/kyclark/.local/bin
+```
 
 <div style="page-break-after: always;"></div>  
 
@@ -681,11 +737,10 @@ rehash    # this rebuilds set of paths for the shell
 
 Here are a few more advanced Unix commands that are very useful, and when you have time you should investigate further. We list the page numbers for the Linux Phrasebook Second Edition by Scott Granneman or links to online tutorials.
 
- - `awk` (Linux Phrasebook p.194-198)([online tutorial](https://www.tutorialspoint.com/awk/index.htm))
- - `sed` (Linux Phrasebook p.188-194)([online tutorial](https://www.tutorialspoint.com/sed/index.htm))
- - `perl` one-liners ([online tutoral](https://catonmat.net/introduction-to-perl-one-liners))
- - `for` loops ([online tutorial](https://www.tutorialspoint.com/unix/for-loop.htm))
-
+- `awk` (Linux Phrasebook p.194-198) [online tutorial](https://www.tutorialspoint.com/awk/index.htm)
+- `sed` (Linux Phrasebook p.188-194) [online tutorial](https://www.tutorialspoint.com/sed/index.htm)
+- `perl` one-liners [online tutoral](https://catonmat.net/introduction-to-perl-one-liners)
+- `for` loops [online tutorial](https://www.tutorialspoint.com/unix/for-loop.htm)
 ---
 
 
