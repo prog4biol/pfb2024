@@ -128,3 +128,8 @@ ATTCTTGGCCTTAAATTGGCCTTG
 20. Print out your history and redirect it to a file called `unixBasics.history.txt`
 21. Open your history file with your text editor and delete any lines you do not want to keep. See this [google search](https://www.google.com/search?rlz=1C5CHFA_enUS596US596&q=vi+delete+entire+line&oq=vi+delete+entire+line&gs_l=psy-ab.3..0j0i5i30k1.28765.29854.0.30351.7.6.0.0.0.0.186.526.0j3.3.0....0...1.1.64.psy-ab..5.2.362...0i13k1j0i7i5i30k1.0.Ub2zfH_lp_o) for info on deleting entire lines in vi.
 22. Make sure all your files are synced with your remote repository. (`git status`)
+23. Here is a way to ENSURE that you don't mistakenly commit a large file. Get help from TA if you do not know where your .git directory is
+```
+cd .git/hooks/
+wget https://raw.githubusercontent.com/prog4biol/pfb2024/master/setup/pre-commit
+```
