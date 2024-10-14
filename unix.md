@@ -992,7 +992,8 @@ Remember to enter into **Command Mode** with `<esc>` key
 |`nx`       | delete n characters (eg 5x deletes five characters)  |  
 |`dd`       | delete the current line  |  
 |`dn`       | d followed by a movement command. Delete to where the movement command would have taken you. (eg d5w means delete 5 words)|  
-
+|`yy`       | "yank" (copy) a line |
+|`p`        | "paste" a line that was deleted or yanked |
 
 
 __Undoing__
@@ -1186,12 +1187,14 @@ Then, use Step 3 to create your __local repository__ and **link it** to the __re
    cd ~ 
    mkdir PFB_problemsets
    ```
-4. Now follow the directions provided by github.     
+
+4. Make sure to select SSH in the GitHub new repository window.
+5. Now follow the directions provided by github.      
 
   ![Create a directory on your computer and follow these instructions.](images/github-newRepoInstructions.png)  
     
 
-​    
+​6. If you did not select SSH and use the SSH URL, do a `git remote set-url 'git@blalabbalalal'` with the SSH URL
 
 
 The new local repository consists of three "trees" maintained by git. The first one is your "Working Directory" which holds the actual files. the second one is the "Index" which acts as a staging area and finally the "HEAD" which points to the last commit you've made.
