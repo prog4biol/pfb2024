@@ -178,10 +178,7 @@ Problem Set
 
 8. Rename `sequences.nt.fa` to `cancer_genes.fasta`. (Hint: read the man page for mv)
 
-9. Copy this remote file, cuffdiff.txt, to your problemset directory. Here is the url you can use: <https://raw.githubusercontent.com/prog4biol/pfb2024/master/files/cuffdiff.txt>
-
-Use `wget` to copy <https://raw.githubusercontent.com/prog4biol/pfb2024/master/files/cuffdiff.txt> from the web into your problemsets directory. If `wget` is not available on your system, use `curl -O` as an alternative. (Note '-O' is the letter O not the number Zero 0)
-
+9. If you haven't already, copy/download this remote file, cuffdiff.txt, to your problemset directory using `curl`. Here is the url you can use: <https://raw.githubusercontent.com/prog4biol/pfb2024/master/files/cuffdiff.txt>. Use `-O` is the letter O not the number zero 0.
 
 
 
