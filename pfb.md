@@ -191,7 +191,9 @@ Blank lines are also important for increasing the readability of the code. You s
 
 This is our first look at variables and data types. Each data type will be discussed in more detail in subsequent sections. 
 
-The first concept to consider is that Python data types are either immutable (unchangeable) or not. Literal numbers, strings, and tuples cannot be changed. Lists, dictionaries, and sets can be changed. So can individual (scalar) variables. You can store data in memory by putting it in different kinds of variables. You use the `=` sign to assign a value to a variable.
+The first concept to consider is that Python data types are either immutable (unchangeable) or not. Literal numbers, strings, and tuples cannot be changed. Lists, dictionaries, and sets can be changed. So can individual (scalar) variables. 
+
+You can store data in memory by putting it in different kinds of variables. You use the `=` sign to assign a value to a variable.
 
 ### Numbers and Strings
 
@@ -205,13 +207,13 @@ gene_count = 10
 ```
 >Recall the section above on variable and object names (and variables are objects in Python).
 
-Different types of data can be assigned to variables, i.e., integers (`1`,`2`,`3`), floats (floating point numbers, `3.1415`), and strings (`"text"`).
+Different types of data can be assigned to variables, i.e., integers (`1`,`2`,`3`), floats (floating point numbers, `3.1415`), and strings (`"text"` ).
 
 For Example:
 ```python
 count   = 10     # this is an integer
 average = 2.531    # this is a float
-message = "Welcome to Python" # this is a string
+message = "Welcome to Python" # this is a string, contains spaces
 ```
 
 `10`, `2.531`, and `"Welcome to Python"` are singular (scalar) pieces of data, and each is stored in its own variable.
@@ -264,13 +266,13 @@ Collections of data can also be stored in special data types, i.e., tuples, list
 
 
 
-### Dictionary
+### Dictionaries
 
 - Dictionaries are good for storing data that can be represented as a two-column table.
 
-- They store unordered collections of key/value pairs.
+- They store ordered collections of key/value pairs. (In version 3.6 and earlier, they were not ordered)
 
-- A dictionary is enclosed in curly braces, and sets of Key/Value pairs are separated by commas 
+- A dictionary is enclosed in curly braces.
 
 - A colon is written between each key and value. Commas separate key:value pairs.
 
@@ -294,16 +296,16 @@ Command line parameters follow the name of a script or program and have spaces b
 You need to import the module named `sys` at the beginning of your script like this
 
 ```python
-!/usr/bin/env python3
+#!/usr/bin/env python3
 import sys
 ```
 
 Let's imagine we have a script called 'friends.py'. If you write this on the command line:
-```bash
+```
 $ friends.py Joe Anita
 ```
-This happens inside the script:
-> the script name 'friends.py', and the strings 'Joe' and 'Anita'  appear in a list called `sys.argv`.  
+This happens inside the script ('friends.py'):
+> the strings 'Joe' and 'Anita'  appear in a list called `sys.argv`.  
 
 > These are the command line parameters, or arguments you want to pass to your script.  
 > `sys.argv[0]` is the script name.  
@@ -312,7 +314,7 @@ This happens inside the script:
 
 
 ```python
-!/usr/bin/env python3
+#!/usr/bin/env python3
 import sys
 friend1 = sys.argv[1] # get first command line parameter
 friend2 = sys.argv[2] # get second command line parameter
