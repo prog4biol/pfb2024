@@ -134,7 +134,7 @@ Picking good variable names for the objects you name yourself is very important.
 The following is a list of Python keywords. These are special words that already have a purpose in python and therefore cannot be used as variable names.
 
 ```
-and         exec        not
+and         exec        not      dict
 as          finally     or
 assert      for         pass
 break       from        print
@@ -156,7 +156,7 @@ The number of spaces in the indentation need to be consistent, but a specific nu
 ```python
 !/usr/bin/env python3
 message = '' # make an empty variable
-for x in (1,2,3,4,5):
+for x in [1, 2, 3, 4, 5]:
     if x > 4:
         print("Hello")
         message = 'x is big'
@@ -177,9 +177,9 @@ Comments start with a pound or hash symbol `#`. All characters after this symbol
 The first line of a script starting with `#!` is a special example of a comment that also has the special function in Unix of telling the Unix shell how to run the script.
 
 ```python
-!/usr/bin/env python3
+#!/usr/bin/env python3
 
- this is my first script
+# this is my first script
 print("Hello, PFB!") # this line prints output to the screen
 ```
 
@@ -278,7 +278,10 @@ Collections of data can also be stored in special data types, i.e., tuples, list
 
 
 ```python
-{ 'TP53' : 'GATGGGATTGGGGTTTTCCCCTCCCATGTGCTCAAGACTGGCGCTAAAAGTTTTGAGCTTCTCAAAAGTC' , 'BRCA1' : 'GTACCTTGATTTCGTATTCTGAGAGGCTGCTGCTTAGCGGTAGCCCCTTGGTTTCCGTGGCAACGGAAAA' }
+{
+  'TP53' : 'GATGGGATTGGGGTTTTCCCCTCCCATGTGCTCAAGACTGGCGCTAAAAGTTTTGAGCTTCTCAAAAGTC' ,
+  'BRCA1' : 'GTACCTTGATTTCGTATTCTGAGAGGCTGCTGCTTAGCGGTAGCCCCTTGGTTTCCGTGGCAACGGAAAA'
+}
 ```
 
 
@@ -296,7 +299,7 @@ Command line parameters follow the name of a script or program and have spaces b
 You need to import the module named `sys` at the beginning of your script like this
 
 ```python
-!/usr/bin/env python3
+#!/usr/bin/env python3
 import sys
 ```
 
@@ -314,12 +317,17 @@ This happens inside the script:
 
 
 ```python
-!/usr/bin/env python3
+#!/usr/bin/env python3
 import sys
+
 friend1 = sys.argv[1] # get first command line parameter
 friend2 = sys.argv[2] # get second command line parameter
- now print a message to the screen
-print(friend1,'and',friend2,'are friends')
+
+# Now print a message to the screen
+print(friend1, 'and', friend2, 'are friends')
+
+# Or use an f-string (format string)
+print(f'{friend1} and {friend2} are friends')
 ```
 
 The advantage of getting input from the user from the command line is that you can write a script that is general. It can print a message with any input the user provides. This makes it flexible.
@@ -338,7 +346,7 @@ You have an identifier in your code called `data`. Does it represent a string or
 We'll cover `dir()` in more detail later
 
 ```python
->>> data = [2,4,6]
+>>> data = [2, 4, 6]
 >>> type(data)
 <class 'list'>
 >>> data = 5
