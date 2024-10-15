@@ -9,9 +9,11 @@ then
     git diff --quiet --exit-code .gitignore
     exit_status=$?
 
-    if [ $exit_status -eq 1 ]; then
+    if [[ $exit_status -eq 1 ]]
+    then
 	set +e
-	for i in $(cat .gitignore-largefiles); do
+	for i in $(cat .gitignore-largefiles)
+	do
 	    set +e
 	    printf "omitting large file: "
 	    git rm --cached $i
@@ -21,5 +23,3 @@ then
     fi
 fi  
 rm -f .gitignore-largefiles
-
-    
