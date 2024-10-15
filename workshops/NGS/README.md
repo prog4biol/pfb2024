@@ -109,8 +109,8 @@ The purpose of this workshop is to gain experience working with the various file
     $ open -a Safari.app SRR21901339.html
     ```
     - What fraction of reads were mapped to the genome?
-    - What is the mode insert size of the sequencing library? Are the read distances reasonably Normally-distributed?
-    - Are the majority of reads pairs mapped in inward (FR), outward (RF), or other orientation?
+    - What is the mode insert size of the sequencing library? Are the outer-most distances between reads (template lengths) reasonably Normally-distributed?
+    - Are the majority of reads pairs mapped in forward-reverse (FR), reverse-forward (RF), or other orientation?
     - Below which base-quality score value does the majority of mismatches occur? Record this value for *Problem 12*.
        >*HINT*: The reads were generated from a strain different from the reference strain and biological SNP differences will also appear in the plot.
 
