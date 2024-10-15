@@ -10,8 +10,8 @@ Do all work in you github problemset repository.
     - Print the contents of this variable.
     - QUIT the Interpreter
     
-3. Working with a text editor. Use `vi` to write a script. Name your script something like `python1.py` or `me.py` . Python scripts should always have the `.py` extension.
-   - `vi me.py`   
+3. Working with a text editor. Use `vi` to write a script. Name your script `about_me.py` . Python scripts should always have the `.py` extension.
+   - `vi about_me.py`   
    - Make sure to include `#!/usr/bin/env python3` on line 1 of your script. It has to be line one. Do not leave a blank line above. 
    - Add code to print out, your name
       
