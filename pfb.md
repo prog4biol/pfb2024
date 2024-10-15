@@ -377,13 +377,13 @@ In Python we can write statements that perform mathematical calculations. To do 
 
 | Operator | Description                                                  | Example          | Result      |
 | -------- | ------------------------------------------------------------ | ---------------- | ----------- |
-| `+`      | Addition                                                     | `3+2`            | 5           |
-| `-`      | Subtraction                                                  | `3-2`            | 1           |
-| `*`      | Multiplication                                               | `3*2`            | 6           |
-| `/`      | Division                                                     | `3/2`            | 1.5         |
-| `%`      | Modulus (divides left operand by right operand and returns the remainder) | `3%2`            | 1           |
-| `**`     | Exponent                                                     | `3**2`           | 9           |
-| `//`     | Floor Division (result is the quotient with digits after the decimal point removed. If one of the operands is negative, the result is floored, i.e., rounded away from zero | `3//2`  `-11//3` | 1        -4 |
+| `+`      | Addition                                                     | `3+2`            | `5`           |
+| `-`      | Subtraction                                                  | `3-2`            | `1`           |
+| `*`      | Multiplication                                               | `3*2`            | `6`           |
+| `/`      | Division                                                     | `3/2`            | `1.5`         |
+| `%`      | Modulus (divides left operand by right operand and returns the remainder) | `3%2`            | `1`           |
+| `**`     | Exponent                                                     | `3**2`           | `9`           |
+| `//`     | Floor Division (result is the quotient with digits after the decimal point removed. If one of the operands is negative, the result is floored, i.e., rounded away from zero | `3//2`  `-11//3` | `1`       `-4` |
 
 
 __Modulus__
@@ -413,16 +413,16 @@ __Floor examples__
 
 We use assignment operators to assign values to variables. You have been using the `=` assignment operator. Here are others:
 
-| Operator | Equivalent to          | Example                     | result evaluates to |
-| -------- | ---------------------- | --------------------------- | ------------------- |
-| `=`      | `a = 3`                | `result = 3`                | 3                   |
-| `+=`     | `result = result + 2`  | `result = 3 ; result += 2`  | 5                   |
-| `-=`     | `result = result - 2`  | `result = 3 ; result -= 2`  | 1                   |
-| `*=`     | `result = result * 2`  | `result = 3  ; result *= 2` | 6                   |
-| `/=`     | `result = result / 2`  | `result = 3 ; result /= 2`  | 1.5                 |
-| `%=`     | `result = result % 2`  | `result = 3 ; result %= 2`  | 1                   |
-| `**=`    | `result = result ** 2` | `result = 3 ; result **= 2` | 9                   |
-| `//=`    | `result = result // 2` | `result = 3 ; result //= 3` | 1                   |
+| Operator | Equivalent to          | Example                    | result evaluates to |
+| -------- | ---------------------- | -------------------------- | ------------------- |
+| `=`      | `result = 3`           | `result = 3`               | 3                   |
+| `+=`     | `result = result + 2`  | `result = 3; result += 2`  | 5                   |
+| `-=`     | `result = result - 2`  | `result = 3; result -= 2`  | 1                   |
+| `*=`     | `result = result * 2`  | `result = 3; result *= 2`  | 6                   |
+| `/=`     | `result = result / 2`  | `result = 3; result /= 2`  | 1.5                 |
+| `%=`     | `result = result % 2`  | `result = 3; result %= 2`  | 1                   |
+| `**=`    | `result = result ** 2` | `result = 3; result **= 2` | 9                   |
+| `//=`    | `result = result // 2` | `result = 3; result //= 3` | 1                   |
 
 
 
@@ -475,7 +475,7 @@ True
 False
 >>> 'ATG' not in dna
 True
->>> codons = [ 'atg' , 'aaa' , 'agg' ]
+>>> codons = ['atg' , 'aaa' , 'agg']
 >>> 'atg' in codons
 True
 >>> 'ttt' in codons
@@ -491,7 +491,7 @@ Operators are listed in order of precedence. Highest listed first. Not all the o
 | Operator                                 | Description                              |
 | ---------------------------------------- | ---------------------------------------- |
 | `**`                                     | Exponentiation (raise to the power)      |
-| `~` `+` `-`                              | Complement, unary plus and minus (method names for the last two are +@ and -@) |
+| `~` `+` `-`                              | Complement/Bitwise inverse, unary plus and minus (method names for the last two are +@ and -@) |
 | `*` `/` `%` `//`                         | Multiply, divide, modulo and floor division |
 | `+` `-`                                  | Addition and subtraction                 |
 | `>>` `<<`                                | Right and left bitwise shift             |
@@ -585,7 +585,7 @@ Control Statements are used to direct the flow of your code and create the oppor
 ### If Statement
 
 - Use the `if` Statement to test for truth and to execute lines of code if true.  
-- When the expression evaluates to true each of the statements indented below the `if` statment, also known as the nested statement block, will be executed.
+- When the expression evaluates to true each of the statements indented below the `if` statment, also known as a _block_, will be executed.
 
 
 **if**
@@ -598,9 +598,10 @@ if expression :
 
 For Example:  
 ```python
+query = 'AGC'
 dna = 'GTACCTTGATTTCGTATTCTGAGAGGCTGCTGCTTAGCGGTAGCCCCTTGGTTTCCGTGGCAACGGAAAA'
-if 'AGC' in dna:
-  print('found AGC in your dna sequence')
+if query in dna:
+  print(f'found {query} in your dna sequence')
 ```
 Returns:  
 ```
@@ -614,11 +615,12 @@ found AGC in your dna sequence
 - If the condition is false, the second indented else block is executed.
 
 ```python
+query = 'ATG'
 dna = 'GTACCTTGATTTCGTATTCTGAGAGGCTGCTGCTTAGCGGTAGCCCCTTGGTTTCCGTGGCAACGGAAAA'
-if 'ATG' in dna:
-  print('found ATG in your dna sequence')
+if query in dna:
+  print(f'found {query} in your dna sequence')
 else:
-  print('did not find ATG in your dna sequence')
+  print(f'did not find {query} in your dna sequence')
 ```
 Returns:  
 ```
@@ -639,10 +641,10 @@ if count < 0:
   print(count, message)
 elif count < 50:
   message = "is less than 50"
-  print (count, message)
+  print(count, message)
 elif count > 50:
   message = "is greater than 50"
-  print (count, message)
+  print(count, message)
 else:
   message = "must be 50"
   print(count, message)
@@ -661,10 +663,10 @@ if count < 0:
   print(count, message)
 elif count < 50:
   message = "is less than 50"
-  print (count, message)
+  print(count, message)
 elif count > 50:
   message = "is greater than 50"
-  print (count, message)
+  print(count, message)
 else:
   message = "must be 50"
   print(count, message)
@@ -683,10 +685,10 @@ if count < 0:
   print(count, message)
 elif count < 50:
   message = "is less than 50"
-  print (count, message)
+  print(count, message)
 elif count > 50:
   message = "is greater than 50"
-  print (count, message)
+  print(count, message)
 else:
   message = "must be 50"
   print(count, message)
@@ -706,19 +708,19 @@ Python recognizes 3 types of numbers: integers, floating point numbers, and comp
 
 ### integer  
 
-- known as an int
-- an int can be positive or negative
+- known as an `int`
+- an `int` can be positive or negative
 - and **does not** contain a decimal point or exponent.
 
 ### floating point number  
 
-- known as a float
+- known as a `float`
 - a floating point number can be positive or negative
 - and **does** contain a decimal point (`4.875`) or exponent (`4.2e-12`)
 
 ### complex number  
 
-- known as complex
+- known as `complex`
 - is in the form of a+bi where bi is the imaginary part.
 
 ### Conversion functions    
@@ -783,10 +785,10 @@ Here is a list of functions that take numbers as arguments. These do useful thin
 ```
 
 
-Many numeric functions are not built into the Python core and need to be imported into our script if we want to use them. To include them, at the top of the script type: 
+Many numeric functions are not built into the Python core and need to be imported into our program if we want to use them. To include them, add the following to the top of the program: 
 `import math`
 
-These next functions are found in the math module and need to be imported. To use these functions, prepend the function with the module name, i.e, `math.ceil(15.5)`  
+The following functions are found in the `math` module and must be imported. To use these functions, prepend the function with the module name, i.e, `math.ceil(15.5)`  
 
 
 | math.function    | Description                              |
