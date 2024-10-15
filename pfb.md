@@ -16,11 +16,11 @@ Python has
 - classes
 - methods
 
-**Data types** are just different types of data which are discussed in more detail later. Examples of data types are integer numbers and strings of letters and numbers (text). These can be stored in variables.
+**Data types** are just different types of data. Examples of data types are integer numbers and strings of letters and numbers (text). These can be stored in variables.
 
 **Functions** do something with data, such as a calculation. Some functions are already built into Python. You can create your own functions as well. 
 
-**Objects** are a way of grouping a set of data and functions (methods) that act on that data.
+**Objects** group various data and functions (methods) that act on that data into a convenient and coherent programming paradigm.
 
 **Classes** are a way to encapsulate (organize) variables and functions. Objects get their variables and methods from the class they belong to. 
 
@@ -28,7 +28,7 @@ Python has
 
 ## Running Python
 
-There are two versions of Python: Python 2 and Python 3. We will be using 3. This version fixes some of the problems with Python 2 and breaks some other things. A lot of code has already been written for Python 2 (it's older), but going forwards, more and more new code development will use Python 3.
+There are two versions of Python: Python 2 and Python 3. We will be using 3. This version fixes some of the problems with Python 2 and breaks some other things. A lot of code has already been written for Python 2 (it's older), but going forwards, all new code development uses Python 3.
 
 
 ### Interactive Interpreter
@@ -37,7 +37,7 @@ Python can be run one line at a time in an interactive interpreter. You can thin
 
 `$ python3`    
 
-Note: '$' indicates the command line prompt. Recall from Unix 1 that every computer can have a different prompt!
+Note: '$' indicates the command line prompt. Recall from Unix 1 that every computer can have a different prompt! The python interpreter has its own prompt `>>>`.
 
 First Python Commands:
 
@@ -83,29 +83,28 @@ If you make your script executable, you can run it without typing `python3` firs
 
 `chmod +x hello.py`
 
-You can look at the permissions with 
-
-```
-% ls -l hello.py 
--rwxr-xr-x  1 sprochnik  staff  60 Oct 16 14:29 hello.py
-```
-
-The first 10 characters you see displayed on the line have special meanings. The first character (`-`) tells you what kind of file `hello.py` is. `-` means a normal file, `d` a directory, `l` a link. The next nine characters come in three sets of three. The first set refers to the your permissions, the second set your group's permissions, and the last set to everyone else. Each three character set shows in order `rwx` for read, write, execute. If someone doesn't have a permission, a `-` is displayed instead of a letter. The three 'x' characters means anyone can execute or run this script. 
+You can look back at the unix lecture to learn more about permissions.
 
 We also need to add a line at the beginning of the script that tells the shell to run python3 to interpret the script. This line starts with `#`, so it looks like a comment to python. The `!` (exclamation mark or bang) is important as is the space between `env` and `python3`. The program `/usr/bin/env` looks for where `python3` is installed and runs the script with `python3`. The details may seem a bit complex, but you can just copy and paste this 'magic' line.
 
 The file hello.py now looks like this
 
 ```python
-!/usr/bin/env python3
+#!/usr/bin/env python3
 print("Hello, PFB!")
 ```
 
-Now you can simply type the symbol for the current directory `.` followed by a `/` and the name of the script to run it. Like this
+Now you can simply type the symbol for the current directory `.` followed by a `/` and the name of the script to run it. This means run the `hello.py` script in the directory I'm currently in. Like this
 
 ```
 % ./hello.py
 Hello, PFB!
+```
+
+Or you can add the current directory to the unix variable PATH as we saw at the end of the unix lecture, then you can just execute the script like so
+
+```
+% hello.py
 ```
 
 
@@ -122,16 +121,15 @@ Python does not allow punctuation characters such as `@`, `$`, and `%` within a 
 ### Naming conventions for Python Variable Names
 
  * The first character is lowercase, unless it is a name of a class. Classes should begin with an uppercase characters (ex. `Seq`).
- * Private variable names begin with an underscore (ex. `_private`).
- * Strong private variable names begin with two underscores (ex. `__private`).
- * Python language-defined special names begin and end with two underscores (ex. `__file__`).
+ * Sometimes you'll see variable names starting with one or two underscores in python libraries. These mean private and strong private variables respectively. (ex. `_private` or `__private`). But you don't need to worry about writing these.
+ * Python language-defined special names begin and end with two underscores (ex. `__file__` which is the name of the current python file).
 
 
 Picking good variable names for the objects you name yourself is very important. Don't call your variables things like `items` or `my_list` or `data` or `var`. Except for where you have a very simple piece of code, or you are plotting a graph, don't call your objects `x` or `y` either. All these name examples are not decriptive of what kind of data you will find in the variable or object. Worse is to call a variable that contains gene names as `sequences`. Why is this such a bad idea? Think about what would happen if you filled your car up at a store labelled 'gas station' that sold lemonade. In computer science, names should always accurately describe the object they are attached to. This reduces possibility of bugs in your code, makes it much easier to understand if you come back to it after six months or share your code with someone, and makes it faster to write code that works right. Even though it takes a bit of time and effort to think up a good name for an object, it will prevent so many problems in the future!
 
 ### Reserved Words
 
-The following is a list of Python keywords. These are special words that already have a purpose in python and therefore cannot be used as variable names.
+The following is a list of Python keywords. These are special words that already have a purpose in python and therefore should not be used as variable names. If you do by accident, it overwrites the python function and causes problems.
 
 ```
 and         exec        not
@@ -151,10 +149,10 @@ except      list        hash
 
 Python denotes a block of code by lines with the same level of indentation. This keeps lines of code that run together organized. Incorrect line spacing and/or indention will cause an error or can make your code run in a way you don't expect. You can get help with indentation from good text editors or Interactive Development Environments (IDEs).
 
-The number of spaces in the indentation need to be consistent, but a specific number is not required. All lines of code, or statements, within a single block must be indented the same amount. For example, using four spaces:
+The number of spaces in the indentation needs to be consistent, but a specific number is not required. All lines of code, or statements, within a single block must be indented the same amount. For example, using four spaces:
 
 ```python
-!/usr/bin/env python3
+#!/usr/bin/env python3
 message = '' # make an empty variable
 for x in (1,2,3,4,5):
     if x > 4:
@@ -177,9 +175,9 @@ Comments start with a pound or hash symbol `#`. All characters after this symbol
 The first line of a script starting with `#!` is a special example of a comment that also has the special function in Unix of telling the Unix shell how to run the script.
 
 ```python
-!/usr/bin/env python3
+#!/usr/bin/env python3
 
- this is my first script
+this is my first script
 print("Hello, PFB!") # this line prints output to the screen
 ```
 
@@ -202,7 +200,7 @@ Numbers and strings are two common data types. Literal numbers and strings like 
 For Example:  
 ```python
 gene_count = 5
- change the value of gene_count
+# change the value of gene_count
 gene_count = 10
 ```
 >Recall the section above on variable and object names (and variables are objects in Python).
