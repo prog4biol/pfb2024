@@ -356,8 +356,6 @@ We'll cover `dir()` in more detail later
 
 -------
 
-<div style="page-break-after: always;"></div>
-
 # Python 2
 
 ## Operators
