@@ -1838,7 +1838,7 @@ more_code
 
 Code: 
 ```python
-!/usr/bin/env python3
+#!/usr/bin/env python3
 
 count = 0
 while count < 5:
@@ -1875,7 +1875,7 @@ Done
 An infinite loop occurs when a while condition is always true. Here is an example of an infinite loop.
 
 ```python
-!/usr/bin/env python3
+#!/usr/bin/env python3
 
 count = 0
 while count < 5:            # this is normally a bug!!
@@ -1903,7 +1903,7 @@ count: 0
 A better way to write an infinite loop is with `True`. You'll need to include something like `if ...: break` 
 
 ```python
-!/usr/bin/env python3
+#!/usr/bin/env python3
 count=0
 while True:
   print("count:",count)
@@ -1930,7 +1930,7 @@ An example of a sequence is a list. Let's use a for loop with a list of words.
 
 Code:
 ```python
-!/usr/bin/env python3
+#!/usr/bin/env python3
 
 words = ['zero','one','two','three','four']
 for word in words:
@@ -1952,7 +1952,7 @@ This next example is using a for loop to iterate over a string. Remember a strin
 
 Code:
 ```python
-!/usr/bin/env python3
+#!/usr/bin/env python3
 
 dna = 'GTACCTTGATTTCGTATTCTGAGAGGCTGCTGCTTAGCGGTAGCCCCTTGGTTTCCGTGGCAACGGAAAA'
 for nt in dna:
@@ -1979,7 +1979,7 @@ Another example of iterating over a list of variables, this time numbers.
 
 Code:
 ```python
-!/usr/bin/env python3
+#!/usr/bin/env python3
 
 numbers = [0,1,2,3,4]
 for num in numbers:
@@ -2008,7 +2008,7 @@ The function `range()` can be used in conjunction with a for loop to iterate ove
 
 Code:
 ```python
-!/usr/bin/env python3
+#!/usr/bin/env python3
 
 for num in range(5):
   print(num)
@@ -2059,7 +2059,7 @@ Output:
  7. 4°C for ever   
 
 ```python
-!/usr/bin/env python3
+#!/usr/bin/env python3
 
 def doAnnealing(time):
   temp = 57
@@ -2172,7 +2172,7 @@ Loop control statements allow for altering the normal flow of execution.
 
 Code:
 ```python
-!/usr/bin/env python3
+#!/usr/bin/env python3
 
 count = 0
 while count < 5:
@@ -2197,7 +2197,7 @@ Done
 
 Code:
 ```python
-!/usr/bin/env python3
+#!/usr/bin/env python3
 
 count = 0
 while count < 5:
@@ -2479,7 +2479,7 @@ Now we have all the tools to build a dictionary one key/value using a for loop. 
 Here we are going to count and store nucleotide counts:  
 
 ```python
-!/usr/bin/env python3
+#!/usr/bin/env python3
 
  create a new empty dictionary
 nt_count={}
@@ -2714,7 +2714,7 @@ Code:
 
 
 ```python
-!/usr/bin/env python3
+#!/usr/bin/env python3
 
  create a new empty dictionary
 nt_count = {}
@@ -2841,7 +2841,7 @@ ACCGGTTTCCAAAGACAGTCTTCTAATTCCTCATTAGTAATAAGTAAAATGTTTATTGTTGTAGCTCTGG
 
 Here's another way to read data in from a file. A `for` loop can be used to iterate through the file one line at a time.
 ```python
-!/usr/bin/env python3
+#!/usr/bin/env python3
 
 seq_file_obj = open("seq.nt.txt","r")
 for line in seq_file_obj: # Python magic: reads in a line from file
@@ -2861,7 +2861,7 @@ ACCGGTTTCCAAAGACAGTCTTCTAATTCCTCATTAGTAATAAGTAAAATGTTTATTGTTGTAGCTCTGG
 Let's use `rstrip()` method to remove the newline from our file input.
 ```python
 $ cat file_for_rstrip.py
-!/usr/bin/env python3
+#!/usr/bin/env python3
 
 seq_file_obj = open("seq.nt.txt","r")
 for line in seq_file_obj:
@@ -2884,7 +2884,7 @@ ACCGGTTTCCAAAGACAGTCTTCTAATTCCTCATTAGTAATAAGTAAAATGTTTATTGTTGTAGCTCTGG
 Many people add this, because it closes the file for you automatically. Good programming practice. Your code will clean up as it runs. For more advanced coding, `with ... as ...` saves limited resources like filehandles and database connections. For now, we just need to know that the `with ... as ...:` does the same as `fh = open(...) ... fh.close()`. So here's what the adapted code looks like
 
 ```python
-!/usr/bin/env python3
+#!/usr/bin/env python3
 
 with open("seq.nt.txt","r") as seq_file_obj: #cleans up after exiting 
                                             # the 'with' block
@@ -2902,7 +2902,7 @@ The `write()` method is like the `print()` function. The biggest difference is t
 
 Let's write a few lines to a file named "writing.txt".  
 ```python
-!/usr/bin/env python3
+#!/usr/bin/env python3
 
 fo = open("writing.txt" , "w")  # note that we are writing so the mode is "w"
 fo.write("One line.\n")
@@ -2926,7 +2926,7 @@ One line.
 ```
 Now, let's get crazy! Lets read from one file a line at a time. Do something to each line and write the results to a new file.
 ```python
-!/usr/bin/env python3
+#!/usr/bin/env python3
 
 total_nts = 0
  open two file objects, one for reading, one for writing
@@ -2974,7 +2974,7 @@ BRCA1   GTACCTTGATTTCGTATTCTGAGAGGCTGCTGCTTAGCGGTAGCCCCTTGGTTTCCGTGGCAACGGAAAA
 How can we read this whole file in to a dictionary? 
 
 ```python
-!/usr/bin/env python3
+#!/usr/bin/env python3
 
 genes = {}
 with open("sequence_data.txt","r") as seq_read:
@@ -3009,7 +3009,7 @@ These specialized functions are not included in the core of Python. We need to i
 at the top of your script
 
 ```python 
-!/usr/bin/env python3
+#!/usr/bin/env python3
 
 import re
 ```
@@ -3425,7 +3425,7 @@ downstream: CCGGTTTCCAAAGACAGTCTTCTAA
 The match object contains information about the match that can be retrieved with match methods like `start()` and `end()`
 
 ```python
-!/usr/bin/env python3
+#!/usr/bin/env python3
 
 import re
 
@@ -3892,7 +3892,7 @@ womens	medium	royal heather       1
 
 [shirts.py](scripts/shirts.py)
 ```python
-!/usr/bin/env python3
+#!/usr/bin/env python3
 
 shirts = {}
 with open("shirts.txt","r") as file_object:
@@ -4048,7 +4048,7 @@ Here is a very nice [interactive tutorial](https://www.learnpython.org/en/Pandas
 There are a few different types of errors when coding. Syntax errors, logic errors, and exceptions. You have probably encountered all three. Syntax and logic errors are issues you need to deal with while coding. An exception is a special type of error that can be informative and used to write code to respond to this type of error. This is especially relavent when dealing with user input. What if they don't give you any, or it is the wrong kind of input. We want our code to be able to detect these types of errors and respond accordingly.
 
 ```python
-!/usr/bin/env python3
+#!/usr/bin/env python3
 
 import sys
 file = sys.argv[1]
@@ -4089,7 +4089,7 @@ We have already seen quite a few exceptions throughout the lecture notes, here a
 We can use the exception to our advantage to help the people who are running the script. We can use a try/except condition like an if/else block to look for exceptions and to execute specific code if we **do not have** an exception and do something different if we **do have** an exception.
 
 ```python
-!/usr/bin/env python3
+#!/usr/bin/env python3
 import sys
 
 file = ''
@@ -4480,7 +4480,7 @@ List comprehensions can often be used instead of lambdas and may be easier to re
 Almost all python variables are global. This means you can use them everywhere in your code.  Remember that python blocks are defined as code at the same level of indentation.
 
 ```python
-!/usr/bin/env python3
+#!/usr/bin/env python3
 print('Before if block')
 x = 100
 print('x=',x)
@@ -4540,7 +4540,7 @@ Variables inside functions are local and therefore can only been accessed from w
 
 
 ```python
-!/usr/bin/end python3
+#!/usr/bin/end python3
 
 def set_local_x_to_five(x):
   print('Inside def')
@@ -4588,7 +4588,7 @@ You can make a local variable global with the statement `global`. Now a variable
 Here is an example use of `global`. 
 
 ```python
-!/usr/bin/env python3
+#!/usr/bin/env python3
 
 def set_global_variable():
   global greeting  # make greeting global
@@ -4874,7 +4874,8 @@ Does unix-like wildcard file path expansion.
 Great (if quite complicated) tool for parsing command line arguments and automatically generating help messages for scripts (very handy!). Here's a simple script that explains a little of what it does.
 
 ```python
-!/usr/bin/env python3
+
+#!/usr/bin/env python3
 import argparse
 parser = argparse.ArgumentParser(description="A test program that reads in some number of lines from an input file. The output can be screen or an output file")
  we want the first argument to be the filename
@@ -4913,7 +4914,7 @@ Also, non-core: BioPython for bioinformatics, Numpy for mathematics, statistics,
 
 You can also make your own modules. They are just text files containing python. The file name should end with `.py`. You need to put them in the right directory (same directory as your main script works for getting going). Then you can write your own import statement. For example
 ```
-!/usr/bin/env python3
+#!/usr/bin/env python3
 import sequence_utilities    # import functions in your own file 'sequence_utilities.py'
 import sys                   # import built-in python module
 ```
@@ -5165,7 +5166,7 @@ Below our __\_\_init\_\___ instructions indicate that we want to create object a
 Here is our new class definition and new object creation when using the  __\_\_init\_\___  function:
 
 ```python
-!/usr/bin/env python3
+#!/usr/bin/env python3
 class DNARecord(object):
   
   # define class attributes
