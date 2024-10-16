@@ -112,7 +112,7 @@ Python 4 Problem Set -- Lists and Loops
     - Remember to test your code with test data. 
 
 2. Calculate sequence identity: Start with 2 very similar DNA sequences. Use your favorites or use [Python_04.fasta](https://raw.githubusercontent.com/prog4biol/pfb2024/master/files/Python_04.fasta)
-    - Align with ClustalW, TCoffee, or some other web alignment application. 
+    - Align with [ClustalOmega](https://www.ebi.ac.uk/jdispatcher/msa/clustalo), [TCoffee](https://tcoffee.crg.eu/), [MAFFT](https://mafft.cbrc.jp/alignment/server/index.html), or some other web alignment application. 
     - Output should be in FASTA format.
     - Store (copy and paste) each aligned sequence, including dashes, as two separate string variables. 
     - Get rid of newlines (if any). Newline characters are not part of sequence!
