@@ -2481,10 +2481,10 @@ Here we are going to count and store nucleotide counts:
 ```python
 #!/usr/bin/env python3
 
- create a new empty dictionary
+# create a new empty dictionary
 nt_count={}
 
- loop example from loops lecture
+# loop example from loops lecture
 dna = 'GTACCTTGATTTCGTATTCTGAGAGGCTGCTGCTTAGCGGTAGCCCCTTGGTTTCCGTGGCAACGGAAAA'
 for nt in dna:
 
