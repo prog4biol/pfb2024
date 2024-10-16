@@ -92,7 +92,16 @@ Python 4 Problem Set -- Lists and Loops
    12	ATATATATCGAT
    8	ATGGGCCC
    ```
-   - **Modify this script** to also also print out the number (postion in the list) of each sequence. Make sure your columns are tab separated (i.e., "1\\t4\\tACGT\\n")
+   - **Modify this script** to also also print out the number (postion in the list) of each sequence. Make sure your columns are tab separated (i.e., "index\\tlength\\tsequence\\n")
+   ```
+   0	14	ATGCCCGGCCCGGC
+   1	25	GCGTGCTAGCAATACGATAAACCGG
+   2	12	ATATATATCGAT
+   3	8	ATGGGCCC
+   ```
+
+
+
    
 14. Have you been commiting you work?
 
