@@ -1820,7 +1820,7 @@ while expression:
   statement1
   statement2
   more_statements
- code below here gets executed after the while loop exits
+# code below here gets executed after the while loop exits
 rest_of_code_goes_here
 more_code
 ```
@@ -2883,7 +2883,7 @@ with open("seq.nt.txt","r") as seq_file_obj: #cleans up after exiting
   for line in seq_file_obj:
     line = line.rstrip()
     print(line)
-file gets closed for you here.
+# file gets closed for you here.
 ```
 
 ### Writing to a File
