@@ -2716,17 +2716,17 @@ Code:
 ```python
 #!/usr/bin/env python3
 
- create a new empty dictionary
+# create a new empty dictionary
 nt_count = {}
 
- get a set of unique characters in our DNA string
+# get a set of unique characters in our DNA string
 
 dna = 'GTACCNTTGATTTCGTATTCTGAGAGGCTGCTGCTTAGCGGTAGCCCCTTGGTTTCCGTGGCAACGGAAAA'
 unique = set(dna)
 
 print('unique nt: ', unique) ## {'C', 'A', 'G', 'T', 'N'}
 
- iterate through each unique nucleotide
+# iterate through each unique nucleotide
 for nt in unique:
   # count the number of this unique nt in dna
   count = dna.count(nt)
@@ -2753,7 +2753,8 @@ nt count: {'G': 20, 'T': 21, 'A': 13, 'C': 16, 'N': 1}
 ---
 
 `set` problemset questions are combined into Python 6: File I/O problemset.     
-[Link to Python 6 Problem Set](problemsets/Python_06_problemset.md)   
+
+## [Link to Python 6 Problem Set](problemsets/Python_06_problemset.md)   
 Question 1-5 are all about Sets.  
 Question 6+ are a combination of File I/O and sets.  
 
