@@ -132,7 +132,7 @@ Picking good variable names for the objects you name yourself is very important.
 The following is a list of Python keywords. These are special words that already have a purpose in python and therefore should not be used as variable names. If you do by accident, it overwrites the python function and causes problems.
 
 ```
-and         exec        not
+and         exec        not      dict
 as          finally     or
 assert      for         pass
 break       from        print
@@ -154,7 +154,7 @@ The number of spaces in the indentation needs to be consistent, but a specific n
 ```python
 #!/usr/bin/env python3
 message = '' # make an empty variable
-for x in (1,2,3,4,5):
+for x in [1, 2, 3, 4, 5]:
     if x > 4:
         print("Hello")
         message = 'x is big'
@@ -177,7 +177,7 @@ The first line of a script starting with `#!` is a special example of a comment 
 ```python
 #!/usr/bin/env python3
 
-this is my first script
+# this is my first script
 print("Hello, PFB!") # this line prints output to the screen
 ```
 
@@ -278,7 +278,10 @@ Collections of data can also be stored in special data types, i.e., tuples, list
 
 
 ```python
-{ 'TP53' : 'GATGGGATTGGGGTTTTCCCCTCCCATGTGCTCAAGACTGGCGCTAAAAGTTTTGAGCTTCTCAAAAGTC' , 'BRCA1' : 'GTACCTTGATTTCGTATTCTGAGAGGCTGCTGCTTAGCGGTAGCCCCTTGGTTTCCGTGGCAACGGAAAA' }
+{
+  'TP53' : 'GATGGGATTGGGGTTTTCCCCTCCCATGTGCTCAAGACTGGCGCTAAAAGTTTTGAGCTTCTCAAAAGTC' ,
+  'BRCA1' : 'GTACCTTGATTTCGTATTCTGAGAGGCTGCTGCTTAGCGGTAGCCCCTTGGTTTCCGTGGCAACGGAAAA'
+}
 ```
 
 
@@ -316,10 +319,12 @@ This happens inside the script ('friends.py'):
 ```python
 #!/usr/bin/env python3
 import sys
+
 friend1 = sys.argv[1] # get first command line parameter
 friend2 = sys.argv[2] # get second command line parameter
-# now print a message to the screen
-print(friend1,'and',friend2,'are friends')
+
+# Now print a message to the screen
+print(friend1, 'and', friend2, 'are friends')
 ```
 
 The advantage of getting input from the user from the command line is that you can write a script that is general. It can print a message with any input the user provides. This makes it flexible.
@@ -338,7 +343,7 @@ You have an identifier in your code called `data`. Does it represent a string or
 We'll cover `dir()` in more detail later
 
 ```python
->>> data = [2,4,6]
+>>> data = [2, 4, 6]
 >>> type(data)
 <class 'list'>
 >>> data = 5
@@ -369,13 +374,13 @@ In Python we can write statements that perform mathematical calculations. To do 
 
 | Operator | Description                                                  | Example          | Result      |
 | -------- | ------------------------------------------------------------ | ---------------- | ----------- |
-| `+`      | Addition                                                     | `3+2`            | 5           |
-| `-`      | Subtraction                                                  | `3-2`            | 1           |
-| `*`      | Multiplication                                               | `3*2`            | 6           |
-| `/`      | Division                                                     | `3/2`            | 1.5         |
-| `%`      | Modulus (divides left operand by right operand and returns the remainder) | `3%2`            | 1           |
-| `**`     | Exponent                                                     | `3**2`           | 9           |
-| `//`     | Floor Division (result is the quotient with digits after the decimal point removed. If one of the operands is negative, the result is floored, i.e., rounded away from zero | `3//2`  `-11//3` | 1        -4 |
+| `+`      | Addition                                                     | `3+2`            | `5`           |
+| `-`      | Subtraction                                                  | `3-2`            | `1`           |
+| `*`      | Multiplication                                               | `3*2`            | `6`           |
+| `/`      | Division                                                     | `3/2`            | `1.5`         |
+| `%`      | Modulus (divides left operand by right operand and returns the remainder) | `3%2`            | `1`           |
+| `**`     | Exponent                                                     | `3**2`           | `9`           |
+| `//`     | Floor Division (result is the quotient with digits after the decimal point removed. If one of the operands is negative, the result is floored, i.e., rounded away from zero | `3//2`  `-11//3` | `1`       `-4` |
 
 
 __Modulus__
@@ -405,16 +410,16 @@ __Floor examples__
 
 We use assignment operators to assign values to variables. You have been using the `=` assignment operator. Here are others:
 
-| Operator | Equivalent to          | Example                     | result evaluates to |
-| -------- | ---------------------- | --------------------------- | ------------------- |
-| `=`      | `a = 3`                | `result = 3`                | 3                   |
-| `+=`     | `result = result + 2`  | `result = 3 ; result += 2`  | 5                   |
-| `-=`     | `result = result - 2`  | `result = 3 ; result -= 2`  | 1                   |
-| `*=`     | `result = result * 2`  | `result = 3  ; result *= 2` | 6                   |
-| `/=`     | `result = result / 2`  | `result = 3 ; result /= 2`  | 1.5                 |
-| `%=`     | `result = result % 2`  | `result = 3 ; result %= 2`  | 1                   |
-| `**=`    | `result = result ** 2` | `result = 3 ; result **= 2` | 9                   |
-| `//=`    | `result = result // 2` | `result = 3 ; result //= 3` | 1                   |
+| Operator | Equivalent to          | Example                    | result evaluates to |
+| -------- | ---------------------- | -------------------------- | ------------------- |
+| `=`      | `result = 3`           | `result = 3`               | 3                   |
+| `+=`     | `result = result + 2`  | `result = 3; result += 2`  | 5                   |
+| `-=`     | `result = result - 2`  | `result = 3; result -= 2`  | 1                   |
+| `*=`     | `result = result * 2`  | `result = 3; result *= 2`  | 6                   |
+| `/=`     | `result = result / 2`  | `result = 3; result /= 2`  | 1.5                 |
+| `%=`     | `result = result % 2`  | `result = 3; result %= 2`  | 1                   |
+| `**=`    | `result = result ** 2` | `result = 3; result **= 2` | 9                   |
+| `//=`    | `result = result // 2` | `result = 3; result //= 3` | 1                   |
 
 
 
@@ -467,7 +472,7 @@ True
 False
 >>> 'ATG' not in dna
 True
->>> codons = [ 'atg' , 'aaa' , 'agg' ]
+>>> codons = ['atg' , 'aaa' , 'agg']
 >>> 'atg' in codons
 True
 >>> 'ttt' in codons
@@ -483,7 +488,7 @@ Operators are listed in order of precedence. Highest listed first. Not all the o
 | Operator                                 | Description                              |
 | ---------------------------------------- | ---------------------------------------- |
 | `**`                                     | Exponentiation (raise to the power)      |
-| `~` `+` `-`                              | Complement, unary plus and minus (method names for the last two are +@ and -@) |
+| `~` `+` `-`                              | Complement/Bitwise inverse, unary plus and minus (method names for the last two are +@ and -@) |
 | `*` `/` `%` `//`                         | Multiply, divide, modulo and floor division |
 | `+` `-`                                  | Addition and subtraction                 |
 | `>>` `<<`                                | Right and left bitwise shift             |
@@ -577,7 +582,7 @@ Control Statements are used to direct the flow of your code and create the oppor
 ### If Statement
 
 - Use the `if` Statement to test for truth and to execute lines of code if true.  
-- When the expression evaluates to true each of the statements indented below the `if` statment, also known as the nested statement block, will be executed.
+- When the expression evaluates to true each of the statements indented below the `if` statment, also known as a _block_, will be executed.
 
 
 **if**
@@ -592,7 +597,7 @@ For Example:
 ```python
 dna = 'GTACCTTGATTTCGTATTCTGAGAGGCTGCTGCTTAGCGGTAGCCCCTTGGTTTCCGTGGCAACGGAAAA'
 if 'AGC' in dna:
-  print('found AGC in your dna sequence')
+  print('Found AGC in your dna sequence')
 ```
 Returns:  
 ```
@@ -608,13 +613,13 @@ found AGC in your dna sequence
 ```python
 dna = 'GTACCTTGATTTCGTATTCTGAGAGGCTGCTGCTTAGCGGTAGCCCCTTGGTTTCCGTGGCAACGGAAAA'
 if 'ATG' in dna:
-  print('found ATG in your dna sequence')
+  print('Found ATG in your dna sequence')
 else:
-  print('did not find ATG in your dna sequence')
+  print('Did not find ATG in your dna sequence')
 ```
 Returns:  
 ```
-did not find ATG in your dna sequence
+Did not find ATG in your dna sequence
 ```
 
 
@@ -627,17 +632,13 @@ did not find ATG in your dna sequence
 ```python
 count = 60
 if count < 0:
-  message = "is less than 0"
-  print(count, message)
+  print(count, "is less than 0")
 elif count < 50:
-  message = "is less than 50"
-  print (count, message)
+  print(count, "is less than 50")
 elif count > 50:
-  message = "is greater than 50"
-  print (count, message)
+  print(count, "is greater than 50")
 else:
-  message = "must be 50"
-  print(count, message)
+  print(count, "must be 50")
 ```
 Returns:  
 ```
@@ -649,17 +650,13 @@ Let's change count to 20, which statement block gets executed?
 ```python
 count = 20
 if count < 0:
-  message = "is less than 0"
-  print(count, message)
+  print(count, "is less than 0")
 elif count < 50:
-  message = "is less than 50"
-  print (count, message)
+  print(count, "is less than 50")
 elif count > 50:
-  message = "is greater than 50"
-  print (count, message)
+  print(count, "is greater than 50")
 else:
-  message = "must be 50"
-  print(count, message)
+  print(count, "must be 50")
 ```
 Returns:  
 ```
@@ -671,17 +668,13 @@ What happens when count is 50?
 ```python
 count = 50
 if count < 0:
-  message = "is less than 0"
-  print(count, message)
+  print(count, "is less than 0")
 elif count < 50:
-  message = "is less than 50"
-  print (count, message)
+  print(count, "is less than 50")
 elif count > 50:
-  message = "is greater than 50"
-  print (count, message)
+  print(count, "is greater than 50")
 else:
-  message = "must be 50"
-  print(count, message)
+  print(count, "must be 50")
 ```
 Returns:  
 ```
@@ -698,19 +691,19 @@ Python recognizes 3 types of numbers: integers, floating point numbers, and comp
 
 ### integer  
 
-- known as an int
-- an int can be positive or negative
+- known as an `int`
+- an `int` can be positive or negative
 - and **does not** contain a decimal point or exponent.
 
 ### floating point number  
 
-- known as a float
+- known as a `float`
 - a floating point number can be positive or negative
 - and **does** contain a decimal point (`4.875`) or exponent (`4.2e-12`)
 
 ### complex number  
 
-- known as complex
+- known as `complex`
 - is in the form of a+bi where bi is the imaginary part.
 
 ### Conversion functions    
@@ -775,10 +768,10 @@ Here is a list of functions that take numbers as arguments. These do useful thin
 ```
 
 
-Many numeric functions are not built into the Python core and need to be imported into our script if we want to use them. To include them, at the top of the script type: 
+Many numeric functions are not built into the Python core and need to be imported into our program if we want to use them. To include them, add the following to the top of the program: 
 `import math`
 
-These next functions are found in the math module and need to be imported. To use these functions, prepend the function with the module name, i.e, `math.ceil(15.5)`  
+The following functions are found in the `math` module and must be imported. To use these functions, prepend the function with the module name, i.e, `math.ceil(15.5)`  
 
 
 | math.function    | Description                              |
