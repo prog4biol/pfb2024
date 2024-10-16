@@ -598,10 +598,9 @@ if expression :
 
 For Example:  
 ```python
-query = 'AGC'
 dna = 'GTACCTTGATTTCGTATTCTGAGAGGCTGCTGCTTAGCGGTAGCCCCTTGGTTTCCGTGGCAACGGAAAA'
-if query in dna:
-  print(f'found {query} in your dna sequence')
+if 'AGC' in dna:
+  print('Found AGC in your dna sequence')
 ```
 Returns:  
 ```
@@ -615,16 +614,15 @@ found AGC in your dna sequence
 - If the condition is false, the second indented else block is executed.
 
 ```python
-query = 'ATG'
 dna = 'GTACCTTGATTTCGTATTCTGAGAGGCTGCTGCTTAGCGGTAGCCCCTTGGTTTCCGTGGCAACGGAAAA'
-if query in dna:
-  print(f'found {query} in your dna sequence')
+if 'ATG' in dna:
+  print('Found ATG in your dna sequence')
 else:
-  print(f'did not find {query} in your dna sequence')
+  print('Did not find ATG in your dna sequence')
 ```
 Returns:  
 ```
-did not find ATG in your dna sequence
+Did not find ATG in your dna sequence
 ```
 
 
@@ -637,17 +635,13 @@ did not find ATG in your dna sequence
 ```python
 count = 60
 if count < 0:
-  message = "is less than 0"
-  print(count, message)
+  print(count, "is less than 0")
 elif count < 50:
-  message = "is less than 50"
-  print(count, message)
+  print(count, "is less than 50")
 elif count > 50:
-  message = "is greater than 50"
-  print(count, message)
+  print(count, "is greater than 50")
 else:
-  message = "must be 50"
-  print(count, message)
+  print(count, "must be 50")
 ```
 Returns:  
 ```
@@ -659,17 +653,13 @@ Let's change count to 20, which statement block gets executed?
 ```python
 count = 20
 if count < 0:
-  message = "is less than 0"
-  print(count, message)
+  print(count, "is less than 0")
 elif count < 50:
-  message = "is less than 50"
-  print(count, message)
+  print(count, "is less than 50")
 elif count > 50:
-  message = "is greater than 50"
-  print(count, message)
+  print(count, "is greater than 50")
 else:
-  message = "must be 50"
-  print(count, message)
+  print(count, "must be 50")
 ```
 Returns:  
 ```
@@ -681,17 +671,13 @@ What happens when count is 50?
 ```python
 count = 50
 if count < 0:
-  message = "is less than 0"
-  print(count, message)
+  print(count, "is less than 0")
 elif count < 50:
-  message = "is less than 50"
-  print(count, message)
+  print(count, "is less than 50")
 elif count > 50:
-  message = "is greater than 50"
-  print(count, message)
+  print(count, "is greater than 50")
 else:
-  message = "must be 50"
-  print(count, message)
+  print(count, "must be 50")
 ```
 Returns:  
 ```
