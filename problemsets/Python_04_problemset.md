@@ -16,16 +16,15 @@ Python 4 Problem Set -- Lists and Loops
 	l.  Use `join` to create a string. Join the elements on ', '  
 	m. **Exit the interpreter**
 	
-3. Create a new **script in vi**
-    a. In the script, create a variable called `taxa_string` that contains this string:  
-	`sapiens : erectus : neanderthalensis`
-    b. Print `taxa_string` formated like this: `string: sapiens : erectus : neanderthalensis`
-    c. Split `taxa_string` into a list called `taxa_list`. Use `" : "` as your separator.
-    d. Print `taxa_list`.
-    e. Print `taxa_list[1]`, what do you get?
-    f. Print `type(taxa_string)`. What is it's type? Print `type(taxa_list)`. What is it's type?
-    g. Sort the list alphabetically and print (hint: lookup the function `sorted()`). 
-    h. Sort the list by length of each string and print. (The shortest string should be first). [Check out documentation of the key argument](https://www.programiz.com/python-programming/methods/built-in/sorted).
+3. Create a new **script in vi**  
+    a. In the script, create a variable called `taxa_string` that contains this string:  `"sapiens : erectus : neanderthalensis"`  
+    b. Print `taxa_string`  
+    c. Split `taxa_string` into a list called `taxa_list`. Use `" : "` as your separator.  
+    d. Print `taxa_list`.  
+    e. Print `taxa_list[1]`, what do you get?  
+    f. Print `type(taxa_string)`. What is it's type? Print `type(taxa_list)`. What is it's type?  
+    g. Sort the list alphabetically and print (hint: lookup the function `sorted()`).   
+    h. Sort the list by length of each string and print. (The shortest string should be first). [Check out documentation of the key argument](https://www.programiz.com/python-programming/methods/built-in/sorted).  
 
 5. Using the **Python interpreter**, interrogate the difference between these two ways to copy a list. Careful! One of these is NOT what you might expect. 
    a. Method 1
