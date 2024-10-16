@@ -72,11 +72,12 @@ Python 4 Problem Set -- Lists and Loops
    -  Get the user provided minimum (`sys.argv[1]`) and maximum (`sys.argv[2]`).
    -  Print out every number between and including the min and max to your output.
 
-14. **Create a script**: Use a `for` loop, user provided arguments, and logic:
+14. **Create a script**: Use list comprehension, user provided arguments, and logic (`if` within the list comprehension):
    -  Get the user provided minimum (`sys.argv[1]`) and maximum (`sys.argv[2]`).
    -  Print out only the odd numbers between (inclusive) the min and max.
 
-   
+12. **Create a script**: Use list comprehension to:
+   -  Print out every number between 1 and 100.
       
 15. **Create a script**:
    - Create a list with the following data:
