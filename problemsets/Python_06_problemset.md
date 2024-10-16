@@ -7,15 +7,15 @@ Python 6 - Sets and IO - Problem Set
 mySet = set('ATGTGGG')
 mySet2 = {'ATGTGGG'}
 ```
-  -  **What is the difference?**
-  -  **Does it matter which method you use?**
-  -  **How many items are in mySet and mySet2?**
+    -  What is the difference?
+    -  Does it matter which method you use?
+    -  How many items are in mySet and mySet2?
 
 
 
 2. Write a script that creates 2 sets using the collections of numbers below. Find the intersection, difference, union, and symetrical difference between these two sets.  
-  - 3, 14, 15, 9, 26, 5, 35, 9
-  - 60, 22, 14, 0, 9  
+    - 3, 14, 15, 9, 26, 5, 35, 9
+    - 60, 22, 14, 0, 9  
 
 
 3. If you create a set using a DNA sequence, what will you get back? Try it with this sequence:
