@@ -318,7 +318,7 @@ This happens inside the script ('friends.py'):
 import sys
 friend1 = sys.argv[1] # get first command line parameter
 friend2 = sys.argv[2] # get second command line parameter
- now print a message to the screen
+# now print a message to the screen
 print(friend1,'and',friend2,'are friends')
 ```
 
@@ -952,13 +952,13 @@ We saw examples of `print()` earlier. Lets talk about it a bit more.  `print()` 
 
 Let's use the `print()` function to print a string.  
 ```python
->>>print("ATG")  
+>>> print("ATG")  
 ATG
 ```
 
 Let's assign a string to a variable and print the variable.
 ```python
->>>dna = 'ATG'
+>>> dna = 'ATG'
 ATG
 >>> print(dna)
 ATG
@@ -966,7 +966,7 @@ ATG
 
 What happens if we put the variable in quotes?  
 ```python
->>>dna = 'ATG'
+>>> dna = 'ATG'
 ATG
 >>> print("dna")
 dna
