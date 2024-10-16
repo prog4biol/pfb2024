@@ -5,27 +5,26 @@ useful commands
 
 | command         | description                              |
 | --------------- | ---------------------------------------- |
-| `ls`            | list directory contents                  |
-| `cd`            | change directory                         |
-| `mkdir`         | make a directory                         |
-| `rm`            | remove, or delete files and directories. Use caution, it is easy to delete more that you want. |
-| `head`          | prints the top few lines to the terminal window |
-| `tail`          | prints the last few lines to the terminal window |
-| `sort`          | sorts the lines                          |
-| `uniq`          | prints the unique lines                  |
-| `grep`          | filnds the lines that contain a pattern  |
-| `wc`            | counts the number of lines, characters and words |
-| `mv`            | move files                               |
-| `cp`            | copy files                               |
-| `date`          | returns the current date and time        |
-| `pwd`           | return working directory name            |
-| `ssh`           | remote login                             |
-| `scp`           | remote secure copy                       |
-| `~`             | shortcut for your home directory         |
 | `man <command>` | manual page for the command e.g. `man ls` to get the man page for `ls` |
-
-
-
+| `cd`            | change directory                         |
+| `cp`            | copy files                               |
+| `curl`          | transfer a URL |
+| `cut`           | cut out selected portions of each line of a file |
+| `date`          | returns the current date and time        |
+| `grep`          | filnds the lines that contain a pattern  |
+| `head`          | prints the top few lines to the terminal window |
+| `ls`            | list directory contents                  |
+| `mkdir`         | make a directory                         |
+| `mv`            | move files                               |
+| `pwd`           | return working directory name            |
+| `rm`            | remove, or delete files and directories. Use caution, it is easy to delete more that you want. |
+| `scp`           | remote secure copy                       |
+| `sort`          | sorts the lines                          |
+| `ssh`           | remote login                             |
+| `tail`          | prints the last few lines to the terminal window |
+| `uniq`          | prints the unique lines                  |
+| `wc`            | counts the number of lines, characters and words |
+| `~`             | shortcut for your home directory         |
 
 
 ### Try these examples
@@ -178,10 +177,7 @@ Problem Set
 
 8. Rename `sequences.nt.fa` to `cancer_genes.fasta`. (Hint: read the man page for mv)
 
-9. Copy this remote file, cuffdiff.txt, to your problemset directory. Here is the url you can use: <https://raw.githubusercontent.com/prog4biol/pfb2024/master/files/cuffdiff.txt>
-
-Use `wget` to copy <https://raw.githubusercontent.com/prog4biol/pfb2024/master/files/cuffdiff.txt> from the web into your problemsets directory. If `wget` is not available on your system, use `curl -O` as an alternative. (Note '-O' is the letter O not the number Zero 0)
-
+9. If you haven't already, copy/download this remote file, cuffdiff.txt, to your problemset directory using `curl`. Here is the url you can use: <https://raw.githubusercontent.com/prog4biol/pfb2024/master/files/cuffdiff.txt>. Use `-O` is the letter O not the number zero 0.
 
 
 
@@ -189,7 +185,7 @@ Use `wget` to copy <https://raw.githubusercontent.com/prog4biol/pfb2024/master/f
     - Look at the first few lines of the file
     - Sort the file by log fold change 'log2(fold_change)', from highest to lowest, and save in a new file in your directory called sorted.cuffdiff.out
     - Sort the file (log fold change highest to lowest) then print out only the first 100 lines. Save in a file called `top100.sorted.cuffdiff.out`.
-    - Sort the file by log fold change, print out the top 100, print only first column. This will be a list of the top 100 genes with the largest change in expression. Make sure your list is sorted by gene name and is unique. Save this curated list in a file called `differentially.expressed.genes.txt`.
+    - Sort the file by log fold change, print out the top 100, print only first column  (Hint: read the man page for `cut`). This will be a list of the top 100 genes with the largest change in expression. Make sure your list is sorted by gene name and is unique. Save this curated list in a file called `differentially.expressed.genes.txt`.
 
 
 

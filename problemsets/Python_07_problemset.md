@@ -1,18 +1,18 @@
 Python 7 - Regular Expressions - Problem Set
 ===================
 
-1. In the file [Python_07_nobody.txt](https://raw.githubusercontent.com/prog4biol/pfb2023/master/files/Python_07_nobody.txt) find every occurrence of 'Nobody' and print out the position.
+1. In the file [Python_07_nobody.txt](https://raw.githubusercontent.com/prog4biol/pfb2024/master/files/Python_07_nobody.txt) find every occurrence of 'Nobody' and print out the position.
 
-2. In the file [Python_07_nobody.txt](https://raw.githubusercontent.com/prog4biol/pfb2023/master/files/Python_07_nobody.txt) substitute every occurrence of 'Nobody' with your favorite name and write an output file with that person's name (ex. Michael.txt).
+2. In the file [Python_07_nobody.txt](https://raw.githubusercontent.com/prog4biol/pfb2024/master/files/Python_07_nobody.txt) substitute every occurrence of 'Nobody' with your favorite name and write an output file with that person's name (ex. Michael.txt).
 
-3. Using pattern matching, find all the FASTA header lines in [Python_07.fasta](https://raw.githubusercontent.com/prog4biol/pfb2023/master/files/Python_07.fasta). Note that the format for a header in a FASTA file is a line that starts with a greater than symbol and is followed by some text (e.g. `>seqName description` where seqName is the sequence name or identifier. The identifier cannot have spaces in it. The description that follows it can have spaces.)
+3. Using pattern matching, find all the FASTA header lines in [Python_07.fasta](https://raw.githubusercontent.com/prog4biol/pfb2024/master/files/Python_07.fasta). Note that the format for a header in a FASTA file is a line that starts with a greater than symbol and is followed by some text (e.g. `>seqName description` where seqName is the sequence name or identifier. The identifier cannot have spaces in it. The description that follows it can have spaces.)
 
 4. If a line matches the format of a FASTA header, extract the sequence name and description using sub patterns (groups). 
 	- Print sequence information in this format: `id:seqName desc:seqDescription`
 
 5. Create a FASTA parser, or modify your FASTA parser from the previous problem set, to use regular expressions. Also make sure your parser can deal with a sequence that is split over many lines.
 
-6. The enzyme ApoI has a restriction site: R^AATTY where R and Y are degenerate nucleotides. See the IUPAC table to identify the nucleotide possibilities for the R and Y. Write a regular expression to find and print all occurrences of the site in the following sequence [Python_07_ApoI.fasta](https://raw.githubusercontent.com/prog4biol/pfb2023/master/files/Python_07_ApoI.fasta). 
+6. The enzyme ApoI has a restriction site: R^AATTY where R and Y are degenerate nucleotides. See the IUPAC table to identify the nucleotide possibilities for the R and Y. Write a regular expression to find and print all occurrences of the site in the following sequence [Python_07_ApoI.fasta](https://raw.githubusercontent.com/prog4biol/pfb2024/master/files/Python_07_ApoI.fasta). 
 
 ```
 >seq1
@@ -64,7 +64,7 @@ Into this list:
 ["AAAAAAAAGACGT","CTTTTTTTAAAAAAAAGACGT","CTTTTTTT"]
 ```
 
-9. Download this file: ftp://ftp.neb.com/pub/rebase/bionet.txt or download from [our github](https://raw.githubusercontent.com/prog4biol/pfb2023/master/files/bionet.txt). This file is contains a list of enzymes and their cut sites. Create a script that reads this file to fill a dictionary with the enzymes paired with their recognition patterns. Skip the top 10 header lines and be aware of how the columns are delimited. You'll modify this script in the next question.
+9. Download this file: ftp://ftp.neb.com/pub/rebase/bionet.txt or download from [our github](https://raw.githubusercontent.com/prog4biol/pfb2024/master/files/bionet.txt). This file is contains a list of enzymes and their cut sites. Create a script that reads this file to fill a dictionary with the enzymes paired with their recognition patterns. Skip the top 10 header lines and be aware of how the columns are delimited. You'll modify this script in the next question.
 
 10. Modify your last script to take two command line arguments: the name of an enzyme and a fasta file with a sequence to be cut. Load a dictionary of enzyme names and cut sites from the code you developed in question 9.
    If the enzyme is present in the dictionary, and can cut the sequence, print out:
