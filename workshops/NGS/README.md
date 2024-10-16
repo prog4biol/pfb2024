@@ -115,12 +115,12 @@ The purpose of this workshop is to gain experience working with the various file
     $ plot-bamstats -r Ecoli.gc -p SRR21901339 SRR21901339.stats
 
     # Finally, open the output HTML file in your web Safari browser:
-    $ open -a Safari.app SRR21901339.html
+    $ open SRR21901339.html
     ```
     - What fraction of reads were mapped to the genome?
-    - What is the mode insert size of the sequencing library? Are the outer-most distances between reads (template lengths) reasonably Normally-distributed?
-    - Are the majority of reads pairs mapped in forward-reverse (FR), reverse-forward (RF), or other orientation?
-    - Below which base-quality score value does the majority of mismatches occur? **Record this value to use for Problem 12.**
+    - What is the mode insert size of the sequencing library? Is insert size reasonably Normally-distributed?
+    - Are the majority of reads pairs mapped in Inward (forward-revers, FR), Outward (reverse-forward, RF), or other orientation?
+    - Below which base-quality value does the majority of mismatches occur? **Record this value to use for Problem 12.**
        >*NOTE*: The reads were generated from a strain different from the reference strain and signal from biological SNP differences will also be reflected in the plot.
 
 
@@ -137,28 +137,34 @@ The purpose of this workshop is to gain experience working with the various file
     # Then filter reads with `samtools view` to output to a new BAM
     # file, selecting _for_ reads that are properly-paired and
     # _removing_ the poor-quality reads:
-    $ samtools view -b -f3 -F3852 SRR21901339.srt.bam >SRR21901339.proper.bam
+    $ samtools view -b -f3 -F3852 SRR21901339.srt.bam >SRR21901339.srt.proper.bam
 
     # Now, index the new BAM file:
-    $ samtools index SRR21901339.proper.bam
+    $ samtools index SRR21901339.srt.proper.bam
     ```
     > *NOTE*: Execute `samtools flags` without arguments for help with bit flags.
 
 
 12. Run the GATK HaplotypeCaller to call variants using the final filtered BAM file, set `--min-base-quality-score` to the value you determined in *Problem 10*. **NOTE**: Run GATK in the backgound (i.e., `nohup gatk HaplotypeCaller ... &`) or open a second terminal window and work on Problems 13 and 14 while GATK is running.
     ```bash
-    ./gatk-4.3.0.0/gatk HaplotypeCaller \
+    ./gatk-4.6.0.0/gatk HaplotypeCaller \
          --minimum-mapping-quality 30 \
          --min-base-quality-score ${YOUR_MINIMUM_BASE_QUALITY_SCORE} \
          --read-validation-stringency SILENT \
+         --sample-ploidy 1 \
          --reference Ecoli.fasta \
-         --input SRR21901339.proper.bam \
+         --input SRR21901339.srt.proper.bam \
          --output SRR21901339.vcf
     ```
-    > *NOTE*: Execute `./gatk-4.3.0.0/gatk HaplotypeCaller --help` for more options.
+    > *NOTE*: Execute `./gatk-4.6.0.0/gatk HaplotypeCaller --help` for more options.
 
 
-13. Use the `samtools depth` command to calculate the per-site read depths across the genome (execute `samtools depth` without arguments for more details) and output to a file. The output file will contain three columns: the chromosome name, position (1-based), and read depth. For example:
+13. Use the `samtools depth` command to calculate the per-site read depths across the genome and output to a file. The output file will contain three columns:
+    1. Chromosome name,
+    2. Position (1-based), and
+    3. Depth of coverage.
+    
+    For example:
     ```
     chrI	1	15
     chrI	2	15
@@ -166,22 +172,24 @@ The purpose of this workshop is to gain experience working with the various file
     chrI	4	16
     chrI	5	16
     ```
+    > *NOTE*: Execute `samtools depth` without arguments for more options.
     
 
-14. Write a python script that computes the genome-wide [mean](https://en.wikipedia.org/wiki/Arithmetic_mean) and [standard deviation](https://en.wikipedia.org/wiki/Standard_deviation) read depth parameters.
+15. Write a python script that computes the genome-wide [mean](https://en.wikipedia.org/wiki/Arithmetic_mean) and [standard deviation](https://en.wikipedia.org/wiki/Standard_deviation) parameters for read depth.
 
 
-15. Using command-line tools, extract CDS features present in `Ecoli.gff3` and create a new GFF3 file. Then use `bedtools intersect` to determine how many SNPs and InDels in the VCF file intersect these CDS features.
+16. Using command-line tools, extract CDS features present in `Ecoli.gff3` and create a new GFF3 file. Then use `bedtools intersect` to determine how many SNPs and InDels in the VCF file intersect these CDS features.
     > *NOTE*: Execute `bedtools intersect --help` for more options.
 
 
-16. Compress your new VCF of variants in CDS regions with `bgzip`, then index it with `bcftools index --tbi your.vcf.gz`.
+17. Compress your new VCF of variants in CDS regions with `bgzip`, then index it with `bcftools index --tbi your.vcf.gz`.
 
 
-17. Find frame-shift mutations:
+18. Find frame-shift mutations:
     1. Calculate variant consequence using the `bcftools csq` tool (inputting `Ecoli.gff3` and *NOT* the CDS-specific GFF3) and output to a new VCF file.
+        > *NOTE*: Execute `samtools csq` without arguments for more options.
     2. Write a python script to parse variant consequence annotations from the INFO BCSQ tag and calculate the [Z-score](https://en.wikipedia.org/wiki/Standard_score) from the Sample DP field in this new VCF; output this information to a tab-delimited file summarizing the framehift variants. Use the genome-wide mean and standard deviation calculated in Problem 14 as input parameters to your script to calculate the depth Z-score at each locus.
         - How many variants induce frameshifts?
         - How many frameshifts cause stop codons to be lost? How many gained?
-        - How many of these frameshift variants have a read depth Z-scores between -2 and +2?
+        - How many of these frameshift variants have read depth Z-scores between -2 and +2?
         - Why might we be skeptical of variants with very low or very high read depths?
