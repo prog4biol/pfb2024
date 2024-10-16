@@ -1049,15 +1049,6 @@ NameError: name 'GGTCTAC' is not defined
 ```
 > We get a 'NameError' when the literal string is not enclosed in quotes because Python is looking for a variable with the name GGTCTAC
 
-```python
->>> print "boo"
-  File "<stdin>", line 1
-    print "boo"
-              ^
-SyntaxError: Missing parentheses in call to 'print'
-```
-In python2, the command was `print`, but this changed to `print()` in python3, so don't forget the parentheses!
-
 ### Special/Escape Characters
 
 How would you include a new line, carriage return, or tab in your string?  
@@ -1078,7 +1069,7 @@ this is the second line
 ```
 > We printed a new line to the screen
 
-`print()` adds spaces between arguments and a new line at the end for you. You can change these with `sep=` and `end=`. Here's an example:
+`print()` adds spaces between arguments and a new line at the end for you. You can change these with `sep=` (the seperator between arguments) and `end=` (the character that goes at the end). Here's an example:
 `print('one line', 'second line' , 'third line', sep='\n', end = '')`
 
 A neater way to do this is to express a multi-line string enclosed in triple quotes (""").
@@ -1170,8 +1161,8 @@ The value that `len()` returns can be stored in a variable.
 You can mix strings and ints in `print()`, but not in concatenation.
 
 ```python
->>> print("The lenth of the DNA sequence:" , dna , "is" , dna_length)
-The lenth of the DNA sequence: TAGCTATATAAAATCATAAT is 20
+>>> print("The length of the DNA sequence:" , dna , "is" , dna_length)
+The length of the DNA sequence: TAGCTATATAAAATCATAAT is 20
 ```
 
 
