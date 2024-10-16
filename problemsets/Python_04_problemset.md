@@ -5,8 +5,8 @@ Python 4 Problem Set -- Lists and Loops
 	a.  Create a list of 5 of your favorite things.  
 	b.  Use the `print()` function to print your list.  
 	c.  Use the `print()` function to print out the middle element.  
-	d.  Now replace the middle element with a different item, your favorite song, or song bird.  
-	e.  Use the same print statement from b. to print your new list. Check out the differences.   
+	d.  Now replace the middle element with a different item, such as your favorite song, or your favorite song bird.  
+	e.  Use the same print statement from b to print your new list. Check out the differences.   
 	f.  Add a new element to the end. [Read about append()](https://www.tutorialspoint.com/python/list_append.htm).  
 	g.  Add a new element to the beginning. [Read about insert()](https://www.tutorialspoint.com/python/list_insert.htm).  
         h.  Add a new element somewhere other than the beginning or the end.  
@@ -14,29 +14,27 @@ Python 4 Problem Set -- Lists and Loops
         j.  Remove an element from the beginning.  
         k.  Remove an element from somewhere other than the beginning or the end.  
 	l.  Use `join` to create a string. Join the elements on ', '  
-	m. **close the interpreter**
+	m. **Exit the interpreter**
 	
-3. Write a **script with a text editor** that splits a string into a list. In your script: 
-	- Save the string `sapiens, erectus, neanderthalensis` as a variable named `taxa`.
-	- Print `taxa`.
-	- Print `taxa[1]`, what do you get?
-	- Print `type(taxa)`. What is it's type?
-	- Split `taxa` into individual words and print the result of the split. (Think about the ', '.)
-	- Store the result of `split` in a new variable named `species`.
-	- Print `species`.
-	- Print the `species[1]`, What do you get?
-	- Print `type(species)`. What is it's type?
-	- Sort the list alphabetically and print (hint: lookup the function `sorted()`). 
-	- Sort the list by length of each string and print. (The shortest string should be first). [Check out documentation of the key argument](https://www.programiz.com/python-programming/methods/built-in/sorted).
+3. Create a new **script in vi**
+    a. In the script, create a variable called `taxa_string` that contains this string:  
+	`sapiens : erectus : neanderthalensis`
+    b. Print `taxa_string` formated like this: `string: sapiens : erectus : neanderthalensis`
+    c. Split `taxa_string` into a list called `taxa_list`. Use `" : "` as your separator.
+    d. Print `taxa_list`.
+    e. Print `taxa_list[1]`, what do you get?
+    f. Print `type(taxa_string)`. What is it's type? Print `type(taxa_list)`. What is it's type?
+    g. Sort the list alphabetically and print (hint: lookup the function `sorted()`). 
+    h. Sort the list by length of each string and print. (The shortest string should be first). [Check out documentation of the key argument](https://www.programiz.com/python-programming/methods/built-in/sorted).
 
-4. Using the **Python interpreter**, interrogate the difference between these two ways to copy a list. Careful! One of these is NOT what you might expect. 
-   - Method 1
+5. Using the **Python interpreter**, interrogate the difference between these two ways to copy a list. Careful! One of these is NOT what you might expect. 
+   a. Method 1
      - Create a list. For example: `my_list = ['a', 'bb', 'ccc']`
      - Make a copy using the `=` assignment operator:  `list_copy = my_list`
      - Print the original list `print(my_list)`
      - Alter the `list_copy` by adding a new element using `append()`
      - Print the original list again `print(my_list)`
-   - Method 2  
+   b. Method 2  
      - Create a list. For example: `my_list2 = ['a', 'bb', 'ccc']`  
      - Make a copy with the copy() method `list_copy2 = my_list2.copy()`  
      - Print the original list `print(my_list2)`
@@ -44,34 +42,48 @@ Python 4 Problem Set -- Lists and Loops
      - Print the original list again `print(my_list2)`
      - **close the interpreter** 
 
-5. **Write a script with a text editor** that uses a `while` loop to print out the numbers 1 to 100.
+6. **Write a script with vi** that uses a `while` loop to print out the numbers 1 to 100.
 
-6. **Write a script** that uses a `while` loop to calculate the [factorial](https://en.wikipedia.org/wiki/Factorial) of 1000. 
+7. **Write a script**: Use a `while` loop to calculate the [factorial](https://en.wikipedia.org/wiki/Factorial) of 1000. 
 
-7. **Write a script** Iterate through each element of this list using a `for` loop: [101,2,15,22,95,33,2,27,72,15,52]
-   - Print out only the values that are even (hint: use the modulus operator).
+8. **Write a script**:
+   - Iterate through each element of this list using a `for` loop: `[101,2,15,22,95,33,2,27,72,15,52]`
+   - Print only the values that are even (hint: use the modulus operator).
    
-8. **Add to your previous script**: Sort the elements of the above list, then iterate through each element using a `for` loop and:
-   - Print each element.
-   - Calculate two cumulative sums, one of all the even values and one of all the odd values. 
-   - Print only the final two sums. The output from your script should be:
+10. **Add to your previous script**:
+     - Sort the elements of the above list
+     - Then iterate through each element using a `for` loop. Nested within the loop
+       - Print each element.
+       - Calculate two cumulative sums, one of all the even values and one of all the odd values.
+
+     - Finally outside the nested `for` block
+        - print the final two sums formated like this:
+         ```
+         Sum of even numbers: 150
+         Sum of odds: 286
+         ```
    
-   ```
-   Sum of even numbers: 150 
-   Sum of odds: 286
-   ```
-   
-9. **Write a new script** that uses `range()` in a `for` loop to print out every number between 0 and 99  
+11. **Create a script**: Use `range()` in a `for` loop to print out every number between 0 and 99  
       - Modify your loop to print out every number between 1 and 100.
       
-10. **Create a new script** that uses list comprehension to print out every number between 1 and 100.
+12. **Create a script**: Use list comprehension to:
+   -  Print out every number between 1 and 100.
+     
+13. **Create a script**: Use a `for` loop and user provided arguments:
+   -  Get the user provided minimum (`sys.argv[1]`) and maximum (`sys.argv[2]`).
+   -  Print out every number between and including the min and max to your output.
 
-11. **Write a new script** that takes the start and end values from the command line (sys.argv). If you call your script like this `count.py 3 10` it will print the numbers from 3 to 10.
-      - Modify your script so that it will only print the number if it is odd.
+14. **Create a script**: Use a `for` loop, user provided arguments, and logic:
+   -  Get the user provided minimum (`sys.argv[1]`) and maximum (`sys.argv[2]`).
+   -  Print out only the odd numbers between (inclusive) the min and max.
+
+   
       
-12. **Write a new script** to create a list with the following data  `['ATGCCCGGCCCGGC','GCGTGCTAGCAATACGATAAACCGG', 'ATATATATCGAT','ATGGGCCC']`. Use a `for` loop to iterate through each element of this list and:
-   - Print out each element.
-   - Print out the length and the sequence, separated by a tab. The output should look like:
+15. **Create a script**:
+   - Create a list with the following data:
+      `['ATGCCCGGCCCGGC','GCGTGCTAGCAATACGATAAACCGG', 'ATATATATCGAT','ATGGGCCC']`
+   - Use a `for` loop to iterate through each element of this list
+   - For each element in the list, print its length and sequence separated by a tab. The output should look like:
    
    ```
    14	ATGCCCGGCCCGGC
@@ -81,9 +93,7 @@ Python 4 Problem Set -- Lists and Loops
    ```
    - **Modify this script** to also also print out the number (postion in the list) of each sequence. Make sure your columns are tab separated (i.e., "1\\t4\\tACGT\\n")
    
-13. **Write a new script** tht uses list comprehension to generate a list of tuples. The tuples should contain sequences and lengths from the previous problem. Print out the length and the sequence (i.e., "4\\tATGC\\n").  A list of tuples looks like this [(4,'ATGC'),(2,'GC')].
-
-14. Have you been commiting you work?
+16. Have you been commiting you work?
 
 -----------------
 -----------------
@@ -102,7 +112,7 @@ Python 4 Problem Set -- Lists and Loops
     - Remember to test your code with test data. 
 
 2. Calculate sequence identity: Start with 2 very similar DNA sequences. Use your favorites or use [Python_04.fasta](https://raw.githubusercontent.com/prog4biol/pfb2024/master/files/Python_04.fasta)
-    - Align with ClustalW, TCoffee, or some other web alignment application. 
+    - Align with [ClustalOmega](https://www.ebi.ac.uk/jdispatcher/msa/clustalo), [TCoffee](https://tcoffee.crg.eu/), [MAFFT](https://mafft.cbrc.jp/alignment/server/index.html), or some other web alignment application. 
     - Output should be in FASTA format.
     - Store (copy and paste) each aligned sequence, including dashes, as two separate string variables. 
     - Get rid of newlines (if any). Newline characters are not part of sequence!
