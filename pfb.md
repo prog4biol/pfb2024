@@ -910,6 +910,16 @@ How do you find out what methods work with an object? There's a handy function `
 `dir()` will return all atributes of an object, among them its methods. Methods are functions belonging to a specific class (object type).
 You can call `dir()` on any object, most often, you'll use it in the interactive Python shell. 
 
+To get more information on methods, you can use `help()`, which opens a long help message in a pager. You can use `q` to quit and get back to the interpreter. Here are some examples
+
+```
+help(str)  # str is an object Class
+# or if you have an object, you can use type
+help(type('ACGTGA'))
+```
+
+
+
 ## Strings
 
 
