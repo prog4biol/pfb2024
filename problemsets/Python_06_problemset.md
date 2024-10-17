@@ -56,7 +56,7 @@ GAACTCCAAAAATGAAAACATAGTAGCAATCAAAGCATCCCACTATTTTTTGTCTCTCGTTTCATTAGCGTTGTAAATTA
     - average line length   
 
 
-9. Write your first FASTA parser script. This is a script that reads in a FASTA file and stores each FASTA record separately for easy access for future analysis.
+9. Write your first FASTA parser script. This is a script that reads in a FASTA file ([Python_06.fasta](../files/Python_06.fasta)) and stores each FASTA record separately for easy access for future analysis.
 
 Things to keep in mind:
    - open your file
