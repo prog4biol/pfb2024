@@ -3044,9 +3044,9 @@ Let's find out what is returned by the `search()` function.
 >Information about the first match is returned
 
 
-How about a non-exact match. Let's search for a methylation site that has to match the following criteria:  
-- G or A 
-- followed by C
+How about a non-exact match. Let's search for a pattern in our sequence that has to match the following criteria:  
+- G or A
+- followed by a C
 - followed by one of anything or nothing
 - followed by a G 
 
@@ -3090,11 +3090,11 @@ A quick count of all the matching sites can be done by counting the length of th
 7
 ```
 
-> There are 7 methylation sites.
+> There are 7 sites that match our pattern.
 >
 > Here we have another example of nesting. 
 >
-> We call the `findall()` function, searching for all the matches of a methylation site. 
+> We call the `findall()` function, searching for all the matches.
 >
 > This function returns a list, the list is past to the `len()` function, which in turn returns the number of elements in the list.
 
@@ -3226,11 +3226,11 @@ __Let' Try It__
 Variables can be used to store patterns.  
 
 ```python
->>> pattern = r"[GA]C.?G"
+>>> pattern = r"C[ATC]G"
 >>> len (re.findall(pattern,dna))
 7
 ```
-> In this example, we stored our methylation pattern in the variable named 'pattern' and used it as the first argument to `findall`.
+> In this example, we stored our pattern for a CHG [methylation site](https://en.wikipedia.org/wiki/DNA_methylation#:~:text=In%20plants%20and%20other%20organisms,both%20strands%20being%20usually%20methylated.) (where H correspond to A, T or C) in the variable named 'pattern' and used it as the first argument to `findall`.
 
 
 ### Either Or
@@ -3293,10 +3293,6 @@ Example FASTA sequence record.
   SEQUENCE
   SEQUENCE 
 ```
-
-
-
-
 
 ### Using Subpatterns Inside the Regular Expression Match
 
@@ -3414,11 +3410,11 @@ downstream: CCGGTTTCCAAAGACAGTCTTCTAA
 ```
 > 1. This code executes `finditer()` function once. 
 > 2. The match object is returned. A match object will have all the information about the match.
-> 3.  In the for block we call the `group()` method on the first match object returned
+> 3. In the for block we call the `group()` method on the first match object returned
 > 4. We print out the first and second subpattern using the `group()` method
 > 5. The `finditer()` function is executed a second time and a match is found
 > 6. The second match object is returned
-> 7.  The second subpatterns are retrieved from the match object using the `group()` method 
+> 7. The second subpatterns are retrieved from the match object using the `group()` method 
 > 8. The `finditer()` function is executed again, but no matches found, so the loop ends  
 
 
@@ -3604,7 +3600,6 @@ __Let' Try It__
 >>>
 ```
 > We can make our search case insensitive by using the `re.I` or `re.IGNORECASE` flag.
-
 
 You can use more than one flag by concatenating them with `|`.  `re.search(r"ATG",dna , re.I|re.M)`
 
