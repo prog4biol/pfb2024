@@ -2827,7 +2827,7 @@ ACCGGTTTCCAAAGACAGTCTTCTAATTCCTCATTAGTAATAAGTAAAATGTTTATTGTTGTAGCTCTGG
 $ 
 ```
 
-Note the new lines. Now, lets print the contents to the screen with Python. We will use `read()` to read the entire contents of the file into a variable. 
+Note the new lines. Now, lets print the contents to the screen with Python. We will use `read()` to read the entire contents of the file into a variable. You don't usually use this function (see below).
 ```python
 >>> seq_file_obj = open("seq.nt.txt","r")
 >>> contents = seq_file_obj.read()
