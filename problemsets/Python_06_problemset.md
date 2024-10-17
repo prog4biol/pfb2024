@@ -43,7 +43,7 @@ GAACTCCAAAAATGAAAACATAGTAGCAATCAAAGCATCCCACTATTTTTTGTCTCTCGTTTCATTAGCGTTGTAAATTA
    - Print each line to the STDOUT
 
 
-6. Modifiy the script in the previous problem to write the contents to a new file called "Python_06_uc.txt"
+6. Modify the script in the previous problem to write the contents to a new file called "Python_06_uc.txt"
 
 
 
