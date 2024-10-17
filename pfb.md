@@ -910,6 +910,16 @@ How do you find out what methods work with an object? There's a handy function `
 `dir()` will return all atributes of an object, among them its methods. Methods are functions belonging to a specific class (object type).
 You can call `dir()` on any object, most often, you'll use it in the interactive Python shell. 
 
+To get more information on methods, you can use `help()`, which opens a long help message in a pager. You can use `q` to quit and get back to the interpreter. Here are some examples
+
+```
+help(str)  # str is an object Class
+# or if you have an object, you can use type
+help(type('ACGTGA'))
+```
+
+
+
 ## Strings
 
 
@@ -2888,7 +2898,7 @@ with open("seq.nt.txt","r") as seq_file_obj: #cleans up after exiting
 
 ### Writing to a File
 
-Writing to a file just required opening a file for writing then using the `write()` method.  
+Writing to a file just requires opening a file for writing then using the `write()` method.  
 
 The `write()` method is like the `print()` function. The biggest difference is that it writes to your file object instead of the screen. Unlike `print()`, it does not add a newline by default.  `write()` takes a single string argument. 
 
@@ -2921,7 +2931,7 @@ Now, let's get crazy! Lets read from one file a line at a time. Do something to 
 #!/usr/bin/env python3
 
 total_nts = 0
- open two file objects, one for reading, one for writing
+# open two file objects, one for reading, one for writing
 with open("seq.nt.txt","r") as seq_read, open("nt.counts.txt","w") as seq_write:
   for line in seq_read:
     line = line.rstrip()
