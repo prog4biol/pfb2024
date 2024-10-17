@@ -10,7 +10,7 @@ Sofia Robb
   - [Lecture](../lectures/biopython.md)
   - [Workshop](../problemsets/biopython_problemset.md)
 
-## NGS -- Anoja Perera
+## NGS -- Anoja Perera and Jessen Bredeson
   - [Lecture](NGS/CSHL-Presentation-Sequencing_2023_agp.pdf)
   - [NGS File Formats Lecture](NGS/bio_info_formats.pdf)
   - [NGS File Formats Workshop](NGS)

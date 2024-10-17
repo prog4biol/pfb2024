@@ -132,7 +132,7 @@ Picking good variable names for the objects you name yourself is very important.
 The following is a list of Python keywords. These are special words that already have a purpose in python and therefore should not be used as variable names. If you do by accident, it overwrites the python function and causes problems.
 
 ```
-and         exec        not
+and         exec        not      dict
 as          finally     or
 assert      for         pass
 break       from        print
@@ -154,7 +154,7 @@ The number of spaces in the indentation needs to be consistent, but a specific n
 ```python
 #!/usr/bin/env python3
 message = '' # make an empty variable
-for x in (1,2,3,4,5):
+for x in [1, 2, 3, 4, 5]:
     if x > 4:
         print("Hello")
         message = 'x is big'
@@ -177,7 +177,7 @@ The first line of a script starting with `#!` is a special example of a comment 
 ```python
 #!/usr/bin/env python3
 
-this is my first script
+# this is my first script
 print("Hello, PFB!") # this line prints output to the screen
 ```
 
@@ -278,7 +278,10 @@ Collections of data can also be stored in special data types, i.e., tuples, list
 
 
 ```python
-{ 'TP53' : 'GATGGGATTGGGGTTTTCCCCTCCCATGTGCTCAAGACTGGCGCTAAAAGTTTTGAGCTTCTCAAAAGTC' , 'BRCA1' : 'GTACCTTGATTTCGTATTCTGAGAGGCTGCTGCTTAGCGGTAGCCCCTTGGTTTCCGTGGCAACGGAAAA' }
+{
+  'TP53' : 'GATGGGATTGGGGTTTTCCCCTCCCATGTGCTCAAGACTGGCGCTAAAAGTTTTGAGCTTCTCAAAAGTC' ,
+  'BRCA1' : 'GTACCTTGATTTCGTATTCTGAGAGGCTGCTGCTTAGCGGTAGCCCCTTGGTTTCCGTGGCAACGGAAAA'
+}
 ```
 
 
@@ -316,10 +319,12 @@ This happens inside the script ('friends.py'):
 ```python
 #!/usr/bin/env python3
 import sys
+
 friend1 = sys.argv[1] # get first command line parameter
 friend2 = sys.argv[2] # get second command line parameter
-# now print a message to the screen
-print(friend1,'and',friend2,'are friends')
+
+# Now print a message to the screen
+print(friend1, 'and', friend2, 'are friends')
 ```
 
 The advantage of getting input from the user from the command line is that you can write a script that is general. It can print a message with any input the user provides. This makes it flexible.
@@ -338,7 +343,7 @@ You have an identifier in your code called `data`. Does it represent a string or
 We'll cover `dir()` in more detail later
 
 ```python
->>> data = [2,4,6]
+>>> data = [2, 4, 6]
 >>> type(data)
 <class 'list'>
 >>> data = 5
@@ -369,13 +374,13 @@ In Python we can write statements that perform mathematical calculations. To do 
 
 | Operator | Description                                                  | Example          | Result      |
 | -------- | ------------------------------------------------------------ | ---------------- | ----------- |
-| `+`      | Addition                                                     | `3+2`            | 5           |
-| `-`      | Subtraction                                                  | `3-2`            | 1           |
-| `*`      | Multiplication                                               | `3*2`            | 6           |
-| `/`      | Division                                                     | `3/2`            | 1.5         |
-| `%`      | Modulus (divides left operand by right operand and returns the remainder) | `3%2`            | 1           |
-| `**`     | Exponent                                                     | `3**2`           | 9           |
-| `//`     | Floor Division (result is the quotient with digits after the decimal point removed. If one of the operands is negative, the result is floored, i.e., rounded away from zero | `3//2`  `-11//3` | 1        -4 |
+| `+`      | Addition                                                     | `3+2`            | `5`           |
+| `-`      | Subtraction                                                  | `3-2`            | `1`           |
+| `*`      | Multiplication                                               | `3*2`            | `6`           |
+| `/`      | Division                                                     | `3/2`            | `1.5`         |
+| `%`      | Modulus (divides left operand by right operand and returns the remainder) | `3%2`            | `1`           |
+| `**`     | Exponent                                                     | `3**2`           | `9`           |
+| `//`     | Floor Division (result is the quotient with digits after the decimal point removed. If one of the operands is negative, the result is floored, i.e., rounded away from zero | `3//2`  `-11//3` | `1`       `-4` |
 
 
 __Modulus__
@@ -405,16 +410,16 @@ __Floor examples__
 
 We use assignment operators to assign values to variables. You have been using the `=` assignment operator. Here are others:
 
-| Operator | Equivalent to          | Example                     | result evaluates to |
-| -------- | ---------------------- | --------------------------- | ------------------- |
-| `=`      | `a = 3`                | `result = 3`                | 3                   |
-| `+=`     | `result = result + 2`  | `result = 3 ; result += 2`  | 5                   |
-| `-=`     | `result = result - 2`  | `result = 3 ; result -= 2`  | 1                   |
-| `*=`     | `result = result * 2`  | `result = 3  ; result *= 2` | 6                   |
-| `/=`     | `result = result / 2`  | `result = 3 ; result /= 2`  | 1.5                 |
-| `%=`     | `result = result % 2`  | `result = 3 ; result %= 2`  | 1                   |
-| `**=`    | `result = result ** 2` | `result = 3 ; result **= 2` | 9                   |
-| `//=`    | `result = result // 2` | `result = 3 ; result //= 3` | 1                   |
+| Operator | Equivalent to          | Example                    | result evaluates to |
+| -------- | ---------------------- | -------------------------- | ------------------- |
+| `=`      | `result = 3`           | `result = 3`               | 3                   |
+| `+=`     | `result = result + 2`  | `result = 3; result += 2`  | 5                   |
+| `-=`     | `result = result - 2`  | `result = 3; result -= 2`  | 1                   |
+| `*=`     | `result = result * 2`  | `result = 3; result *= 2`  | 6                   |
+| `/=`     | `result = result / 2`  | `result = 3; result /= 2`  | 1.5                 |
+| `%=`     | `result = result % 2`  | `result = 3; result %= 2`  | 1                   |
+| `**=`    | `result = result ** 2` | `result = 3; result **= 2` | 9                   |
+| `//=`    | `result = result // 2` | `result = 3; result //= 3` | 1                   |
 
 
 
@@ -467,7 +472,7 @@ True
 False
 >>> 'ATG' not in dna
 True
->>> codons = [ 'atg' , 'aaa' , 'agg' ]
+>>> codons = ['atg' , 'aaa' , 'agg']
 >>> 'atg' in codons
 True
 >>> 'ttt' in codons
@@ -483,7 +488,7 @@ Operators are listed in order of precedence. Highest listed first. Not all the o
 | Operator                                 | Description                              |
 | ---------------------------------------- | ---------------------------------------- |
 | `**`                                     | Exponentiation (raise to the power)      |
-| `~` `+` `-`                              | Complement, unary plus and minus (method names for the last two are +@ and -@) |
+| `~` `+` `-`                              | Complement/Bitwise inverse, unary plus and minus (method names for the last two are +@ and -@) |
 | `*` `/` `%` `//`                         | Multiply, divide, modulo and floor division |
 | `+` `-`                                  | Addition and subtraction                 |
 | `>>` `<<`                                | Right and left bitwise shift             |
@@ -577,7 +582,7 @@ Control Statements are used to direct the flow of your code and create the oppor
 ### If Statement
 
 - Use the `if` Statement to test for truth and to execute lines of code if true.  
-- When the expression evaluates to true each of the statements indented below the `if` statment, also known as the nested statement block, will be executed.
+- When the expression evaluates to true each of the statements indented below the `if` statment, also known as a _block_, will be executed.
 
 
 **if**
@@ -592,7 +597,7 @@ For Example:
 ```python
 dna = 'GTACCTTGATTTCGTATTCTGAGAGGCTGCTGCTTAGCGGTAGCCCCTTGGTTTCCGTGGCAACGGAAAA'
 if 'AGC' in dna:
-  print('found AGC in your dna sequence')
+  print('Found AGC in your dna sequence')
 ```
 Returns:  
 ```
@@ -608,13 +613,13 @@ found AGC in your dna sequence
 ```python
 dna = 'GTACCTTGATTTCGTATTCTGAGAGGCTGCTGCTTAGCGGTAGCCCCTTGGTTTCCGTGGCAACGGAAAA'
 if 'ATG' in dna:
-  print('found ATG in your dna sequence')
+  print('Found ATG in your dna sequence')
 else:
-  print('did not find ATG in your dna sequence')
+  print('Did not find ATG in your dna sequence')
 ```
 Returns:  
 ```
-did not find ATG in your dna sequence
+Did not find ATG in your dna sequence
 ```
 
 
@@ -627,17 +632,13 @@ did not find ATG in your dna sequence
 ```python
 count = 60
 if count < 0:
-  message = "is less than 0"
-  print(count, message)
+  print(count, "is less than 0")
 elif count < 50:
-  message = "is less than 50"
-  print (count, message)
+  print(count, "is less than 50")
 elif count > 50:
-  message = "is greater than 50"
-  print (count, message)
+  print(count, "is greater than 50")
 else:
-  message = "must be 50"
-  print(count, message)
+  print(count, "must be 50")
 ```
 Returns:  
 ```
@@ -649,17 +650,13 @@ Let's change count to 20, which statement block gets executed?
 ```python
 count = 20
 if count < 0:
-  message = "is less than 0"
-  print(count, message)
+  print(count, "is less than 0")
 elif count < 50:
-  message = "is less than 50"
-  print (count, message)
+  print(count, "is less than 50")
 elif count > 50:
-  message = "is greater than 50"
-  print (count, message)
+  print(count, "is greater than 50")
 else:
-  message = "must be 50"
-  print(count, message)
+  print(count, "must be 50")
 ```
 Returns:  
 ```
@@ -671,17 +668,13 @@ What happens when count is 50?
 ```python
 count = 50
 if count < 0:
-  message = "is less than 0"
-  print(count, message)
+  print(count, "is less than 0")
 elif count < 50:
-  message = "is less than 50"
-  print (count, message)
+  print(count, "is less than 50")
 elif count > 50:
-  message = "is greater than 50"
-  print (count, message)
+  print(count, "is greater than 50")
 else:
-  message = "must be 50"
-  print(count, message)
+  print(count, "must be 50")
 ```
 Returns:  
 ```
@@ -698,19 +691,19 @@ Python recognizes 3 types of numbers: integers, floating point numbers, and comp
 
 ### integer  
 
-- known as an int
-- an int can be positive or negative
+- known as an `int`
+- an `int` can be positive or negative
 - and **does not** contain a decimal point or exponent.
 
 ### floating point number  
 
-- known as a float
+- known as a `float`
 - a floating point number can be positive or negative
 - and **does** contain a decimal point (`4.875`) or exponent (`4.2e-12`)
 
 ### complex number  
 
-- known as complex
+- known as `complex`
 - is in the form of a+bi where bi is the imaginary part.
 
 ### Conversion functions    
@@ -775,10 +768,10 @@ Here is a list of functions that take numbers as arguments. These do useful thin
 ```
 
 
-Many numeric functions are not built into the Python core and need to be imported into our script if we want to use them. To include them, at the top of the script type: 
+Many numeric functions are not built into the Python core and need to be imported into our program if we want to use them. To include them, add the following to the top of the program: 
 `import math`
 
-These next functions are found in the math module and need to be imported. To use these functions, prepend the function with the module name, i.e, `math.ceil(15.5)`  
+The following functions are found in the `math` module and must be imported. To use these functions, prepend the function with the module name, i.e, `math.ceil(15.5)`  
 
 
 | math.function    | Description                              |
@@ -917,6 +910,16 @@ How do you find out what methods work with an object? There's a handy function `
 `dir()` will return all atributes of an object, among them its methods. Methods are functions belonging to a specific class (object type).
 You can call `dir()` on any object, most often, you'll use it in the interactive Python shell. 
 
+To get more information on methods, you can use `help()`, which opens a long help message in a pager. You can use `q` to quit and get back to the interpreter. Here are some examples
+
+```
+help(str)  # str is an object Class
+# or if you have an object, you can use type
+help(type('ACGTGA'))
+```
+
+
+
 ## Strings
 
 
@@ -1049,15 +1052,6 @@ NameError: name 'GGTCTAC' is not defined
 ```
 > We get a 'NameError' when the literal string is not enclosed in quotes because Python is looking for a variable with the name GGTCTAC
 
-```python
->>> print "boo"
-  File "<stdin>", line 1
-    print "boo"
-              ^
-SyntaxError: Missing parentheses in call to 'print'
-```
-In python2, the command was `print`, but this changed to `print()` in python3, so don't forget the parentheses!
-
 ### Special/Escape Characters
 
 How would you include a new line, carriage return, or tab in your string?  
@@ -1078,7 +1072,7 @@ this is the second line
 ```
 > We printed a new line to the screen
 
-`print()` adds spaces between arguments and a new line at the end for you. You can change these with `sep=` and `end=`. Here's an example:
+`print()` adds spaces between arguments and a new line at the end for you. You can change these with `sep=` (the seperator between arguments) and `end=` (the character that goes at the end). Here's an example:
 `print('one line', 'second line' , 'third line', sep='\n', end = '')`
 
 A neater way to do this is to express a multi-line string enclosed in triple quotes (""").
@@ -1170,8 +1164,8 @@ The value that `len()` returns can be stored in a variable.
 You can mix strings and ints in `print()`, but not in concatenation.
 
 ```python
->>> print("The lenth of the DNA sequence:" , dna , "is" , dna_length)
-The lenth of the DNA sequence: TAGCTATATAAAATCATAAT is 20
+>>> print("The length of the DNA sequence:" , dna , "is" , dna_length)
+The length of the DNA sequence: TAGCTATATAAAATCATAAT is 20
 ```
 
 
@@ -1836,7 +1830,7 @@ while expression:
   statement1
   statement2
   more_statements
- code below here gets executed after the while loop exits
+# code below here gets executed after the while loop exits
 rest_of_code_goes_here
 more_code
 ```
@@ -1845,7 +1839,7 @@ more_code
 
 Code: 
 ```python
-!/usr/bin/env python3
+#!/usr/bin/env python3
 
 count = 0
 while count < 5:
@@ -1882,7 +1876,7 @@ Done
 An infinite loop occurs when a while condition is always true. Here is an example of an infinite loop.
 
 ```python
-!/usr/bin/env python3
+#!/usr/bin/env python3
 
 count = 0
 while count < 5:            # this is normally a bug!!
@@ -1910,7 +1904,7 @@ count: 0
 A better way to write an infinite loop is with `True`. You'll need to include something like `if ...: break` 
 
 ```python
-!/usr/bin/env python3
+#!/usr/bin/env python3
 count=0
 while True:
   print("count:",count)
@@ -1937,7 +1931,7 @@ An example of a sequence is a list. Let's use a for loop with a list of words.
 
 Code:
 ```python
-!/usr/bin/env python3
+#!/usr/bin/env python3
 
 words = ['zero','one','two','three','four']
 for word in words:
@@ -1959,7 +1953,7 @@ This next example is using a for loop to iterate over a string. Remember a strin
 
 Code:
 ```python
-!/usr/bin/env python3
+#!/usr/bin/env python3
 
 dna = 'GTACCTTGATTTCGTATTCTGAGAGGCTGCTGCTTAGCGGTAGCCCCTTGGTTTCCGTGGCAACGGAAAA'
 for nt in dna:
@@ -1986,7 +1980,7 @@ Another example of iterating over a list of variables, this time numbers.
 
 Code:
 ```python
-!/usr/bin/env python3
+#!/usr/bin/env python3
 
 numbers = [0,1,2,3,4]
 for num in numbers:
@@ -2015,7 +2009,7 @@ The function `range()` can be used in conjunction with a for loop to iterate ove
 
 Code:
 ```python
-!/usr/bin/env python3
+#!/usr/bin/env python3
 
 for num in range(5):
   print(num)
@@ -2066,7 +2060,7 @@ Output:
  7. 4°C for ever   
 
 ```python
-!/usr/bin/env python3
+#!/usr/bin/env python3
 
 def doAnnealing(time):
   temp = 57
@@ -2179,7 +2173,7 @@ Loop control statements allow for altering the normal flow of execution.
 
 Code:
 ```python
-!/usr/bin/env python3
+#!/usr/bin/env python3
 
 count = 0
 while count < 5:
@@ -2204,7 +2198,7 @@ Done
 
 Code:
 ```python
-!/usr/bin/env python3
+#!/usr/bin/env python3
 
 count = 0
 while count < 5:
@@ -2486,12 +2480,12 @@ Now we have all the tools to build a dictionary one key/value using a for loop. 
 Here we are going to count and store nucleotide counts:  
 
 ```python
-!/usr/bin/env python3
+#!/usr/bin/env python3
 
- create a new empty dictionary
+# create a new empty dictionary
 nt_count={}
 
- loop example from loops lecture
+# loop example from loops lecture
 dna = 'GTACCTTGATTTCGTATTCTGAGAGGCTGCTGCTTAGCGGTAGCCCCTTGGTTTCCGTGGCAACGGAAAA'
 for nt in dna:
 
@@ -2721,19 +2715,19 @@ Code:
 
 
 ```python
-!/usr/bin/env python3
+#!/usr/bin/env python3
 
- create a new empty dictionary
+# create a new empty dictionary
 nt_count = {}
 
- get a set of unique characters in our DNA string
+# get a set of unique characters in our DNA string
 
 dna = 'GTACCNTTGATTTCGTATTCTGAGAGGCTGCTGCTTAGCGGTAGCCCCTTGGTTTCCGTGGCAACGGAAAA'
 unique = set(dna)
 
 print('unique nt: ', unique) ## {'C', 'A', 'G', 'T', 'N'}
 
- iterate through each unique nucleotide
+# iterate through each unique nucleotide
 for nt in unique:
   # count the number of this unique nt in dna
   count = dna.count(nt)
@@ -2760,7 +2754,8 @@ nt count: {'G': 20, 'T': 21, 'A': 13, 'C': 16, 'N': 1}
 ---
 
 `set` problemset questions are combined into Python 6: File I/O problemset.     
-[Link to Python 6 Problem Set](problemsets/Python_06_problemset.md)   
+
+## [Link to Python 6 Problem Set](problemsets/Python_06_problemset.md)   
 Question 1-5 are all about Sets.  
 Question 6+ are a combination of File I/O and sets.  
 
@@ -2848,7 +2843,7 @@ ACCGGTTTCCAAAGACAGTCTTCTAATTCCTCATTAGTAATAAGTAAAATGTTTATTGTTGTAGCTCTGG
 
 Here's another way to read data in from a file. A `for` loop can be used to iterate through the file one line at a time.
 ```python
-!/usr/bin/env python3
+#!/usr/bin/env python3
 
 seq_file_obj = open("seq.nt.txt","r")
 for line in seq_file_obj: # Python magic: reads in a line from file
@@ -2868,7 +2863,7 @@ ACCGGTTTCCAAAGACAGTCTTCTAATTCCTCATTAGTAATAAGTAAAATGTTTATTGTTGTAGCTCTGG
 Let's use `rstrip()` method to remove the newline from our file input.
 ```python
 $ cat file_for_rstrip.py
-!/usr/bin/env python3
+#!/usr/bin/env python3
 
 seq_file_obj = open("seq.nt.txt","r")
 for line in seq_file_obj:
@@ -2891,14 +2886,14 @@ ACCGGTTTCCAAAGACAGTCTTCTAATTCCTCATTAGTAATAAGTAAAATGTTTATTGTTGTAGCTCTGG
 Many people add this, because it closes the file for you automatically. Good programming practice. Your code will clean up as it runs. For more advanced coding, `with ... as ...` saves limited resources like filehandles and database connections. For now, we just need to know that the `with ... as ...:` does the same as `fh = open(...) ... fh.close()`. So here's what the adapted code looks like
 
 ```python
-!/usr/bin/env python3
+#!/usr/bin/env python3
 
 with open("seq.nt.txt","r") as seq_file_obj: #cleans up after exiting 
                                             # the 'with' block
   for line in seq_file_obj:
     line = line.rstrip()
     print(line)
-file gets closed for you here.
+# file gets closed for you here.
 ```
 
 ### Writing to a File
@@ -2909,7 +2904,7 @@ The `write()` method is like the `print()` function. The biggest difference is t
 
 Let's write a few lines to a file named "writing.txt".  
 ```python
-!/usr/bin/env python3
+#!/usr/bin/env python3
 
 fo = open("writing.txt" , "w")  # note that we are writing so the mode is "w"
 fo.write("One line.\n")
@@ -2933,7 +2928,7 @@ One line.
 ```
 Now, let's get crazy! Lets read from one file a line at a time. Do something to each line and write the results to a new file.
 ```python
-!/usr/bin/env python3
+#!/usr/bin/env python3
 
 total_nts = 0
  open two file objects, one for reading, one for writing
@@ -2981,7 +2976,7 @@ BRCA1   GTACCTTGATTTCGTATTCTGAGAGGCTGCTGCTTAGCGGTAGCCCCTTGGTTTCCGTGGCAACGGAAAA
 How can we read this whole file in to a dictionary? 
 
 ```python
-!/usr/bin/env python3
+#!/usr/bin/env python3
 
 genes = {}
 with open("sequence_data.txt","r") as seq_read:
@@ -3016,7 +3011,7 @@ These specialized functions are not included in the core of Python. We need to i
 at the top of your script
 
 ```python 
-!/usr/bin/env python3
+#!/usr/bin/env python3
 
 import re
 ```
@@ -3432,7 +3427,7 @@ downstream: CCGGTTTCCAAAGACAGTCTTCTAA
 The match object contains information about the match that can be retrieved with match methods like `start()` and `end()`
 
 ```python
-!/usr/bin/env python3
+#!/usr/bin/env python3
 
 import re
 
@@ -3899,7 +3894,7 @@ womens	medium	royal heather       1
 
 [shirts.py](scripts/shirts.py)
 ```python
-!/usr/bin/env python3
+#!/usr/bin/env python3
 
 shirts = {}
 with open("shirts.txt","r") as file_object:
@@ -4055,7 +4050,7 @@ Here is a very nice [interactive tutorial](https://www.learnpython.org/en/Pandas
 There are a few different types of errors when coding. Syntax errors, logic errors, and exceptions. You have probably encountered all three. Syntax and logic errors are issues you need to deal with while coding. An exception is a special type of error that can be informative and used to write code to respond to this type of error. This is especially relavent when dealing with user input. What if they don't give you any, or it is the wrong kind of input. We want our code to be able to detect these types of errors and respond accordingly.
 
 ```python
-!/usr/bin/env python3
+#!/usr/bin/env python3
 
 import sys
 file = sys.argv[1]
@@ -4096,7 +4091,7 @@ We have already seen quite a few exceptions throughout the lecture notes, here a
 We can use the exception to our advantage to help the people who are running the script. We can use a try/except condition like an if/else block to look for exceptions and to execute specific code if we **do not have** an exception and do something different if we **do have** an exception.
 
 ```python
-!/usr/bin/env python3
+#!/usr/bin/env python3
 import sys
 
 file = ''
@@ -4487,7 +4482,7 @@ List comprehensions can often be used instead of lambdas and may be easier to re
 Almost all python variables are global. This means you can use them everywhere in your code.  Remember that python blocks are defined as code at the same level of indentation.
 
 ```python
-!/usr/bin/env python3
+#!/usr/bin/env python3
 print('Before if block')
 x = 100
 print('x=',x)
@@ -4547,7 +4542,7 @@ Variables inside functions are local and therefore can only been accessed from w
 
 
 ```python
-!/usr/bin/end python3
+#!/usr/bin/end python3
 
 def set_local_x_to_five(x):
   print('Inside def')
@@ -4595,7 +4590,7 @@ You can make a local variable global with the statement `global`. Now a variable
 Here is an example use of `global`. 
 
 ```python
-!/usr/bin/env python3
+#!/usr/bin/env python3
 
 def set_global_variable():
   global greeting  # make greeting global
@@ -4881,7 +4876,8 @@ Does unix-like wildcard file path expansion.
 Great (if quite complicated) tool for parsing command line arguments and automatically generating help messages for scripts (very handy!). Here's a simple script that explains a little of what it does.
 
 ```python
-!/usr/bin/env python3
+
+#!/usr/bin/env python3
 import argparse
 parser = argparse.ArgumentParser(description="A test program that reads in some number of lines from an input file. The output can be screen or an output file")
  we want the first argument to be the filename
@@ -4920,7 +4916,7 @@ Also, non-core: BioPython for bioinformatics, Numpy for mathematics, statistics,
 
 You can also make your own modules. They are just text files containing python. The file name should end with `.py`. You need to put them in the right directory (same directory as your main script works for getting going). Then you can write your own import statement. For example
 ```
-!/usr/bin/env python3
+#!/usr/bin/env python3
 import sequence_utilities    # import functions in your own file 'sequence_utilities.py'
 import sys                   # import built-in python module
 ```
@@ -5172,7 +5168,7 @@ Below our __\_\_init\_\___ instructions indicate that we want to create object a
 Here is our new class definition and new object creation when using the  __\_\_init\_\___  function:
 
 ```python
-!/usr/bin/env python3
+#!/usr/bin/env python3
 class DNARecord(object):
   
   # define class attributes
