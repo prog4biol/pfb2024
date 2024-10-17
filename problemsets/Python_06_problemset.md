@@ -7,15 +7,15 @@ Python 6 - Sets and IO - Problem Set
 mySet = set('ATGTGGG')
 mySet2 = {'ATGTGGG'}
 ```
-  -  **What is the difference?**
-  -  **Does it matter which method you use?**
-  -  **How many items are in mySet and mySet2?**
+-  What is the difference?
+-  Does it matter which method you use?
+-  How many items are in mySet and mySet2?
 
 
 
 2. Write a script that creates 2 sets using the collections of numbers below. Find the intersection, difference, union, and symetrical difference between these two sets.  
-  - 3, 14, 15, 9, 26, 5, 35, 9
-  - 60, 22, 14, 0, 9  
+    - 3, 14, 15, 9, 26, 5, 35, 9
+    - 60, 22, 14, 0, 9  g
 
 
 3. If you create a set using a DNA sequence, what will you get back? Try it with this sequence:
@@ -84,8 +84,8 @@ __Generate Gene Lists:__
 
 _Get all genes:_
 
-1. Go to [Ensembl Biomart](http://useast.ensembl.org/biomart/martview/3e66a7a80107043f1317566a8a10fed1).
-2. In dropdown box, select "Ensembl Genes 107"  (or most current version)
+1. Go to [Ensembl Biomart](http://useast.ensembl.org/biomart/martview).
+2. In dropdown box, select "Ensembl Genes 112"  (or most current version)
 3. In dropdown box, select "Alpaca Genes" 
 4. On the left, click Attributes
 5. Expand GENE:
@@ -102,7 +102,7 @@ _In the same Ensembl window, follow the steps below to get genes that have been 
 14. Export all results to "File" "TSV" --> GO
 15. Rename the file to "alpaca_stemcellproliferation_genes.tsv"
 
-_In the same Ensembl window, follow the steps below to get genes that have been labeled with Gene Ontology term "pigmentation". For extra information on pigmentation, check out [pigmentation](http://purl.obolibrary.org/obo/GO_0043473)_
+_In the same Ensembl window, follow the steps below to get genes that have been labeled with Gene Ontology term "pigmentation". For extra information on pigmentation, check out [pigmentation](http://purl.obolibrary.org/obo/GO_0043473)_. Make sure that the previous Stem Cell Proliferation GO term is replaced with the Pigmintation GO term
 
 
 16. Click "Filters"

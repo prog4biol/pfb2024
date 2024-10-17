@@ -16,18 +16,17 @@ Python 4 Problem Set -- Lists and Loops
 	l.  Use `join` to create a string. Join the elements on ', '  
 	m. **Exit the interpreter**
 	
-3. Create a new **script in vi**
-    a. In the script, create a variable called `taxa_string` that contains this string:  
-	`sapiens : erectus : neanderthalensis`
-    b. Print `taxa_string` formated like this: `string: sapiens : erectus : neanderthalensis`
-    c. Split `taxa_string` into a list called `taxa_list`. Use `" : "` as your separator.
-    d. Print `taxa_list`.
-    e. Print `taxa_list[1]`, what do you get?
-    f. Print `type(taxa_string)`. What is it's type? Print `type(taxa_list)`. What is it's type?
-    g. Sort the list alphabetically and print (hint: lookup the function `sorted()`). 
-    h. Sort the list by length of each string and print. (The shortest string should be first). [Check out documentation of the key argument](https://www.programiz.com/python-programming/methods/built-in/sorted).
+2. Create a new **script in vi**  
+    a. In the script, create a variable called `taxa_string` that contains this string:  `"sapiens : erectus : neanderthalensis"`  
+    b. Print `taxa_string`  
+    c. Split `taxa_string` into a list called `taxa_list`. Use `" : "` as your separator.  
+    d. Print `taxa_list`.  
+    e. Print `taxa_list[1]`, what do you get?  
+    f. Print `type(taxa_string)`. What is it's type? Print `type(taxa_list)`. What is it's type?  
+    g. Sort the list alphabetically and print (hint: lookup the function `sorted()`).   
+    h. Sort the list by length of each string and print. (The shortest string should be first). [Check out documentation of the key argument](https://www.programiz.com/python-programming/methods/built-in/sorted).  
 
-5. Using the **Python interpreter**, interrogate the difference between these two ways to copy a list. Careful! One of these is NOT what you might expect. 
+3. Using the **Python interpreter**, interrogate the difference between these two ways to copy a list. Careful! One of these is NOT what you might expect. 
    a. Method 1
      - Create a list. For example: `my_list = ['a', 'bb', 'ccc']`
      - Make a copy using the `=` assignment operator:  `list_copy = my_list`
@@ -42,15 +41,15 @@ Python 4 Problem Set -- Lists and Loops
      - Print the original list again `print(my_list2)`
      - **close the interpreter** 
 
-6. **Write a script with vi** that uses a `while` loop to print out the numbers 1 to 100.
+4. **Write a script with vi** that uses a `while` loop to print out the numbers 1 to 100.
 
-7. **Write a script**: Use a `while` loop to calculate the [factorial](https://en.wikipedia.org/wiki/Factorial) of 1000. 
+5. **Write a script**: Use a `while` loop to calculate the [factorial](https://en.wikipedia.org/wiki/Factorial) of 1000. 
 
-8. **Write a script**:
+6. **Write a script**:
    - Iterate through each element of this list using a `for` loop: `[101,2,15,22,95,33,2,27,72,15,52]`
    - Print only the values that are even (hint: use the modulus operator).
    
-10. **Add to your previous script**:
+7. **Add to your previous script**:
      - Sort the elements of the above list
      - Then iterate through each element using a `for` loop. Nested within the loop
        - Print each element.
@@ -63,23 +62,25 @@ Python 4 Problem Set -- Lists and Loops
          Sum of odds: 286
          ```
    
-11. **Create a script**: Use `range()` in a `for` loop to print out every number between 0 and 99  
+8. **Create a script**: Use `range()` in a `for` loop to print out every number between 0 and 99  
       - Modify your loop to print out every number between 1 and 100.
       
-12. **Create a script**: Use list comprehension to:
+9. **Create a script**: Use list comprehension to:
    -  Print out every number between 1 and 100.
      
-13. **Create a script**: Use a `for` loop and user provided arguments:
+10. **Create a script**: Use a `for` loop and user provided arguments:
    -  Get the user provided minimum (`sys.argv[1]`) and maximum (`sys.argv[2]`).
    -  Print out every number between and including the min and max to your output.
 
-14. **Create a script**: Use a `for` loop, user provided arguments, and logic:
+11. **Create a script**: Use a `for` loop, user provided arguments, and logic (`if` within the list comprehension):
    -  Get the user provided minimum (`sys.argv[1]`) and maximum (`sys.argv[2]`).
    -  Print out only the odd numbers between (inclusive) the min and max.
-
-   
-      
-15. **Create a script**:
+  
+12. **Create a script**: Use list comprehension, user provided arguments, and logic (`if` within the list comprehension):
+   -  Get the user provided minimum (`sys.argv[1]`) and maximum (`sys.argv[2]`).
+   -  Print out only the odd numbers between (inclusive) the min and max.
+     
+13. **Create a script**:
    - Create a list with the following data:
       `['ATGCCCGGCCCGGC','GCGTGCTAGCAATACGATAAACCGG', 'ATATATATCGAT','ATGGGCCC']`
    - Use a `for` loop to iterate through each element of this list
@@ -91,9 +92,18 @@ Python 4 Problem Set -- Lists and Loops
    12	ATATATATCGAT
    8	ATGGGCCC
    ```
-   - **Modify this script** to also also print out the number (postion in the list) of each sequence. Make sure your columns are tab separated (i.e., "1\\t4\\tACGT\\n")
+   - **Modify this script** to also also print out the number (postion in the list) of each sequence. Make sure your columns are tab separated (i.e., "index\\tlength\\tsequence\\n")
+   ```
+   0	14	ATGCCCGGCCCGGC
+   1	25	GCGTGCTAGCAATACGATAAACCGG
+   2	12	ATATATATCGAT
+   3	8	ATGGGCCC
+   ```
+
+
+
    
-16. Have you been commiting you work?
+14. Have you been commiting you work?
 
 -----------------
 -----------------
