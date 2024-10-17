@@ -38,20 +38,14 @@ def main() -> None:
 
     args = get_args()
     rec_id = ''
-    seq = []
     records = {}
+
     for line in map(str.rstrip, args.file):
         if line.startswith('>'):
-            if rec_id:
-                records[rec_id] = ''.join(seq)
-
             rec_id = line[1:]
-            seq = []
+            records[rec_id] = ''
         else:
-            seq.append(line)
-
-    if rec_id:
-        records[rec_id] = ''.join(seq)
+            records[rec_id] += line
 
     print(records)
 
