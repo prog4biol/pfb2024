@@ -4480,19 +4480,19 @@ Almost all python variables are global. This means you can use them everywhere i
 #!/usr/bin/env python3
 print('Before if block')
 x = 100
-print('x=',x)
+print('x =',x)
 if True:  # this if condition will always be True 
   # we want to make sure the block gets executed
   # so we can show you what happens
   print('Inside if block')
   x = 30
   y = 10
-  print("x=", x)
-  print("y=", y)
+  print("x =", x)
+  print("y =", y)
 
 print('After if block')
-print("x=", x)
-print("y=", y)
+print("x =", x)
+print("y =", y)
 
 
 ```
@@ -4501,13 +4501,13 @@ Let's Run it:
 ```bash
 $ python3 scripts/scope.py
 Before if block
-x= 100
+x = 100
 Inside if block
-x= 30
-y= 10
+x = 30
+y = 10
 After if block
-x= 30
-y= 10
+x = 30
+y = 10
 
 ```
 
@@ -4542,20 +4542,20 @@ Variables inside functions are local and therefore can only been accessed from w
 def set_local_x_to_five(x):
   print('Inside def')
   x = 5 # local to function set_local_x_to_five()
-  y=5   # also local
+  y = 5   # also local
   print("x =",x)
   print("y = ",y)
 
 print('After def')
 x = 100 # global x
 y = 100 # global
-print('x=',x)
-print('y=',y)
+print('x =',x)
+print('y =',y)
 
 set_local_x_to_five(500)
 print('After function call')
-print('x=',x)
-print('y=',y)
+print('x =',x)
+print('y =',y)
 
 ```
 > Here we have added a function `set_local_x_to_five()` with an argument named `x`. This variable exists only within the function where is replaces any variable with the same name outside the `def`. Inside the `def` we also initialize a variable `y` that also replaces any global `y` within the `def`
@@ -4564,16 +4564,14 @@ Let's run it:
 ```bash
 $ python3 scope_w_function.py
 After def
-x= 100
-y= 100
+x = 100
+y = 100
 Inside def
 x = 5
 y =  5
 After function call
-x= 100
-y= 100
-
-
+x = 100
+y = 100
 
 ```
 > There is a global variable, `x` = 100, but when the function is called, it makes a **new local variable**, also called `x` with value = 5. This variable disappears after the function finishes and we go back to using the global variable `x` = 100. Same for `y`
@@ -4596,7 +4594,7 @@ greeting = 'Good morning'
 print('Before function call')
 print('greeting =',greeting)
 
-make call to function
+# make call to function
 set_global_variable()
 print('After function call')
 print('greeting =',greeting)
@@ -4745,7 +4743,7 @@ import subprocess
 rtn = subprocess.run(['ls','-l'], stdout=subprocess.PIPE )  # specify you want to capture STDOUT
 bytes = rtn.stdout
 stdout = bytes.decode('utf-8')
- something like
+# something like
 lines = stdout.splitlines()
 ```
 
@@ -4766,7 +4764,7 @@ To run a command and check the exit status (really to check the exit status = 0,
 
 ```python
 oops = subprocess.check_call(['ls', '-l'])
- or, simpler...
+# or, simpler...
 oops = subprocess.check_call('ls -l', shell=True)
 ```
 
@@ -4875,15 +4873,15 @@ Great (if quite complicated) tool for parsing command line arguments and automat
 #!/usr/bin/env python3
 import argparse
 parser = argparse.ArgumentParser(description="A test program that reads in some number of lines from an input file. The output can be screen or an output file")
- we want the first argument to be the filename
+# we want the first argument to be the filename
 parser.add_argument("file", help="path to input fasta filename")
- second argument will be line number
- default type is string, need to specify if expecting an int
+# second argument will be line number
+# default type is string, need to specify if expecting an int
 parser.add_argument("lines", type=int, help ="how many lines to print")
- optional outfile argument specified with -o or --out
+# optional outfile argument specified with -o or --out
 parser.add_argument("-o","--outfile", help = "optional: supply output filename, otherwise write to screen", dest = 'out')
 args = parser.parse_args()
- arguments appear in args
+# arguments appear in args
 filename = args.file
 lines = args.lines
 if args.out:
