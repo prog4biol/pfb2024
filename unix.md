@@ -709,7 +709,7 @@ To convert a script into an exectuable program, you'll need to make it executabl
 ```
 export PATH=".:${PATH}" # add '.', the current dir to the list of paths
                         # the OS looks for programs in
-rehash    # this rebuilds set of paths for the shell
+rehash    # this rebuilds set of paths for the shell (zsh, tcsh, not bash)
 ```
 
 NOTE: You must use the `$` when you want the shell to interpolate the value of the variable called `PATH`, but you do _not_ use it when setting the value.
@@ -1194,7 +1194,7 @@ Then, use Step 3 to create your __local repository__ and **link it** to the __re
   ![Create a directory on your computer and follow these instructions.](images/github-newRepoInstructions.png)  
     
 
-​6. If you did not select SSH and use the SSH URL, do a `git remote set-url 'git@blalabbalalal'` with the SSH URL
+6. If you did not select SSH and use the SSH URL, do a `git remote set-url 'git@blalabbalalal'` with the SSH URL
 
 
 The new local repository consists of three "trees" maintained by git. The first one is your "Working Directory" which holds the actual files. the second one is the "Index" which acts as a staging area and finally the "HEAD" which points to the last commit you've made.
