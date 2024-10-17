@@ -15,7 +15,7 @@ mySet2 = {'ATGTGGG'}
 
 2. Write a script that creates 2 sets using the collections of numbers below. Find the intersection, difference, union, and symetrical difference between these two sets.  
     - 3, 14, 15, 9, 26, 5, 35, 9
-    - 60, 22, 14, 0, 9  g
+    - 60, 22, 14, 0, 9  
 
 
 3. If you create a set using a DNA sequence, what will you get back? Try it with this sequence:
@@ -85,14 +85,14 @@ __Generate Gene Lists:__
 _Get all genes:_
 
 1. Go to [Ensembl Biomart](http://useast.ensembl.org/biomart/martview).
-2. In dropdown box, select "Ensembl Genes 112"  (or most current version)
-3. In dropdown box, select "Alpaca Genes" 
+2. In dropdown box, select "Ensembl Genes 113"  (or most current version)
+3. In dropdown box, select "Ferret Genes" 
 4. On the left, click Attributes
 5. Expand GENE:
 6. Deselect "transcript stable ID", "Gene stable ID version", and "transcript stable ID version".
 7. Click Results (top left)
 8. Export all results to "File" "TSV" --> GO
-9. Rename the file to "alpaca_all_genes.tsv"
+9. Rename the file to "ferret_all_genes.tsv"
 
 _In the same Ensembl window, follow the steps below to get genes that have been labeled with Gene Ontology term "stem cell proliferation". For extra information on stem cell proliferation, check out  [stem cell proliferation](http://purl.obolibrary.org/obo/GO_0072089)_
 
@@ -100,7 +100,7 @@ _In the same Ensembl window, follow the steps below to get genes that have been 
 12. Under "Gene Ontology", check "Go term name" and enter "stem cell proliferation" (clear out any previous GO term names)
 13. Click Results (top left)
 14. Export all results to "File" "TSV" --> GO
-15. Rename the file to "alpaca_stemcellproliferation_genes.tsv"
+15. Rename the file to "ferret_stemcellproliferation_genes.tsv"
 
 _In the same Ensembl window, follow the steps below to get genes that have been labeled with Gene Ontology term "pigmentation". For extra information on pigmentation, check out [pigmentation](http://purl.obolibrary.org/obo/GO_0043473)_. Make sure that the previous Stem Cell Proliferation GO term is replaced with the Pigmintation GO term
 
@@ -109,7 +109,7 @@ _In the same Ensembl window, follow the steps below to get genes that have been 
 17. Under "Gene Ontology", check "Go term name" and enter "pigmentation"
 18. Click Results (top left)
 19. Export all results to "File" "TSV" --> GO
-10. Rename the file to "alpaca_pigmentation_genes.tsv"
+10. Rename the file to "ferret_pigmentation_genes.tsv"
 
 
 __Open each of the three files and add the geneIDs (Gene stable ID) to a Set. One Set per file.__
@@ -128,7 +128,7 @@ __Now, let do it again with transciption factors.__
    - GO:0003677 is "DNA binding"
 5.  Click Results (top left)
 6. Export all results to "File" "TSV" --> GO
-7. Rename the file to "alpaca_transcriptionFactors.tsv"
+7. Rename the file to "ferret_transcriptionFactors.tsv"
 
 __Open these two files: 1) the transcription factor gene list file and 2) the cell proliferation gene list file. Add each to a Set, One Set per file__
 

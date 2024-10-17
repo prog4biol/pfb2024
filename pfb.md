@@ -2827,7 +2827,7 @@ ACCGGTTTCCAAAGACAGTCTTCTAATTCCTCATTAGTAATAAGTAAAATGTTTATTGTTGTAGCTCTGG
 $ 
 ```
 
-Note the new lines. Now, lets print the contents to the screen with Python. We will use `read()` to read the entire contents of the file into a variable. 
+Note the new lines. Now, lets print the contents to the screen with Python. We will use `read()` to read the entire contents of the file into a variable. You don't usually use this function (see below).
 ```python
 >>> seq_file_obj = open("seq.nt.txt","r")
 >>> contents = seq_file_obj.read()
@@ -2898,7 +2898,7 @@ with open("seq.nt.txt","r") as seq_file_obj: #cleans up after exiting
 
 ### Writing to a File
 
-Writing to a file just required opening a file for writing then using the `write()` method.  
+Writing to a file just requires opening a file for writing then using the `write()` method.  
 
 The `write()` method is like the `print()` function. The biggest difference is that it writes to your file object instead of the screen. Unlike `print()`, it does not add a newline by default.  `write()` takes a single string argument. 
 
@@ -2931,7 +2931,7 @@ Now, let's get crazy! Lets read from one file a line at a time. Do something to 
 #!/usr/bin/env python3
 
 total_nts = 0
- open two file objects, one for reading, one for writing
+# open two file objects, one for reading, one for writing
 with open("seq.nt.txt","r") as seq_read, open("nt.counts.txt","w") as seq_write:
   for line in seq_read:
     line = line.rstrip()
