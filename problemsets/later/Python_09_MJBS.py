@@ -14,7 +14,7 @@ import re
 
 #defining the variable to store the filename that the user inputs
 file = ''
-c = 0
+#sc = 0
 #defining the NotFastaError as an exception to raise later
 class NotFastaError(Exception):
     pass
