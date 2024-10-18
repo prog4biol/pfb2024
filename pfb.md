@@ -1001,7 +1001,7 @@ ATGGGTCTAC
 
 Now, lets print a variable and a literal string.
 ```python
->>>dna = 'ATG'
+>>> dna = 'ATG'
 ATG
 >>> print(dna,'GGTCTAC')
 ATG GGTCTAC
@@ -1010,7 +1010,7 @@ ATG GGTCTAC
 
 How would we print the two without a space?
 ```python
->>>dna = 'ATG'
+>>> dna = 'ATG'
 ATG
 >>> print(dna + 'GGTCTAC')
 ATGGGTCTAC
@@ -1018,11 +1018,11 @@ ATGGGTCTAC
 
 Something to think about: Values of variables are variable. Or in other words, they are mutable or changeable.  
 ```python
->>>dna = 'ATG'
+>>> dna = 'ATG'
 ATG
 >>> print(dna)
 ATG
->>>dna = 'TTT'
+>>> dna = 'TTT'
 TTT
 >>> print(dna)
 TTT
@@ -3841,7 +3841,7 @@ To retrieve the A composition of every gene use a for loop.
 ```python
 >>> for gene in sorted(genes):
 ...   A_comp = genes[gene]['nt_comp']['A']
-...   print(gene+":","As=", A_comp)
+...   print(f"{gene}: As= {A_comp}")
 ...
 gene1: As= 2
 gene2: As= 3
@@ -4063,10 +4063,7 @@ This is what the data structure we just built looks likes
         }
     }
 }
-
 ```
-
-
 
 There are also specific data table and frame handling libraries like [Pandas](https://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.html).
 
