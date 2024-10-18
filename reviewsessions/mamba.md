@@ -3,12 +3,12 @@
 ### Resources:
 - [Conda Cheat Sheet](https://docs.conda.io/projects/conda/en/4.6.0/_downloads/52a95608c49671267e40c689e0bc00ca/conda-cheatsheet.pdf)
 
+
 ## What is Mamba and why should you use it?
 
 The [Mamba](https://mamba.readthedocs.io/en/latest) (also the legacy [Conda](https://docs.conda.io/en/latest)) package manager is a cross-platform toolkit for creating and managing virtual environments --- semi-self-contained Unix command-line configurations --- that allow flexible installation of, and access to, the executables and libraries needed to perform different analyses. These virtual environments are particularly useful when programs or pipelines require conflicting dependencies (e.g., require the same executable or library to be installed, but require different versions). Mamba even allows the user to export detailed descriptions of an environment to a file that can be shared with others, allowing them to reproducibly replicate the original user's environment. This promotes reproducibility and transparency of data analyses, making Mamba a valuable component of the scientific software stack!
 
 The `mamba` toolkit can be used to install Python programs and modules as well as other third-party interpreted or compiled softwares (like Perl, R, C, and C++ programs and their dependent libraries). `mamba` enables the user to search for available software in established repositories ('channels' in Mamba parlance), installs the desired softwares (pre-compiled), and can be used to make updates as needed. `mamba` tracks all installed software versions and build information, and even allows the user to build their own packages to be shared with others.
-
 
 There are two main distributions of Mamba:
 
@@ -16,14 +16,26 @@ There are two main distributions of Mamba:
 
 2.  [**Micromamba**](https://www.anaconda.com) : Contains the C++-based `micromamba` command-line package manager and a minimal set of libraries installed. It's meant to be a streamlined, super-lite version. No Python interpreter installed by default.
 
+
+
 ## The basics
 
 ### How to create an environment:
 
 The following will create a minimal (i.e., "empty") virtual environment called `envName`:
 
-``` bash
+```bash
 $ mamba create --name envName
+```
+
+
+### Remove unwanted environments
+
+Similarly, if an environment is no longer wanted or becomes corrupted, it can be deleted:
+
+```bash
+# Must deactivate your environment if activated:
+$ mamba env remove --name envName
 ```
 
 
@@ -31,23 +43,35 @@ $ mamba create --name envName
 
 To run executables or import libraries installed in a virtual environment, you first need to activate it. When you activate a Mamba virtual environment, the new environment inherits your current Unix environment (so you'll still be able to use `ls`, etc., for example), but now gives you access to tools that are installed in `envName`:
 
-``` bash
+```bash
 $ mamba activate envName
 ```
+
+
+### How to unload/deactivate an environment:
+
+When you are finished with your work using the environment and want to return a standard Unix/Linux command-line environment, you can deactivate your current environment:
+
+```bash
+$ mamba deactivate
+```
+> *NOTE*: It is unnecessary to specify your environment name when deactivating, as `mamba` knows which environment you are in and are deactivating.
+
 
 ### How to search for available software:
 
 Mamba can search for software of interest from the command line. The command below will search for the `pkgName` software package and write out the versions and builds available for installation.
 
-``` bash
+```bash
 $ mamba search pkgName
 ```
 
 For example, to search for the `wget` Unix command-line tool:
 
-``` bash
+```bash
 $ mamba search wget
 ```
+
 
 ### How to install software:
 
@@ -57,7 +81,7 @@ By default, Mamba then installs the software package requested. If no package ve
 
 > NOTE: To install software into a virtual environment, you must first `mamba activate` your environment or specify the `--name envName` option.
 
-``` bash
+```bash
 # assuming that envName is already activated
 $ mamba install pkgName1 pkgName2 ...
 
@@ -67,7 +91,7 @@ $ mamba install --name envName pkgName
 
 If you want to specify a particular version (and build) of a tool you want to install, include the version, and optionally the build identifier, after the package name separated by equal (`=`) signs (the square brackets `[]` below denote optional components of the command):
 
-``` bash
+```bash
 $ mamba install pkgName[=Version[=Build]]
 ```
 
@@ -77,7 +101,7 @@ For example:
 
 1.  Search for the software you want to install with Mamba:
 
-    ``` bash
+    ```bash
     $ mamba search wget
 
          wget 1.24.5 h3a17b82_0
@@ -112,15 +136,16 @@ For example:
 
 2.  Then choose the version (and build) you want to install:
 
-    ``` bash
+    ```bash
     $ mamba install wget=1.19.1=hcb5d8a9_0
     ```
+
 
 ### How to check packages already installed:
 
 Mamba provides an utility to interrogate which packages (with versions and builds) are installed in your environment. This can be useful when writing up your Methods sections!
 
-``` bash
+```bash
 # Assuming your environment is activated
 $ mamba list
 
@@ -130,7 +155,7 @@ $ mamba list --name envName
 
 For example:
 
-``` bash
+```bash
 $ mamba list
 
     List of packages in environment: "/Users/username/.micromamba/envs/envName"
@@ -156,47 +181,51 @@ $ mamba list
       zlib                1.3.1      hd23fc13_2  conda-forge
 ```
 
+
 ### How to update/upgrade Mamba packages:
 
 One can also update older software versions:
 
-``` bash
+```bash
 $ mamba update pkgName1 pkgName2 ...
 ```
 
 To update a single package:
 
-``` bash
+```bash
 $ mamba update wget
 ```
 
 Update *all* packages in your environment:
 
-``` bash
+```bash
 $ mamba update --all
 ```
 
 To update/roll-back to a package of a specific version, use `mamba install` instead:
 
-``` bash
+```bash
 $ mamba install wget=1.21.4=hf20ceda_1
 ```
 
+
 ### Remove packages from an environment:
 
-``` bash
+```bash
 $ mamba remove pkgName1 pkgName2 ...
 ```
 
 > NOTE: To remove software from a virtual environment, you must first `mamba activate` your environment or specify the `--name envName` option.
 
+
 ### Which Mamba virtual environments do I have?
 
 It's convenient to organize tools into environments by analysis type (i.e., one for genome assembly tools, another for variant calling tools, and another for RNA-seq analysis, etc.). This, however, can result in many Mamba environments. We can see which environments we have by running:
 
-``` bash
+```bash
 $ mamba env list
 ```
+
 
 ## Other useful commands
 
@@ -204,7 +233,7 @@ $ mamba env list
 
 There are many sources of software packages that you can install from, which are stored on servers on the web. In Mamba parlance, these source servers are referred to as "channels". Some useful bioinformatics channels can be added to your Mamba configuration like so:
 
-``` bash
+```bash
 $ mamba config append channels conda-forge
 $ mamba config append channels bioconda
 $ mamba config append channels anaconda
@@ -212,13 +241,14 @@ $ mamba config append channels anaconda
 
 > NOTE: With each of the above `mamba` commands, you can specify particular channels without adding them to your Mamba configuration permanently by including the `--channel channelName` option. This option can be specified more than once on the command line.
 
+
 ### Reproducible environments
 
 Mamba provides a convenient utility allowing you to export the list of software (and their version and build information) installed in an environment, allowing you to share that environment with others via a compact text file. This is useful when writing your Methods sections, allowing reviewers to run your analyses themselves, increasing reproducibility.
 
 The command below will write a [YAML](https://yaml.org)-formatted file called `envName.yaml` containing the information required to reproduce an environment.
 
-``` bash
+```bash
 # Assuming your environment is activated
 $ mamba env export >envName.yaml
 
@@ -228,30 +258,32 @@ $ mamba env export --name envName >envName.yaml
 
 One can then re-create that environment from the YAML file:
 
-``` bash
+```bash
 $ mamba env create --file envName.yaml --name envName
 ```
+
 
 ### Running a single executable command
 
 To run a single executable installed in the environment without activating the environment, one can use the `mamba run` command:
 
-``` bash
+```bash
 $ mamba run --name envName softwareCommand
 ```
 
 For example:
 
-``` bash
+```bash
 $ mamba install --name envName samtools
 $ mamba run --name envName samtools depth my.bam >my.depth
 ```
+
 
 ### Remove cached temporary files
 
 When Mamba installs software in environments, it downloads and caches TAR archive files containing the software (for each version) installed. After a while, these TAR files can accumulate and occupy many gigabytes of disk space. You can remove these cached TAR files with the `clean` command:
 
-``` bash
+```bash
 $ mamba clean --all
 ```
 
@@ -292,3 +324,4 @@ $ mamba clean --all
     -------------------------------------------------
     Total size:                             335MB
 ```
+
