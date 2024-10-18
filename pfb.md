@@ -2379,7 +2379,7 @@ Individual values can be changed by using the key and the assignment operator.
 >>> genes['TP53'] = 'atg'
 >>>
 >>> print(genes)
-{'BRCA1': 'GTACCTTGATTTCGTATTCTGAGAGGCTGCTGCTTAGCGGTAGCCCCTTGGTTTCCGTGGCAACGGAAAA', 'TP53': 'atg'}
+{'TP53': 'atg', 'BRCA1': 'GTACCTTGATTTCGTATTCTGAGAGGCTGCTGCTTAGCGGTAGCCCCTTGGTTTCCGTGGCAACGGAAAA'}
 ```
 > The contents of the dictionary have changed.
 
@@ -2390,7 +2390,7 @@ Other assignment operators can also be used to change a value of a dictionary ke
 >>> genes['TP53'] += 'TAGAGCCACCGTCCAGGGAGCAGGTAGCTGCTGGGCTCCGGGGACACTTTGCGTTCGGGCTGGGAGCGTG'
 >>>
 >>> print(genes)
-{'BRCA1': 'GTACCTTGATTTCGTATTCTGAGAGGCTGCTGCTTAGCGGTAGCCCCTTGGTTTCCGTGGCAACGGAAAA', 'TP53': 'GATGGGATTGGGGTTTTCCCCTCCCATGTGCTCAAGACTGGCGCTAAAAGTTTTGAGCTTCTCAAAAGTCTAGAGCCACCGTCCAGGGAGCAGGTAGCTGCTGGGCTCCGGGGACACTTTGCGTTCGGGCTGGGAGCGTG'}
+{'TP53': 'GATGGGATTGGGGTTTTCCCCTCCCATGTGCTCAAGACTGGCGCTAAAAGTTTTGAGCTTCTCAAAAGTCTAGAGCCACCGTCCAGGGAGCAGGTAGCTGCTGGGCTCCGGGGACACTTTGCGTTCGGGCTGGGAGCGTG', 'BRCA1': 'GTACCTTGATTTCGTATTCTGAGAGGCTGCTGCTTAGCGGTAGCCCCTTGGTTTCCGTGGCAACGGAAAA'}
 ```
 > Here we have used the '+=' concatenation assignment operator. This is equivalent to  `genes['TP53'] = genes['TP53'] + 'TAGAGCCACCGTCCAGGGAGCAGGTAGCTGCTGGGCTCCGGGGACACTTTGCGTTCGGGCTGGGAGCGTG'`.
 
@@ -3044,9 +3044,9 @@ Let's find out what is returned by the `search()` function.
 >Information about the first match is returned
 
 
-How about a non-exact match. Let's search for a methylation site that has to match the following criteria:  
-- G or A 
-- followed by C
+How about a non-exact match. Let's search for a pattern in our sequence that has to match the following criteria:  
+- G or A
+- followed by a C
 - followed by one of anything or nothing
 - followed by a G 
 
@@ -3090,11 +3090,11 @@ A quick count of all the matching sites can be done by counting the length of th
 7
 ```
 
-> There are 7 methylation sites.
+> There are 7 sites that match our pattern.
 >
 > Here we have another example of nesting. 
 >
-> We call the `findall()` function, searching for all the matches of a methylation site. 
+> We call the `findall()` function, searching for all the matches.
 >
 > This function returns a list, the list is past to the `len()` function, which in turn returns the number of elements in the list.
 
@@ -3226,11 +3226,11 @@ __Let' Try It__
 Variables can be used to store patterns.  
 
 ```python
->>> pattern = r"[GA]C.?G"
+>>> pattern = r"C[ATC]G"
 >>> len (re.findall(pattern,dna))
 7
 ```
-> In this example, we stored our methylation pattern in the variable named 'pattern' and used it as the first argument to `findall`.
+> In this example, we stored our pattern for a CHG [methylation site](https://en.wikipedia.org/wiki/DNA_methylation#:~:text=In%20plants%20and%20other%20organisms,both%20strands%20being%20usually%20methylated.) (where H correspond to A, T or C) in the variable named 'pattern' and used it as the first argument to `findall`.
 
 
 ### Either Or
@@ -3293,10 +3293,6 @@ Example FASTA sequence record.
   SEQUENCE
   SEQUENCE 
 ```
-
-
-
-
 
 ### Using Subpatterns Inside the Regular Expression Match
 
@@ -3414,11 +3410,11 @@ downstream: CCGGTTTCCAAAGACAGTCTTCTAA
 ```
 > 1. This code executes `finditer()` function once. 
 > 2. The match object is returned. A match object will have all the information about the match.
-> 3.  In the for block we call the `group()` method on the first match object returned
+> 3. In the for block we call the `group()` method on the first match object returned
 > 4. We print out the first and second subpattern using the `group()` method
 > 5. The `finditer()` function is executed a second time and a match is found
 > 6. The second match object is returned
-> 7.  The second subpatterns are retrieved from the match object using the `group()` method 
+> 7. The second subpatterns are retrieved from the match object using the `group()` method 
 > 8. The `finditer()` function is executed again, but no matches found, so the loop ends  
 
 
@@ -3604,7 +3600,6 @@ __Let' Try It__
 >>>
 ```
 > We can make our search case insensitive by using the `re.I` or `re.IGNORECASE` flag.
-
 
 You can use more than one flag by concatenating them with `|`.  `re.search(r"ATG",dna , re.I|re.M)`
 
@@ -4485,19 +4480,19 @@ Almost all python variables are global. This means you can use them everywhere i
 #!/usr/bin/env python3
 print('Before if block')
 x = 100
-print('x=',x)
+print('x =',x)
 if True:  # this if condition will always be True 
   # we want to make sure the block gets executed
   # so we can show you what happens
   print('Inside if block')
   x = 30
   y = 10
-  print("x=", x)
-  print("y=", y)
+  print("x =", x)
+  print("y =", y)
 
 print('After if block')
-print("x=", x)
-print("y=", y)
+print("x =", x)
+print("y =", y)
 
 
 ```
@@ -4506,13 +4501,13 @@ Let's Run it:
 ```bash
 $ python3 scripts/scope.py
 Before if block
-x= 100
+x = 100
 Inside if block
-x= 30
-y= 10
+x = 30
+y = 10
 After if block
-x= 30
-y= 10
+x = 30
+y = 10
 
 ```
 
@@ -4547,20 +4542,20 @@ Variables inside functions are local and therefore can only been accessed from w
 def set_local_x_to_five(x):
   print('Inside def')
   x = 5 # local to function set_local_x_to_five()
-  y=5   # also local
+  y = 5   # also local
   print("x =",x)
   print("y = ",y)
 
 print('After def')
 x = 100 # global x
 y = 100 # global
-print('x=',x)
-print('y=',y)
+print('x =',x)
+print('y =',y)
 
 set_local_x_to_five(500)
 print('After function call')
-print('x=',x)
-print('y=',y)
+print('x =',x)
+print('y =',y)
 
 ```
 > Here we have added a function `set_local_x_to_five()` with an argument named `x`. This variable exists only within the function where is replaces any variable with the same name outside the `def`. Inside the `def` we also initialize a variable `y` that also replaces any global `y` within the `def`
@@ -4569,16 +4564,14 @@ Let's run it:
 ```bash
 $ python3 scope_w_function.py
 After def
-x= 100
-y= 100
+x = 100
+y = 100
 Inside def
 x = 5
 y =  5
 After function call
-x= 100
-y= 100
-
-
+x = 100
+y = 100
 
 ```
 > There is a global variable, `x` = 100, but when the function is called, it makes a **new local variable**, also called `x` with value = 5. This variable disappears after the function finishes and we go back to using the global variable `x` = 100. Same for `y`
@@ -4601,7 +4594,7 @@ greeting = 'Good morning'
 print('Before function call')
 print('greeting =',greeting)
 
-make call to function
+# make call to function
 set_global_variable()
 print('After function call')
 print('greeting =',greeting)
@@ -4750,7 +4743,7 @@ import subprocess
 rtn = subprocess.run(['ls','-l'], stdout=subprocess.PIPE )  # specify you want to capture STDOUT
 bytes = rtn.stdout
 stdout = bytes.decode('utf-8')
- something like
+# something like
 lines = stdout.splitlines()
 ```
 
@@ -4771,7 +4764,7 @@ To run a command and check the exit status (really to check the exit status = 0,
 
 ```python
 oops = subprocess.check_call(['ls', '-l'])
- or, simpler...
+# or, simpler...
 oops = subprocess.check_call('ls -l', shell=True)
 ```
 
@@ -4880,15 +4873,15 @@ Great (if quite complicated) tool for parsing command line arguments and automat
 #!/usr/bin/env python3
 import argparse
 parser = argparse.ArgumentParser(description="A test program that reads in some number of lines from an input file. The output can be screen or an output file")
- we want the first argument to be the filename
+# we want the first argument to be the filename
 parser.add_argument("file", help="path to input fasta filename")
- second argument will be line number
- default type is string, need to specify if expecting an int
+# second argument will be line number
+# default type is string, need to specify if expecting an int
 parser.add_argument("lines", type=int, help ="how many lines to print")
- optional outfile argument specified with -o or --out
+# optional outfile argument specified with -o or --out
 parser.add_argument("-o","--outfile", help = "optional: supply output filename, otherwise write to screen", dest = 'out')
 args = parser.parse_args()
- arguments appear in args
+# arguments appear in args
 filename = args.file
 lines = args.lines
 if args.out:
