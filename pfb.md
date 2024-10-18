@@ -2848,6 +2848,7 @@ Here's another way to read data in from a file. A `for` loop can be used to iter
 seq_file_obj = open("seq.nt.txt","r")
 for line in seq_file_obj: # Python magic: reads in a line from file
   print(line)
+seq_file_obj.close()
 ```
 
 Output:
@@ -2869,6 +2870,7 @@ seq_file_obj = open("seq.nt.txt","r")
 for line in seq_file_obj:
   line = line.rstrip()
   print(line)
+seq_file_obj.close()
 ```
 > `rstrip()` without any parameters returns a string with whitespace removed from the end.
 
@@ -3037,7 +3039,7 @@ Found an EcoRI site!
 Let's find out what is returned by the `search()` function. 
 ```python
 >>> dna = 'ACAAAATACGTTTTGTAAATGTTGTGCTGTTAACACTGCAAATAAACTTGGTAGCAAACACTTCCAAAAGGAATTCACCGGTTTCCAAAGACAGTCTTCTAATTCCTCATTAGTAATAAGTAAAATGTTTATTGTTGTAGCTCTGGACCGGTTTCCAAAGACAGTCTTCTAATTCCTCATTAGTAATAAGTAAAATGTTTATTGTTGTAGCTCTGG'
->>> found=re.search(r"GAATTC",dna)
+>>> found = re.search(r"GAATTC",dna)
 >>> print(found)
 <_sre.SRE_Match object; span=(70, 76), match='GAATTC'>
 ```
@@ -3077,7 +3079,7 @@ What about other potential matches in our DNA string? We can use `findall()` fun
 
 ```python
 >>> dna = 'ACAAAATACGTTTTGTAAATGTTGTGCTGTTAACACTGCAAATAAACTTGGTAGCAAACACTTCCAAAAGGAATTCACCGGTTTCCAAAGACAGTCTTCTAATTCCTCATTAGTAATAAGTAAAATGTTTATTGTTGTAGCTCTGGACCGGTTTCCAAAGACAGTCTTCTAATTCCTCATTAGTAATAAGTAAAATGTTTATTGTTGTAGCTCTGG'
->>> found=re.findall(r"[GA]C.?G",dna)
+>>> found = re.findall(r"[GA]C.?G",dna)
 >>> print(found)
 ['ACG', 'GCTG', 'ACTG', 'ACCG', 'ACAG', 'ACCG', 'ACAG']
 ```
@@ -3086,7 +3088,7 @@ What about other potential matches in our DNA string? We can use `findall()` fun
 A quick count of all the matching sites can be done by counting the length of the returned list.
 
 ```python
->>> len (re.findall(r"[GA]C.?G",dna))
+>>> len(re.findall(r"[GA]C.?G", dna))
 7
 ```
 
@@ -3120,7 +3122,7 @@ The pattern in made up of atoms.  Each atom represents **ONE** character.
 | Atom                               | Description                              |
 | ---------------------------------- | ---------------------------------------- |
 | a-z, A-Z, 0-9 and some punctuation | These are ordinary characters that match themselves |
-| "."                                | The dot, or period. This matches any single character except for the newline. |
+| `.`                                | The dot, or period. This matches any single character except for the newline. |
 
 
 ### Character Classes
@@ -3129,7 +3131,7 @@ A group of characters that are allowed to be matched one time. There are a few p
 
 | Atom  | Description                              |
 | ----- | ---------------------------------------- |
-| `[ ]` | A bracketed list of characters, like `[GA]`. This indicates a single character can match any character in the bracketed list. |
+| `[]`  | A bracketed list of characters, like `[GA]`. This indicates a single character can match any character in the bracketed list. |
 | `\d`  | Digits. Also can be written `[0-9]`      |
 | `\D`  | Not digits. Also can be written`[^0-9]`  |
 | `\w`  | Word character. Also can be written `[A-Za-z0-9_]` Note underscore is part of this class |
@@ -3151,33 +3153,40 @@ A pattern can be anchored to a region in the string:
 Examples:
 
 ```
-g..t
-```
-> matches "gaat", "goat", and "gotta get a goat" (twice)
-
-```
-g[gatc][gatc]t
-```
-> matches "gaat", "gttt", "gatt", and "gotta get an agatt" (once) 
-
-```
-\d\d\d-\d\d\d\d
-```
-> matches 867-5309, and 5867-5309 but not 8-67-5309.
-
-```
-^\d\d\d-\d\d\d\d
-```
->  matches 867-5309 and 867-53091 but not 5867-5309.
-
-```
-^\d\d\d-\d\d\d\d$
+>>> import re
+>>> vals = ["gaat", "goat", "gotta get a goat"]
+>>> for val in vals:
+...   print(val, re.findall("g..t", val))
+...
+gaat ['gaat']
+goat ['goat']
+gotta get a goat ['gott', 'goat']
 ```
 
-> only matche 3 digits followed by a dash followed by 4 digits, not extra characters anywhere are allowed
+```
+>>> vals = ["gaat", "gttt", "gatt", "gotta get an agatt"]
+>>> for val in vals:
+...   print(val, re.findall("g[gatc][gatc]t", val))
+...
+gaat ['gaat']
+gttt ['gttt']
+gatt ['gatt']
+gotta get an agatt ['gatt']
+```
+
+```
+>>> vals = ["867-5309", "5867-5309", "8-67-5309"]
+>>> for val in vals:
+...   print(val, re.findall(r"\d\d\d-\d\d\d\d", val))
+...
+867-5309 ['867-5309']
+5867-5309 ['867-5309']
+8-67-5309 []
+```
+
+The preceding pattern matches 3 digits followed by a dash followed by 4 digits.
+
 <br> 
-
-
 
 ### Quantifiers
 
@@ -3195,18 +3204,34 @@ Quantifiers quantify how many atoms are to be found. By default an atom matches 
 Examples:  
 
 ```
-goa?t
+>>> re.match("goa?t", "goat")
+<re.Match object; span=(0, 4), match='goat'>
+>>> re.match("goa?t", "got")
+<re.Match object; span=(0, 3), match='got'>
 ```
 > matches "goat" and "got".  Also any text that contains these words.
 
 ```
-g.+t
+>>> re.match("g.+t", "goat")
+<re.Match object; span=(0, 4), match='goat'>
+>>> re.match("g.+t", "goot")
+<re.Match object; span=(0, 4), match='goot'>
+>>> re.match("g.+t", "grant")
+<re.Match object; span=(0, 5), match='grant'>
 ```
 >  matches "goat", "goot", and "grant", among others.
 
 ```
-g.*t
+>>> re.match("g.*t", "gt")
+<re.Match object; span=(0, 2), match='gt'>
+>>> re.match("g.*t", "goat")
+<re.Match object; span=(0, 4), match='goat'>
+>>> re.match("g.*t", "goot")
+<re.Match object; span=(0, 4), match='goot'>
+>>> re.match("g.*t", "grant")
+<re.Match object; span=(0, 5), match='grant'>
 ```
+
 >  matches "gt", "goat", "goot", and "grant", among others.
 
 ```
@@ -3288,15 +3313,11 @@ __Let' Try It__
 Example FASTA sequence record.
 
 ```
-  >ID Optional Descrption
-  SEQUENCE
-  SEQUENCE
-  SEQUENCE 
+>ID Optional Descrption
+SEQUENCE
+SEQUENCE
+SEQUENCE 
 ```
-
-
-
-
 
 ### Using Subpatterns Inside the Regular Expression Match
 
@@ -3351,7 +3372,7 @@ The subpatterns are retrieved by a number. This will be the same number that cou
 Example:
 ```python
 >>> dna = 'ACAAAATACGTTTTGTAAATGTTGTGCTGTTAACACTGCAAATAAACTTGGTAGCAAACACTTCCAAAAGGAATTCACCGGTTTCCAAAGACAGTCTTCTAATTCCTCATTAGTAATAAGTAAAATGTTTATTGTTGTAGCTCTGGATATTATCCGGTTTCCAAAGACAGTCTTCTAATTCCTCATTAGTAATAAGTAAAATGTTTATTGTTGTAGCTCTGG'
->>> found=re.search( r"(.{50})TATTAT(.{25})"  , dna )
+>>> found = re.search(r"(.{50})TATTAT(.{25})", dna)
 >>> upstream = found.group(1)
 >>> print(upstream)
 TCTAATTCCTCATTAGTAATAAGTAAAATGTTTATTGTTGTAGCTCTGGA
@@ -3366,8 +3387,8 @@ CCGGTTTCCAAAGACAGTCTTCTAA
 
 If you want to find the upstream and downstream sequence of ALL 'TATTAT' sites, use the `findall()` function.
 ```python
->>> dna="ACAAAATACGTTTTGTAAATGTTGTGCTGTTAACACTGCAAATAAACTTGGTAGCAAACACTTCCAAAAGGAATTCACCGGTTTCCAAAGACAGTCTTCTAATTCCTCATTAGTAATAAGTAAAATGTTTATTGTTGTAGCTCTGGATATTATCCGGTTTCCAAAGACAGTCTTCTAATTCCTCATTAGTAATAAGTAAAATGTTTATTGTTGTAGCTCTGGACAAAATACGTTTTGTAAATGTTGTGCTGTTAACACTGCAAATAAACTTGGTAGCAAACACTTCCAAAAGGAATTCACCGGTTTCCAAAGACAGTCTTCTAATTCCTCATTAGTAATAAGTAAAATGTTTATTGTTGTAGCTCTGGATATTATCCGGTTTCCAAAGACAGTCTTCTAATTCCTCATTAGTAATAAGTAAAATGTTTATTGTTGTAGCTCTGG"
->>> found = re.findall( r"(.{50})TATTAT(.{25})"  , dna )
+>>> dna = "ACAAAATACGTTTTGTAAATGTTGTGCTGTTAACACTGCAAATAAACTTGGTAGCAAACACTTCCAAAAGGAATTCACCGGTTTCCAAAGACAGTCTTCTAATTCCTCATTAGTAATAAGTAAAATGTTTATTGTTGTAGCTCTGGATATTATCCGGTTTCCAAAGACAGTCTTCTAATTCCTCATTAGTAATAAGTAAAATGTTTATTGTTGTAGCTCTGGACAAAATACGTTTTGTAAATGTTGTGCTGTTAACACTGCAAATAAACTTGGTAGCAAACACTTCCAAAAGGAATTCACCGGTTTCCAAAGACAGTCTTCTAATTCCTCATTAGTAATAAGTAAAATGTTTATTGTTGTAGCTCTGGATATTATCCGGTTTCCAAAGACAGTCTTCTAATTCCTCATTAGTAATAAGTAAAATGTTTATTGTTGTAGCTCTGG"
+>>> found = re.findall(r"(.{50})TATTAT(.{25})", dna)
 >>> print(found)
 [('TCTAATTCCTCATTAGTAATAAGTAAAATGTTTATTGTTGTAGCTCTGGA', 'CCGGTTTCCAAAGACAGTCTTCTAA'), ('TCTAATTCCTCATTAGTAATAAGTAAAATGTTTATTGTTGTAGCTCTGGA', 'CCGGTTTCCAAAGACAGTCTTCTAA')]
 ```
@@ -3376,8 +3397,8 @@ If you want to find the upstream and downstream sequence of ALL 'TATTAT' sites, 
 Another option for retrieving the upstream and downstream subpatterns is to put the `findall()` in a for loop
 
 ```python
->>> dna="ACAAAATACGTTTTGTAAATGTTGTGCTGTTAACACTGCAAATAAACTTGGTAGCAAACACTTCCAAAAGGAATTCACCGGTTTCCAAAGACAGTCTTCTAATTCCTCATTAGTAATAAGTAAAATGTTTATTGTTGTAGCTCTGGATATTATCCGGTTTCCAAAGACAGTCTTCTAATTCCTCATTAGTAATAAGTAAAATGTTTATTGTTGTAGCTCTGGACAAAATACGTTTTGTAAATGTTGTGCTGTTAACACTGCAAATAAACTTGGTAGCAAACACTTCCAAAAGGAATTCACCGGTTTCCAAAGACAGTCTTCTAATTCCTCATTAGTAATAAGTAAAATGTTTATTGTTGTAGCTCTGGATATTATCCGGTTTCCAAAGACAGTCTTCTAATTCCTCATTAGTAATAAGTAAAATGTTTATTGTTGTAGCTCTGG"
->>> for (upstream, downstream) in re.findall( r"(.{50})TATTAT(.{25})"  , dna ):
+>>> dna = "ACAAAATACGTTTTGTAAATGTTGTGCTGTTAACACTGCAAATAAACTTGGTAGCAAACACTTCCAAAAGGAATTCACCGGTTTCCAAAGACAGTCTTCTAATTCCTCATTAGTAATAAGTAAAATGTTTATTGTTGTAGCTCTGGATATTATCCGGTTTCCAAAGACAGTCTTCTAATTCCTCATTAGTAATAAGTAAAATGTTTATTGTTGTAGCTCTGGACAAAATACGTTTTGTAAATGTTGTGCTGTTAACACTGCAAATAAACTTGGTAGCAAACACTTCCAAAAGGAATTCACCGGTTTCCAAAGACAGTCTTCTAATTCCTCATTAGTAATAAGTAAAATGTTTATTGTTGTAGCTCTGGATATTATCCGGTTTCCAAAGACAGTCTTCTAATTCCTCATTAGTAATAAGTAAAATGTTTATTGTTGTAGCTCTGG"
+>>> for (upstream, downstream) in re.findall(r"(.{50})TATTAT(.{25})", dna):
 ...   print("upstream:" , upstream)
 ...   print("downstream:" , downstream)
 ...
@@ -3386,24 +3407,23 @@ downstream: CCGGTTTCCAAAGACAGTCTTCTAA
 upstream: TCTAATTCCTCATTAGTAATAAGTAAAATGTTTATTGTTGTAGCTCTGGA
 downstream: CCGGTTTCCAAAGACAGTCTTCTAA
 ```
-> 1. This code executes the `findall()` function once 
-> 2. The subpatterns are returned in a tuple 
-> 3. The subpatterns are stored in the variables upstream and downstream  
-> 4. The for block of code is executed  
-> 5. The `findall()` searches again  
-> 6. A match is found 
-> 7.  New subpatterns are returned and stored in the variables upstream and downstream
-> 8. The for block of code gets executed again 
-> 9.  The `findall()` searches again, but no match is found  
-> 10. The for loop ends  
 
+1. This code executes the [re.findall()](https://docs.python.org/3/library/re.html#re.findall) function once 
+2. The subpatterns are returned in a tuple 
+3. The subpatterns are stored in the variables upstream and downstream  
+4. The `for` block of code is executed  
+5. The `re.findall()` searches again  
+6. A match is found 
+7. New subpatterns are returned and stored in the variables upstream and downstream
+8. The `for` block of code gets executed again 
+9.  The `re.findall()` searches again, but no match is found  
+10. The `for` loop ends  
 
-
-Another way to get this done is with an iterator, use the `finditer()` function in a for loop. This allows you to not store all the matches in memory. `finditer()` also allows you to retrieve the postion of the match.
+Another way to get this done is with an iterator, use the [re.finditer()](https://docs.python.org/3/library/re.html#re.finditer) function in a for loop. This allows you to not store all the matches in memory. `re.finditer()` also allows you to retrieve the postion of the match.
 
 ```python
->>> dna="ACAAAATACGTTTTGTAAATGTTGTGCTGTTAACACTGCAAATAAACTTGGTAGCAAACACTTCCAAAAGGAATTCACCGGTTTCCAAAGACAGTCTTCTAATTCCTCATTAGTAATAAGTAAAATGTTTATTGTTGTAGCTCTGGATATTATCCGGTTTCCAAAGACAGTCTTCTAATTCCTCATTAGTAATAAGTAAAATGTTTATTGTTGTAGCTCTGGACAAAATACGTTTTGTAAATGTTGTGCTGTTAACACTGCAAATAAACTTGGTAGCAAACACTTCCAAAAGGAATTCACCGGTTTCCAAAGACAGTCTTCTAATTCCTCATTAGTAATAAGTAAAATGTTTATTGTTGTAGCTCTGGATATTATCCGGTTTCCAAAGACAGTCTTCTAATTCCTCATTAGTAATAAGTAAAATGTTTATTGTTGTAGCTCTGG"
->>> for match in re.finditer(r"(.{50})TATTAT(.{25})"  , dna):
+>>> dna = "ACAAAATACGTTTTGTAAATGTTGTGCTGTTAACACTGCAAATAAACTTGGTAGCAAACACTTCCAAAAGGAATTCACCGGTTTCCAAAGACAGTCTTCTAATTCCTCATTAGTAATAAGTAAAATGTTTATTGTTGTAGCTCTGGATATTATCCGGTTTCCAAAGACAGTCTTCTAATTCCTCATTAGTAATAAGTAAAATGTTTATTGTTGTAGCTCTGGACAAAATACGTTTTGTAAATGTTGTGCTGTTAACACTGCAAATAAACTTGGTAGCAAACACTTCCAAAAGGAATTCACCGGTTTCCAAAGACAGTCTTCTAATTCCTCATTAGTAATAAGTAAAATGTTTATTGTTGTAGCTCTGGATATTATCCGGTTTCCAAAGACAGTCTTCTAATTCCTCATTAGTAATAAGTAAAATGTTTATTGTTGTAGCTCTGG"
+>>> for match in re.finditer(r"(.{50})TATTAT(.{25})", dna):
 ...   print("upstream:" , match.group(1))
 ...   print("downstream:" , match.group(2))
 ...
@@ -3431,9 +3451,9 @@ The match object contains information about the match that can be retrieved with
 
 import re
 
-dna="ACAAAATACGTTTTGTAAATGTTGTGCTGTTAACACTGCAAATAAACTTGGTAGCAAACACTTCCAAAAGGAATTCACCGGTTTCCAAAGACAGTCTTCTAATTCCTCATTAGTAATAAGTAAAATGTTTATTGTTGTAGCTCTGGATATTATCCGGTTTCCAAAGACAGTCTTCTAATTCCTCATTAGTAATAAGTAAAATGTTTATTGTTGTAGCTCTGGACAAAATACGTTTTGTAAATGTTGTGCTGTTAACACTGCAAATAAACTTGGTAGCAAACACTTCCAAAAGGAATTCACCGGTTTCCAAAGACAGTCTTCTAATTCCTCATTAGTAATAAGTAAAATGTTTATTGTTGTAGCTCTGGATATTATCCGGTTTCCAAAGACAGTCTTCTAATTCCTCATTAGTAATAAGTAAAATGTTTATTGTTGTAGCTCTGG"
+dna = "ACAAAATACGTTTTGTAAATGTTGTGCTGTTAACACTGCAAATAAACTTGGTAGCAAACACTTCCAAAAGGAATTCACCGGTTTCCAAAGACAGTCTTCTAATTCCTCATTAGTAATAAGTAAAATGTTTATTGTTGTAGCTCTGGATATTATCCGGTTTCCAAAGACAGTCTTCTAATTCCTCATTAGTAATAAGTAAAATGTTTATTGTTGTAGCTCTGGACAAAATACGTTTTGTAAATGTTGTGCTGTTAACACTGCAAATAAACTTGGTAGCAAACACTTCCAAAAGGAATTCACCGGTTTCCAAAGACAGTCTTCTAATTCCTCATTAGTAATAAGTAAAATGTTTATTGTTGTAGCTCTGGATATTATCCGGTTTCCAAAGACAGTCTTCTAATTCCTCATTAGTAATAAGTAAAATGTTTATTGTTGTAGCTCTGG"
 
-for found in re.finditer(r"(.{50})TATTAT(.{25})"  , dna):
+for found in re.finditer(r"(.{50})TATTAT(.{25})", dna):
   whole    = found.group(0)
   up       = found.group(1)
   down     = found.group(2)
@@ -3485,14 +3505,14 @@ Extracting codons from a string of DNA can be accomplished by using a subpattern
 
 ```python
 >>> dna = 'GTTGCCTGAAATGGCGGAACCTTGAA'
->>> codons = re.findall(r"(.{3})",dna)
+>>> codons = re.findall(r"(.{3})", dna)
 >>> print(codons)
 ['GTT', 'GCC', 'TGA', 'AAT', 'GGC', 'GGA', 'ACC', 'TTG']
 ```
 
 Or you can use a for loop to do something to each match.
 ```python
->>> for codon in re.findall(r"(.{3})",dna):
+>>> for codon in re.findall(r"(.{3})", dna):
 ...   print(codon)
 ...
 GTT
@@ -3508,14 +3528,30 @@ TTG
 > `finditer()` would also work in this for loop.  
 >  Each codon can be accessed by using the `group()` method.
 
-  
+You could use this to find all the frame-shifted codons:
+
+```
+>>> for start in range(3):
+...   print(re.findall(r"(.{,3})", dna[start:]))
+...
+['GTT', 'GCC', 'TGA', 'AAT', 'GGC', 'GGA', 'ACC', 'TTG', 'AA', '']
+['TTG', 'CCT', 'GAA', 'ATG', 'GCG', 'GAA', 'CCT', 'TGA', 'A', '']
+['TGC', 'CTG', 'AAA', 'TGG', 'CGG', 'AAC', 'CTT', 'GAA', '']
+```
 
 ### Truth and Regular Expression Matches
 
-The `search()`, `match()`, `findall()`, and `finditer()` can be used in conditional tests. If a match is not found an empty list or 'None' is returned. These are both False.
+The `re.search()`, `re.match()`, `re.findall()`, and `re.finditer()` can be used in conditional tests. 
+When a match is not found:
+
+* `re.search()` and `re.match()` return the special value [None](https://docs.python.org/3/c-api/none.html).
+* `re.findall()` function returns an empty list
+* `re.finditer()` returns an _iterator_ that will return no values upon evaluation
+  
+All of the preceding values will evaluate to `False` in a Boolean context.
 
 ```python
->>> found=re.search( r"(.{50})TATTATZ(.{25})"  , dna )
+>>> found = re.search(r"(.{50})TATTATZ(.{25})", dna)
 >>> if found:
 ...    print("found it")
 ... else:
@@ -3525,12 +3561,12 @@ not found
 >>> print(found)
 None
 ```
-> None is False so the else block is executed and "not found" is printed
-
+`None` is (sort of) `False`, so the else block is executed and "not found" is printed
 
 Nest it!
+
 ```python
->>> if re.search( r"(.{50})TATTATZ(.{25})"  , dna ):
+>>> if re.search(r"(.{50})TATTATZ(.{25})", dna):
 ...    print("found it")
 ... else:
 ...    print("not found")
@@ -3540,7 +3576,9 @@ not found
 
 ### Using Regular expressions in substitutions 
 
-Earlier we went over how to find an **exact pattern** and replace it using the `replace()` method. To find a pattern, or inexact match, and make a replacement the regular expression `sub()` function is used. This function takes the pattern, the replacement, the string to be searched, the number of times to do the replacement, and flags.
+Earlier we went over how to find an **exact pattern** and replace it using the [str.replace()](https://docs.python.org/3/library/stdtypes.html#str.replace) method. 
+To find a pattern, or inexact match, and make a replacement the regular expression [re.sub()](https://docs.python.org/3/library/re.html#re.sub) function is used. 
+This function takes the pattern, the replacement, the string to be searched, the number of times to do the replacement, and flags.
 
 ```python
 >>> phrase = "Who's afraid of the big bad wolf?"
@@ -3549,7 +3587,7 @@ Earlier we went over how to find an **exact pattern** and replace it using the `
 >>> print(phrase)
 Who's afraid of the big bad wolf?
 ```
-> The `sub()` function returns "Who's afraid of the big bad goat?"  
+> The `re.sub()` function returns "Who's afraid of the big bad goat?"  
 > The value of variable phrase has not been altered  
 > The new string can be stored in a new variable for later use.
 
@@ -3562,10 +3600,9 @@ He had a goate.
 >>> print(phrase)
 He had a wife.
 ```
+
 > The characters between 'w' and 'f' have been replaced with 'goat'.  
 > The new string is saved in new_phrase  
-
-
 
 ### Using subpatterns in the replacement
 
@@ -3577,8 +3614,8 @@ Sometimes you want to find a pattern and use it in the replacement.
 Who's afraid of the bad big wolf?
 ```
 > We found two words before 'wolf' and swapped the order.
-> \\2 refers to the second subpattern
-> \\1 refers to the first subpattern
+> `\2` refers to the second subpattern
+> `\1` refers to the first subpattern
 
 __Let' Try It__  
 ![try it](images/Try-It-Now.png)
@@ -3597,16 +3634,15 @@ __Let' Try It__
 
 ```python
 >>> dna = "atgcgtaatggc"
->>> re.search(r"ATG",dna)
+>>> re.search(r"ATG", dna)
 >>>
->>> re.search(r"ATG",dna , re.I)
+>>> re.search(r"ATG", dna, re.I)
 <_sre.SRE_Match object; span=(0, 3), match='atg'>
 >>>
 ```
 > We can make our search case insensitive by using the `re.I` or `re.IGNORECASE` flag.
 
-
-You can use more than one flag by concatenating them with `|`.  `re.search(r"ATG",dna , re.I|re.M)`
+You can combine multiple flags using `|`, e.g., `re.search(r"ATG",dna , re.I|re.M)`
 
 
 ## Helpful Regex tools
@@ -3638,10 +3674,10 @@ List of lists, often called a matrix are important for organizing and accessing 
 Here's a way to make a 3 x 3 table of values.
 
 ```python
->>> M = [[1,2,3], [4,5,6],[7,8,9]]
+>>> M = [[1,2,3], [4,5,6], [7,8,9]]
 >>> M[1] # second row (starts with index 0)
 [4,5,6]
->>>M[1][2] # second row, third element
+>>> M[1][2] # second row, third element
 6
 ```
 
