@@ -12,14 +12,14 @@ TEST3 = ('./tests/inputs/input3.txt', '196 231 237 246')
 
 
 # --------------------------------------------------
-def test_exists() -> None:
+def test_exists():
     """ Program exists """
 
     assert os.path.exists(PRG)
 
 
 # --------------------------------------------------
-def test_usage() -> None:
+def test_usage():
     """ Prints usage """
 
     rv, out = getstatusoutput(f'{RUN}')
@@ -28,7 +28,7 @@ def test_usage() -> None:
 
 
 # --------------------------------------------------
-def test_dies_no_args() -> None:
+def test_dies_no_args():
     """ Dies with no arguments """
 
     rv, out = getstatusoutput(RUN)
@@ -37,7 +37,7 @@ def test_dies_no_args() -> None:
 
 
 # --------------------------------------------------
-def test_dies_too_many_args() -> None:
+def test_dies_too_many_args():
     """ Dies with too many arguments """
 
     rv, out = getstatusoutput(f'{RUN} foo bar baz')
@@ -46,7 +46,7 @@ def test_dies_too_many_args() -> None:
 
 
 # --------------------------------------------------
-def test_arg() -> None:
+def test_arg():
     """ Uses command-line arg """
 
     for file, expected in [TEST1, TEST2, TEST3]:

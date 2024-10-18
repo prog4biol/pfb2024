@@ -65,34 +65,39 @@ The test file begins with a docstring for the module (this is not an executable 
 ```
 """ Tests for dna.py """
 
-import os
-import platform
-from subprocess import getstatusoutput
+import os                              # 1
+import platform                        # 2
+from subprocess import getstatusoutput # 3
 ```
 
-* The `os` module is for interacting with the operating system.
-* The `platform` module will tell me if the tests are running on Windows
-* The `subprocess` module provides the `getstatusoutput` function for running an external process
+1. The `os` module is for interacting with the operating system.
+2. The `platform` module will tell me if the tests are running on Windows
+3. The `subprocess` module provides the `getstatusoutput` function for running an external process
 
-Next are some "constant" definitions for the name of the program I'm testing, how I need to execute the program, and some test input files along with the expected results:
+Next are some "constant" definitions: 
 
 ```
-PRG = './dna.py'
-RUN = f'python {PRG}' if platform.system() == 'Windows' else PRG
-TEST1 = ('./tests/inputs/input1.txt', '1 2 3 4')
+PRG = './dna.py'                                                 # 1
+RUN = f'python {PRG}' if platform.system() == 'Windows' else PRG # 2
+TEST1 = ('./tests/inputs/input1.txt', '1 2 3 4')                 # 3
 TEST2 = ('./tests/inputs/input2.txt', '20 12 17 21')
 TEST3 = ('./tests/inputs/input3.txt', '196 231 237 246')
 ```
+1. The name of the program I'm testing.
+2. How I need to execute the program depending on the OS.
+3. Test input files along with the expected results.
 
-Pytest will execute the tests in the order they are defined in the file.
-The first test checks if the _dna.py_ program exists using [os.path.isfile](https://docs.python.org/3/library/os.path.html#os.path.isfile) to check if a file called _dna.py_ exists:
+Pytest will execute any function with a name that starts with "test_" as a test, and tests in the order they are defined in the file.
+The first test checks if the _dna.py_ program exists:
 
 ```
-def test_exists() -> None:
+def test_exists():
     """ Program exists """
 
-    assert os.path.exists(PRG)
+    assert os.path.exists(PRG) # 1
 ```
+
+1. Use [os.path.isfile](https://docs.python.org/3/library/os.path.html#os.path.isfile) to check if a file called _dna.py_ exists.
 
 We can use the Python [assert](https://docs.python.org/3/reference/simple_stmts.html#index-18) statement that will raise an exception (error) when the given expression evaluates to a `False` (ish) value (given that Python has no true Boolean type).
 In the Python REPL, the assert with `False` raises an `AssertionError` exception:
@@ -122,7 +127,7 @@ usage: dna.py DNA
 ```
 
 Additionally, the [POSIX](https://pubs.opengroup.org/onlinepubs/9699919799/) specifies that a program's exit value of zero _conventionally indicates successful termination_.
-In `bash` (and `zsh` and most shells), we can inspect the variable `$?` to inspect the exit value of the previous command.
+In `bash` (and `zsh` and most shells), we can inspect the variable `$?` for the exit value of the previous command.
 For instance, **`echo Hello`** terminates normally and reports `0`:
 
 ```
@@ -133,7 +138,7 @@ $ echo $?
 0
 ```
 
-If we run our program with bad inputs, it also reports a nonzero exit value:
+If we run our program with bad inputs, it prints usage _and_ reports a nonzero exit value:
 
 ```
 $ ./dna.py ACG GGC
@@ -146,52 +151,59 @@ $ echo $?
 The test for this behavior is as follows:
 
 ```
-def test_usage() -> None:
+def test_usage():
     """ Prints usage """
 
-    rv, out = getstatusoutput(f'{RUN}')
-    assert rv != 0
-    assert out.lower().startswith('usage:')
+    rv, out = getstatusoutput(f'{RUN}')     # 1
+    assert rv != 0                          # 2
+    assert out.lower().startswith('usage:') # 3
 ```
 
-The [subprocess.getstatusoutput](https://docs.python.org/3/library/subprocess.html#subprocess.getstatusoutput) function reports the process's return value and `STDOUT`/`STDERR` as a tuple, which I copy into `rv` and `out`, respectively.
-
-* The first assertion verifies that the return value is not zero.
-* The second assertion verify that the output begins with the string _usage:_
+1. The [subprocess.getstatusoutput](https://docs.python.org/3/library/subprocess.html#subprocess.getstatusoutput) function reports the process's return value and `STDOUT`/`STDERR` as a tuple, which I copy into `rv` and `out`, respectively.
+2. The first assertion verifies that the return value is not zero.
+3. The second assertion verify that the output begins with the string _usage:_
 
 NOTE: A test may contain as many `assert` statements as you want. When any `assert` fails, the whole test fails.
 
 The next two tests check that the program fails with zero or more than one argument:
 
 ```
-def test_dies_no_args() -> None:
+def test_dies_no_args():
     """ Dies with no arguments """
 
-    rv, out = getstatusoutput(RUN)
+    rv, out = getstatusoutput(RUN) # 1
     assert rv != 0
     assert out.lower().startswith('usage:')
 
 
-def test_dies_too_many_args() -> None:
+def test_dies_too_many_args():
     """ Dies with too many arguments """
 
-    rv, out = getstatusoutput(f'{RUN} foo bar baz')
+    rv, out = getstatusoutput(f'{RUN} foo bar baz') # 2
     assert rv != 0
     assert out.lower().startswith('usage:')
 ```
+
+1. Run the program with no arguments.
+2. Run the program with too many arguments.
 
 The last test reads DNA strings from the test files and verifies that the program reports the correct output:
 
 ```
-def test_arg() -> None:
+def test_arg():
     """ Uses command-line arg """
 
     for file, expected in [TEST1, TEST2, TEST3]:
-        dna = open(file).read()
-        rv, out = getstatusoutput(f'{RUN} {dna}')
-        assert retval == 0
-        assert out == expected
+        dna = open(file).read()                   # 1
+        rv, out = getstatusoutput(f'{RUN} {dna}') # 2
+        assert rv == 0                            # 3
+        assert out == expected                    # 4
 ```
+
+1. Open the file and read the input into the `dna` variable.
+2. Run the program with the given input.
+3. Ensure the return value is 0.
+4. Ensure the program's output is the expected value.
 
 As a reminder, the tests are as follows:
 
@@ -209,7 +221,7 @@ So it's as if we are running:
 >>> dna = open(file).read()
 >>> dna
 'ACCGGGTTTT\n'
->>> rv, out = getstatusoutput(f'{RUN} {dna}')
+>>> rv, out = getstatusoutput(f'./dna.py ACCGGGTTTT')
 >>> rv
 0
 >>> out
@@ -225,23 +237,23 @@ The _dna1.py_ is a good starting point for our program.
 While it passes the integration tests, it does not contain any functions that require a unit test:
 
 ```
-#!/usr/bin/env python3
+#!/usr/bin/env python3 # 1
 """
-A program to report the frequency of DNA nucleotides
+A program to report the frequency of DNA nucleotides # 2
 """
 
-import sys
+import sys # 3
 import os
 
-args = sys.argv[1:]
+args = sys.argv[1:] # 4
 
-if len(args) != 1:
-    sys.exit("usage: {} DNA".format(os.path.basename(sys.argv[0])))
+if len(args) != 1:  # 5
+    sys.exit("usage: {} DNA".format(os.path.basename(sys.argv[0]))) # 6
 
-dna = args[0]
-count_a, count_c, count_g, count_t = 0, 0, 0, 0
+dna = args[0] # 7
+count_a, count_c, count_g, count_t = 0, 0, 0, 0 # 8
 
-for base in dna:
+for base in dna: # 9
     if base == 'A':
         count_a += 1
     elif base == 'C':
@@ -251,8 +263,19 @@ for base in dna:
     elif base == 'T':
         count_t += 1
 
-print(count_a, count_c, count_g, count_t)
+print(count_a, count_c, count_g, count_t) # 10
 ```
+
+1. The _shebang_ line tells the shell to execute Python.
+2. A _docstring_ to explain what the code does.
+3. The `sys` and `os` modules allow us to interact with the filesystem and OS.
+4. Copy a _slice_ of the argument vector starting _after_ the name of the program. _Slices never fail!_
+5. Check that we have exactly one argument.
+6. Use [sys.exit](https://docs.python.org/3/library/sys.html#sys.exit) to print the give error message to `STDERR` and exit with a nonzero value.
+7. Copy the DNA string into a variable.
+8. Initialize counters for the number of As, Cs, Gs, and Ts.
+9. Iterate through each base in input and increment the correct counter.
+10. Print the results, separated by spaces.
 
 To test this program, copy the file to _dna.py_:
 
@@ -327,7 +350,7 @@ import sys
 import os
 
 # --------------------------------------------------
-def main():
+def main(): # 1
     args = sys.argv[1:]
 
     if len(args) != 1:
@@ -349,20 +372,53 @@ def main():
     print(count_a, count_c, count_g, count_t)
 
 # --------------------------------------------------
+if __name__ == '__main__': # 2
+    main()
+```
+
+1. All the code now lives in a `main` function.
+2. If the code is being executed as a script, call the `main` function.
+
+****
+There's not much difference in the structure of a Python _program_ that you execute and a Python _module_ that can be imported by other Python code. 
+Open the REPL and execute the following:
+
+```
+>>> import dna1
+usage:  DNA
+```
+
+Why did it print the usage?
+Because Python executed all the code from top to bottom, saw there were insufficient arguments, and printed the _usage_ statement.
+Now run **`import dna2`** and notice there is no execution of the code unless we specifically call the `main` function:
+
+```
+>>> import dna2
+>>> dna2.main()
+usage:  DNA
+```
+
+When you _import_ a module, the _namespace_ (which is stored in the "__name__" variable) is that module's name, e.g., "dna1" or "dna2."
+When you _execute_ a program, the namespace is [__main__](https://docs.python.org/3/library/__main__.html), hence this bit of sorcery:
+
+```
 if __name__ == '__main__':
     main()
 ```
 
-There is no discernible difference in how this program works.
+Python other such _dunder_ (double-underscore) variables like "__file__".
+****
+
+There is no discernible difference in how the _dna2.py_ and _dna1.py_ programs work.
 If I **`cp dna2.py dna.py`** and run `pytest`, it passes the integration tests.
 
-Next, look at _dna3.py_ for how I might write a `count` function that takes the `dna` variable as an argument and returns a 4-tuple with the counts for A, C, G, and T:
+Next, look at _dna3.py_ for how I might write a `count` function:
 
 ```
-def count(dna):
-    """ Count bases in DNA """
+def count(dna):                # 1
+    """ Count bases in DNA """ # 2
 
-    count_a, count_c, count_g, count_t = 0, 0, 0, 0
+    count_a, count_c, count_g, count_t = 0, 0, 0, 0 # 3
     for base in dna:
         if base == 'A':
             count_a += 1
@@ -373,24 +429,40 @@ def count(dna):
         elif base == 'T':
             count_t += 1
 
-    return (count_a, count_c, count_g, count_t)
+    return (count_a, count_c, count_g, count_t) # 4
 ```
 
-Following is a test for this function that will be executed by Pytest because it begins with "test_".
+1. The function is named `count` and its argument, `dna` is enclosed in the parentheses.
+2. This is a docstring for the function.
+3. This is the same code as before.
+4. The function uses `return` to produce a 4-tuple with the counts for A, C, G, and T.
+
+Following is a test for this function 
+I usually place unit tests right below the functions they test.
 As with the integration tests, I use `assert` statements to verify that the function returns the expected results for various inputs:
 
 ```
-def test_count():
-    """ Test count """
+def test_count():      # 1
+    """ Test count """ # 2
 
-    assert count('') == (0, 0, 0, 0)
-    assert count('123XYZ') == (0, 0, 0, 0)
-    assert count('A') == (1, 0, 0, 0)
-    assert count('C') == (0, 1, 0, 0)
-    assert count('G') == (0, 0, 1, 0)
-    assert count('T') == (0, 0, 0, 1)
-    assert count('ACCGGGTTTT') == (1, 2, 3, 4)
+    assert count('') == (0, 0, 0, 0)           # 3
+    assert count('123XYZ') == (0, 0, 0, 0)     # 4
+    assert count('A') == (1, 0, 0, 0)          # 5
+    assert count('C') == (0, 1, 0, 0)          # 6
+    assert count('G') == (0, 0, 1, 0)          # 7
+    assert count('T') == (0, 0, 0, 1)          # 8
+    assert count('ACCGGGTTTT') == (1, 2, 3, 4) # 9
 ```
+
+1. The prefix "test_" tells Pytest that this is a test.
+2. This is the docstring for the function.
+3. Check that the functions does not fail on the empty string.
+4. Ensure that it returns all zeros when given no nucleotides.
+5. Ensure it counts As and returns them in the first position.
+6. Ensure it counts Cs and returns them in the second position.
+7. Ensure it counts Gs and returns them in the third position.
+8. Ensure it counts Ts and returns them in the fourth position.
+9. Ensure it counts all the bases and returns them in the correct positions.
 
 I can tell Pytest to execute the test like so:
 
@@ -417,10 +489,12 @@ def main():
     if len(args) != 1:
         sys.exit("usage: {} DNA".format(os.path.basename(sys.argv[0])))
 
-    count_a, count_c, count_g, count_t = count(args[0])
+    count_a, count_c, count_g, count_t = count(args[0]) # 1
 
     print(count_a, count_c, count_g, count_t)
 ```
+
+1. Call the `count` function with the first argument.
 
 Again, I can copy the _dna3.py_ program to _dna.py_ and run `pytest` to verify this progr still passes the integration tests.
 
@@ -482,6 +556,8 @@ def count(dna):
             counts.get('T', 0))
 ```
 
+NOTE: This function currently counts only DNA nucleotides, but I could return a dictionary showing the frequency of _every_ character in an input. This would make the program able to handle any input alphabet including RNA, amino acids, or English text.
+
 Finally, I will demonstrate that `collections.Counter` is an external module you can use to count the frequency of objects (producing what is commonly called a _bag_).
 The best code is code you don't write, and our unit test verifies that new function passes:
 
@@ -493,6 +569,10 @@ def count(dna):
     return (counts.get('A', 0), counts.get('C', 0), counts.get('G', 0),
           counts.get('T', 0))
 ```
+
+## See Also
+
+See the [GitHub repo for Mastering Python for Bioinformatics])https://github.com/kyclark/biofx_python/tree/main/01_dna) for more complete solutions that use `argparse`](https://docs.python.org/3/library/argparse.html) to validate command-line arguments.
 
 ## Author
 
