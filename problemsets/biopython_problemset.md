@@ -9,9 +9,9 @@
 (bio)% mamba install --channel conda-forge --channel bioconda biopython 
 ```
 > **If** you are on your own computer and not using one of the course machines you will have to download mamba
-> ```
+> 
 > [mamba-installation](https://mamba.readthedocs.io/en/latest/installation/mamba-installation.html)
-> ```
+> 
 
 ## FASTA Parser
 
