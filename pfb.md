@@ -4537,7 +4537,7 @@ Variables inside functions are local and therefore can only been accessed from w
 
 
 ```python
-#!/usr/bin/end python3
+#!/usr/bin/env python3
 
 def set_local_x_to_five(x):
   print('Inside def')
@@ -4548,7 +4548,7 @@ def set_local_x_to_five(x):
 
 print('After def')
 x = 100 # global x
-y = 100 # global
+y = 100 # global y
 print('x =',x)
 print('y =',y)
 
