@@ -3,7 +3,7 @@ Python 8 - Data Structures -Problem Set
 
 __Don't forget to use a small test data set when you are testing your code. Make sure you know what the correct answer should be__
 
-1. Take a multi-FASTA [Python_08.fasta](https://raw.githubusercontent.com/prog4biol/pfb2024/master/files/Python_08.fasta) file from user input and calculate the nucleotide composition for each sequence. Use a datastructure to keep count. Print out each sequence name and its compostion in this format `seqName\tA_count\tT_count\tG_count\C_count`
+1. Take a multi-FASTA [Python_08.fasta](https://raw.githubusercontent.com/prog4biol/pfb2024/master/files/Python_08.fasta) file from user input and calculate the nucleotide composition for each sequence. Use a datastructure to keep count. Print out each sequence name and its compostion in this format `seqName\tA_count\tT_count\tG_count\tC_count`
 
 Here is a structure of a handy datastructure to store this information
 ```
@@ -68,6 +68,6 @@ translation_table = {
 }
 ```
 
-6. Find the longest peptide sequence (M => Stop) of all the six translated reading frames for a single sequence. Do this for all the sequence records. For each sequence, print out in FASTA format the six frames of codons to one file (Python_08.codons-6frames.nt), the translations to a second file (Python_08.translated.aa), and the single longest translated peptide to a third file (Python_08.translated-longest.aa).
+6. Copy and modify your script from Problem 5 to also find the longest open reading frame peptide sequence (M => Stop, inclusive) from among all six translated reading frames for each input sequence. Your script should continue to print out in FASTA format the six frames of codons to one file (Python_08.codons-6frames.nt), their translations to a second file (Python_08.translated.aa), and now also the single longest open reading frame peptide translation to a third file (Python_08.translated-longest.aa).
 
-7. Finally determine which subset of codons produced the longest peptide for each sequence record. Print this to a fourth file in FASTA format (Python_08.orf-longest.nt).  
+7. Copy and modify your script from Problem 6 to also write, for each input sequence record, the codons from which the longest open reading frame peptide is translated. Print these codons to a fourth file in FASTA format (Python_08.orf-longest.nt).
