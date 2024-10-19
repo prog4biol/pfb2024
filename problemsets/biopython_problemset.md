@@ -4,12 +4,14 @@
 
 
 ```
-conda install biopython
+% mamba create --name bio
+% mamba activate bio
+(bio)% mamba install --channel conda-forge --channel bioconda biopython 
 ```
-> **If** you are on your own computer and not using one of the course machines you will have to download miniconda
-> ```
-> wget https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-x86_64.sh -O ~/miniconda.sh
-> ```
+> **If** you are on your own computer and not using one of the course machines you will have to download mamba
+> 
+> [mamba-installation](https://mamba.readthedocs.io/en/latest/installation/mamba-installation.html)
+> 
 
 ## FASTA Parser
 
@@ -46,7 +48,7 @@ Preparation:
 1.  Download uniprot_sprot using the Unix command 'wget':
 
 ```
-wget ftp://ftp.uniprot.org/pub/databases/uniprot/current_release/knowledgebase/complete/uniprot_sprot.fasta.gz
+curl -OL ftp://ftp.uniprot.org/pub/databases/uniprot/current_release/knowledgebase/complete/uniprot_sprot.fasta.gz
 ```
 **Make sure to not add this to your gitHub Repository. It is tooooo big and with cause problems**
 
@@ -59,10 +61,10 @@ This will create a file `uniprot_sprot.fasta`
 
 **Do not add uniprot_sprot.fasta to your github repo. It is too big.*** To be safe, find your .gitignore in the root of your github repository. Add `uniprot_sprot.fasta*` anywhere in the file. Make sure to add this file to our index as you are updating your repo.
 
-Here is a way to ENSURE that you don't mistakenly commit a large file. Get help from TA if you do not know where your .git directory is
+Here is a way to ENSURE that you don't mistakenly commit a large file. Get help from TA if you do not know where your .git directory is. You might have already completed this on day 1 in teh Unix exercises.
 ```
 cd .git/hooks/
-wget https://raw.githubusercontent.com/prog4biol/pfb2024/master/setup/pre-commit
+curl -OL https://raw.githubusercontent.com/prog4biol/pfb2024/master/setup/pre-commit
 ```
 
 
