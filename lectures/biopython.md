@@ -585,7 +585,7 @@ seq_record.format(              seq_record.reverse_complement(
 
 ## Retrieving annotations from GenBank file
 
-To read sequences from a genbank file instead, not much changes.
+To read sequences from a GenBank file instead, not much changes.
 
 ```python
 #!/usr/bin/env python3
@@ -641,9 +641,9 @@ Was that easy or what??!??!!?
 
 For simple parsing, or non BioPython parsing of NCBI BLAST results, use output formated in tab-separated columns (`-outfmt 6` or `-outfmt 7`) Both these formats are customizable when running the BLAST locally.
 
-If you want to parse the full output of BLAST with biopython, it's necessary work with __XML__ formatted BLAST output `-outfmt 5`.
+If you want to parse the full output of BLAST with Biopython, it's necessary work with __XML__ formatted BLAST output `-outfmt 5`.
 
-You can get biopython to run the blast for you too. See `Bio.NCBIWWW`
+You can get Biopython to run BLAST for you too. See `Bio.NCBIWWW`
 
 To parse the output, you'll write something like this
 
