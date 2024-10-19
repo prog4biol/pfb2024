@@ -5204,7 +5204,7 @@ Let's make our class more generic, or in other words, make it so that a user can
 
 #### __\_\_init\_\___
 
-To do this we need to add an `__init__` function to our Object Rules, or Class. 
+To do this we need to add an `__init__` function to the class. 
 
 The `init` function will automatically get called when you create an object. 
 
