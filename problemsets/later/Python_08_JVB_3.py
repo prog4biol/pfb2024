@@ -25,7 +25,7 @@ sequence_filename = sys.argv[1]
 sequence_file = open(sequence_filename, 'r')
 
 sequence_name = None
-sequence_string = {}
+sequence_records = {}
 for line in sequence_file:
     # leading and trailing whitespace in FASTA files is
     # meaningless, just remove it.
@@ -39,14 +39,14 @@ for line in sequence_file:
         # line[1:] removes '>', then we split and take
         # only the first element (the sequence name):
         sequence_name = line[1:].split(maxsplit=1)[0]
-        sequence_string[sequence_name] = ''
+        sequence_records[sequence_name] = ''
     else:
         # normalize all nucleotides to upper-case so
         # we can count accurately:
-        sequence_string[sequence_name] += line.upper()
+        sequence_records[sequence_name] += line.upper()
 
         
-for sequence_name in sequence_string:
+for sequence_name in sequence_records:
     # Using end='' kwarg to print(), we can print a single
     # column value.
 
@@ -55,8 +55,8 @@ for sequence_name in sequence_string:
     for offset in range(3):
         print(f"{sequence_name}-frame-{offset+1}-codons")
         sep=''
-        for i in range(0, len(sequence_string[sequence_name]), 3):
-            codon = sequence_string[sequence_name][offset+i:offset+i+3]
+        for i in range(0, len(sequence_records[sequence_name]), 3):
+            codon = sequence_records[sequence_name][offset+i:offset+i+3]
             
             # The sequence lengths may not be all be in multiples
             # of three, so omit last bit if sequence < 3 nt long:
