@@ -9,46 +9,141 @@ Biopython is a collection of python modules that contain code for manipulating b
 This is very straightforward once you have anaconda or minconda installed. I use miniconda because it's smaller. We are going to use `sudo`, because this will give us permission to install in the 'correct' directory python is expecting to find the modules. Other users will be able to use it too. Using `sudo` can cause problems, but it's ok here. You will need the administrator password for the machine. If you don't have this, ask the person who does administration on your machine.
 
 ```bash
-% conda install biopython
-Collecting package metadata (current_repodata.json): done
-Solving environment: done
+% mamba install --channel bioconda biopython 
+bioconda/noarch                                             Using cache
+bioconda/osx-64                                             Using cache
+conda-forge/noarch                                          Using cache
+conda-forge/osx-64                                          Using cache
 
-## Package Plan ##
+Transaction
 
-  environment location: /Users/smr/opt/anaconda3
+  Prefix: /Users/pfb2024/mamba/envs/bio
 
-  added / updated specs:
-    - biopython
+  Updating specs:
 
-
-The following packages will be downloaded:
-
-    package                    |            build
-    ---------------------------|-----------------
-    biopython-1.78             |   py39h9ed2024_0         2.1 MB
-    conda-22.9.0               |   py39hecd8cb5_0         884 KB
-    ------------------------------------------------------------
-                                           Total:         3.0 MB
-
-The following NEW packages will be INSTALLED:
-
-  biopython          pkgs/main/osx-64::biopython-1.78-py39h9ed2024_0
-
-The following packages will be UPDATED:
-
-  conda                               4.14.0-py39hecd8cb5_0 --> 22.9.0-py39hecd8cb5_0
+   - biopython
 
 
-Proceed ([y]/n)?
+  Package              Version  Build                            Channel           Size
+-----------------------------------------------------------------------------------------
+  Install:
+-----------------------------------------------------------------------------------------
 
+  + biopython             1.70  np112py36_1                      bioconda           3MB
+  + blas                   1.1  openblas                         conda-forge        1kB
+  + ca-certificates  2024.8.30  h8857fd0_0                       conda-forge     Cached
+  + freetype            2.12.1  h60636b9_2                       conda-forge     Cached
+  + jpeg                    9e  hb7f2c08_3                       conda-forge      232kB
+  + lcms2                 2.12  h577c468_0                       conda-forge      414kB
+  + lerc                   3.0  he49afe7_0                       conda-forge      175kB
+  + libcxx              19.1.2  hf95d169_0                       conda-forge     Cached
+  + libdeflate            1.10  h0d85af4_0                       conda-forge       80kB
+  + libffi               3.4.2  h0d85af4_5                       conda-forge     Cached
+  + libgfortran          3.0.1  0                                conda-forge      507kB
+  + libpng              1.6.43  h92b6c6a_0                       conda-forge      269kB
+  + libsqlite           3.46.0  h1b8f9f3_0                       conda-forge      909kB
+  + libtiff              4.3.0  hfca7e8f_4                       conda-forge      597kB
+  + libwebp-base         1.4.0  h10d778d_0                       conda-forge     Cached
+  + libzlib             1.2.13  h87427d6_6                       conda-forge       57kB
+  + mmtf-python          1.1.3  pyhd8ed1ab_0                     conda-forge       26kB
+  + msgpack-python       1.0.2  py36hc61eee1_1                   conda-forge       82kB
+  + ncurses                6.5  hf036a51_1                       conda-forge     Cached
+  + numpy               1.12.1  py36_blas_openblash4251c03_1001  conda-forge        4MB
+  + olefile               0.46  pyh9f0ad1d_1                     conda-forge       33kB
+  + openblas             0.3.3  hdc02c5d_1001                    conda-forge       18MB
+  + openjpeg             2.5.0  h69f46e4_0                       conda-forge      541kB
+  + openssl             1.1.1w  h8a1eda9_0                       conda-forge        2MB
+  + pillow               8.3.2  py36h950f3bb_0                   conda-forge      665kB
+  + pip                 21.3.1  pyhd8ed1ab_0                     conda-forge        1MB
+  + python              3.6.15  haf480d7_0_cpython               conda-forge       22MB
+  + python_abi             3.6  2_cp36m                          conda-forge        4kB
+  + readline               8.2  h9e318b2_1                       conda-forge     Cached
+  + reportlab           3.5.68  py36h92d37d9_0                   conda-forge        3MB
+  + setuptools          58.0.4  py36h79c6626_2                   conda-forge      983kB
+  + sqlite              3.46.0  h28673e1_0                       conda-forge      912kB
+  + tk                  8.6.13  h1abcd95_1                       conda-forge     Cached
+  + wheel               0.37.1  pyhd8ed1ab_0                     conda-forge       32kB
+  + xz                   5.2.6  h775f41a_0                       conda-forge     Cached
+  + zlib                1.2.13  h87427d6_6                       conda-forge       89kB
+  + zstd                 1.5.6  h915ae27_0                       conda-forge     Cached
 
-Downloading and Extracting Packages
-biopython-1.78       | 2.1 MB    | ####################################################################################### | 100%
-conda-22.9.0         | 884 KB    | ####################################################################################### | 100%
-Preparing transaction: done
-Verifying transaction: done
-Executing transaction: done
-Retrieving notices: ...working... done
+  Summary:
+
+  Install: 37 packages
+
+  Total download: 59MB
+
+-----------------------------------------------------------------------------------------
+
+Confirm changes: [Y/n] Y
+
+Transaction starting
+reportlab                                            2.6MB @  11.5MB/s  0.2s
+openssl                                              1.7MB @  11.7MB/s  0.1s
+numpy                                                3.9MB @  11.4MB/s  0.3s
+biopython                                            2.5MB @   7.0MB/s  0.3s
+pip                                                  1.3MB @   5.4MB/s  0.1s
+libsqlite                                          908.6kB @   1.9MB/s  0.1s
+sqlite                                             912.4kB @   4.9MB/s  0.1s
+setuptools                                         983.0kB @   3.1MB/s  0.3s
+pillow                                             665.5kB @   2.6MB/s  0.2s
+libtiff                                            596.9kB @ 972.2kB/s  0.2s
+python                                              21.6MB @  29.4MB/s  0.7s
+lcms2                                              413.9kB @   5.8MB/s  0.1s
+openjpeg                                           540.8kB @  ??.?MB/s  0.1s
+libgfortran                                        507.0kB @   3.1MB/s  0.1s
+lerc                                               174.5kB @  ??.?MB/s  0.0s
+zlib                                                88.7kB @  ??.?MB/s  0.0s
+libpng                                             268.5kB @   1.9MB/s  0.1s
+jpeg                                               231.8kB @  66.6kB/s  0.1s
+msgpack-python                                      82.4kB @ 756.4kB/s  0.1s
+libdeflate                                          80.0kB @ 761.1kB/s  0.1s
+libzlib                                             57.4kB @ 556.3kB/s  0.1s
+olefile                                             33.1kB @ 371.6kB/s  0.1s
+wheel                                               32.0kB @  ??.?MB/s  0.0s
+python_abi                                           4.0kB @  ??.?MB/s  0.0s
+openblas                                            18.4MB @  18.8MB/s  0.9s
+mmtf-python                                         26.0kB @ 415.9kB/s  0.1s
+blas                                                 1.3kB @  20.7kB/s  0.1s
+Linking libgfortran-3.0.1-0
+Linking libcxx-19.1.2-hf95d169_0
+Linking libzlib-1.2.13-h87427d6_6
+Linking ncurses-6.5-hf036a51_1
+Linking libffi-3.4.2-h0d85af4_5
+Linking xz-5.2.6-h775f41a_0
+Linking jpeg-9e-hb7f2c08_3
+Linking libdeflate-1.10-h0d85af4_0
+Linking libwebp-base-1.4.0-h10d778d_0
+Linking ca-certificates-2024.8.30-h8857fd0_0
+Linking openblas-0.3.3-hdc02c5d_1001
+Linking lerc-3.0-he49afe7_0
+Linking zstd-1.5.6-h915ae27_0
+Linking tk-8.6.13-h1abcd95_1
+Linking libsqlite-3.46.0-h1b8f9f3_0
+Linking zlib-1.2.13-h87427d6_6
+Linking libpng-1.6.43-h92b6c6a_0
+Linking readline-8.2-h9e318b2_1
+Linking openssl-1.1.1w-h8a1eda9_0
+Linking blas-1.1-openblas
+Linking libtiff-4.3.0-hfca7e8f_4
+Linking freetype-2.12.1-h60636b9_2
+Linking sqlite-3.46.0-h28673e1_0
+Linking openjpeg-2.5.0-h69f46e4_0
+Linking lcms2-2.12-h577c468_0
+Linking python-3.6.15-haf480d7_0_cpython
+Linking python_abi-3.6-2_cp36m
+Linking setuptools-58.0.4-py36h79c6626_2
+Linking wheel-0.37.1-pyhd8ed1ab_0
+Linking pip-21.3.1-pyhd8ed1ab_0
+Linking olefile-0.46-pyh9f0ad1d_1
+Linking msgpack-python-1.0.2-py36hc61eee1_1
+Linking numpy-1.12.1-py36_blas_openblash4251c03_1001
+Linking pillow-8.3.2-py36h950f3bb_0
+Linking reportlab-3.5.68-py36h92d37d9_0
+Linking mmtf-python-1.1.3-pyhd8ed1ab_0
+Linking biopython-1.70-np112py36_1
+
+Transaction finished
 
 ```
 
@@ -60,7 +155,7 @@ See if the install worked
 python3
 >>> import Bio
 >>> print(Bio.__version__)
-1.78
+1.70
 ```
 
 If we get no errors, biopython is installed correctly.
