@@ -5052,13 +5052,14 @@ class DNARecord(object):
   species_name = 'Drosophila melanogaster'
   
   # define methods
-  def reverse_complement(self): 
-    replacement1 = self.sequence.replace('A', 't') 
-    replacement2 = replacement1.replace('T', 'a')
-    replacement3 = replacement2.replace('C', 'g')
-    replacement4 = replacement3.replace('G', 'c') 
-    reverse_comp = replacement4[::-1]
-    return reverse_comp.upper()
+  def reverse_complement(self):
+    seq = self.sequence.upper()
+    seq = seq.replace('A', 't') 
+    seq = seq.replace('T', 'a')
+    seq = seq.replace('C', 'g')
+    seq = seq.replace('G', 'c') 
+    seq = seq[::-1]
+    return seq.upper()
   
   def get_AT(self): 
     length = len(self.sequence)
@@ -5105,13 +5106,14 @@ Next, we define our class methods:
 
 ```python
   # define methods
-  def reverse_complement(self): 
-    replacement1 = self.sequence.replace('A', 't') 
-    replacement2 = replacement1.replace('T', 'a')
-    replacement3 = replacement2.replace('C', 'g')
-    replacement4 = replacement3.replace('G', 'c') 
-    reverse_comp = replacement4[::-1]
-    return reverse_comp.upper()
+  def reverse_complement(self):
+    seq = self.sequence.upper()
+    seq = seq.replace('A', 't') 
+    seq = seq.replace('T', 'a')
+    seq = seq.replace('C', 'g')
+    seq = seq.replace('G', 'c') 
+    seq = seq[::-1]
+    return seq.upper()
   
   def get_AT(self): 
     length = len(self.sequence)
@@ -5222,21 +5224,19 @@ class DNARecord(object):
   
   # define class attributes
   def __init__(self, sequence, gene_name, species_name): ## note that '__init__' is wrapped with two underscores
-    #sequence = 'ACGTAGCTGACGATC'
-    #gene_name = 'ABC1'
-    #species_name = 'Drosophila melanogaster'
     self.sequence = sequence
     self.gene_name = gene_name
     self.species_name = species_name
 
   # define methods
   def reverse_complement(self):
-    replacement1 = self.sequence.replace('A', 't')
-    replacement2 = replacement1.replace('T', 'a')
-    replacement3 = replacement2.replace('C', 'g')
-    replacement4 = replacement3.replace('G', 'c')
-    reverse_comp = replacement4[::-1]
-    return reverse_comp.upper()
+    seq = self.sequence.upper()
+    seq = seq.replace('A', 't') 
+    seq = seq.replace('T', 'a')
+    seq = seq.replace('C', 'g')
+    seq = seq.replace('G', 'c') 
+    seq = seq[::-1]
+    return seq.upper()
 
   def get_AT(self):
     length = len(self.sequence)
