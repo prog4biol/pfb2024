@@ -4080,7 +4080,7 @@ Here is a very nice [interactive tutorial](https://www.learnpython.org/en/Pandas
 ## Exceptions
 
 
-There are a few different types of errors when coding. Syntax errors, logic errors, and exceptions. You have probably encountered all three. Syntax and logic errors are issues you need to deal with while coding. An exception is a special type of error that can be informative and used to write code to respond to this type of error. This is especially relavent when dealing with user input. What if they don't give you any, or it is the wrong kind of input. We want our code to be able to detect these types of errors and respond accordingly.
+There are a few different types of errors when coding. Syntax errors, logic errors, and exceptions. You have probably encountered all three. Syntax and logic errors are issues you need to deal with while coding. An exception is a special type of error that can be informative and used to write code to respond to this type of error. This is especially relevent when dealing with user input. What if they don't give you any, or it is the wrong kind of input? We want our code to be able to detect these types of errors and respond accordingly.
 
 ```python
 #!/usr/bin/env python3
@@ -4357,7 +4357,7 @@ File needs to be a FASTA file and end with .fa
 
 ## Functions
 
-Functions consist of several lines of code that do something useful and that you want to run more than once. There are built-in functions in python. You can also write your own. You also give your function a name so you can refer to it in your code. This avoids copying and pasting the same code to many places in your script and makes your code easier to read.
+Functions consist of several lines of code that do something useful and that you want to run more than once. There are built-in functions in Python. You can also write your own. You also give your function a name so you can refer to it in your code. This avoids copying and pasting the same code to many places in your script and makes your code easier to read.
 
 Let's see some examples.
 
@@ -4389,13 +4389,18 @@ We use `def` do define our own function. It is followed by the name of the funct
 
 ```python
 def gc_content(dna):   # give our function a name and parameter 'dna'
-   c_count = dna.count('C')
-   g_count = dna.count('G')
-   dna_len = len(dna)
-   gc_content = (c_count + g_count) / dna_len
-   return gc_content # return the value to the code that called this function
+    dna_len = len(dna)
+    if dna_len == 0:
+        return 0
+    else:
+        c_count = dna.count('C')
+        g_count = dna.count('G')
+        # return the value to the code that called this function
+        return (c_count + g_count) / dna_len
 ```
 > Here is a custom function that you can use like a built in Python function
+
+NOTE: Any function that omits a `return` will return `None`.
 
 ### Using your function to calculate GC content
 
@@ -4496,14 +4501,13 @@ print(get_first_codon('ATGTTT'))
 The format for lambda is like this
 
 ```
-lambda <the variable you pass into the function> : <the expression that operates on your variable>
+lambda <the variable you pass into the function>: <the expression that operates on your variable>
 ```
 
 Here is the same function written as a lambda
 
 ```python
-get_first_codon = lambda dna : dna[0:3]  # pass data into 'dna' then extract 
-                                         # the first 3 characters
+get_first_codon = lambda dna: dna[0:3]  # pass data into 'dna', extract the first 3 characters
 print(get_first_codon('ATGTTT'))
 ```
 > This also prints `ATG`. lambdas can only contain one line and there is no `return` statement.
@@ -4581,19 +4585,19 @@ def set_local_x_to_five(x):
   print('Inside def')
   x = 5 # local to function set_local_x_to_five()
   y = 5   # also local
-  print("x =",x)
-  print("y = ",y)
+  print("x =", x)
+  print("y =", y)
 
 print('After def')
 x = 100 # global x
 y = 100 # global
-print('x =',x)
-print('y =',y)
+print('x =', x)
+print('y =', y)
 
 set_local_x_to_five(500)
 print('After function call')
-print('x =',x)
-print('y =',y)
+print('x =', x)
+print('y =', y)
 
 ```
 > Here we have added a function `set_local_x_to_five()` with an argument named `x`. This variable exists only within the function where is replaces any variable with the same name outside the `def`. Inside the `def` we also initialize a variable `y` that also replaces any global `y` within the `def`
@@ -4729,7 +4733,7 @@ This is the current module for running command lines from python scripts
 
 ```python
 import subprocess
-subprocess.run(["ls","-l"])  # same as running ls -l on the command line
+subprocess.run(["ls", "-l"])  # same as running ls -l on the command line
 ```
 
 more complex than `os.system()`. You need to specify where input and output go. Let's look at this in some more detail. 
@@ -4758,7 +4762,7 @@ b'-rw-r--r--  1 amanda  staff       161952 Oct  2 18:03 test.subreads.fa\n-rw-r-
 You can covert by decoding the bytes object into a string 
 
 ```python3
->>>output.decode('utf-8')
+>>> output.decode('utf-8')
 '-rw-r--r--  1 amanda  staff       161952 Oct  2 18:03 test.subreads.fa\n-rw-r--r--  1 amanda  staff          126 Oct  2 13:23 test.txt\n'
 ```
 
@@ -4910,30 +4914,44 @@ Great (if quite complicated) tool for parsing command line arguments and automat
 
 #!/usr/bin/env python3
 import argparse
-parser = argparse.ArgumentParser(description="A test program that reads in some number of lines from an input file. The output can be screen or an output file")
+
+parser = argparse.ArgumentParser(
+    description=("A test program that reads in some number of "
+                 "lines from an input file. The output can be "
+                 "screen or an output file")
+)
+
 # we want the first argument to be the filename
 parser.add_argument("file", help="path to input fasta filename")
+
 # second argument will be line number
 # default type is string, need to specify if expecting an int
-parser.add_argument("lines", type=int, help ="how many lines to print")
+parser.add_argument("lines", type=int, help="how many lines to print")
+
 # optional outfile argument specified with -o or --out
-parser.add_argument("-o","--outfile", help = "optional: supply output filename, otherwise write to screen", dest = 'out')
+parser.add_argument(
+    "-o",
+    "--outfile",
+    help="optional: supply output filename, otherwise write to screen",
+    dest="out",
+)
+
 args = parser.parse_args()
+
 # arguments appear in args
 filename = args.file
 lines = args.lines
 if args.out:
-  print("writing output to", args.out)
+    print("writing output to", args.out)
 ```
 
 With this module, -h help comes for free. --outfile type arguments are optional unless you write 'required=True' like this
 
 ```
 parser.add_argument('-f', "-fasta", required=True, help='Output fasta filename', dest='outfile')
-
 ```
 
-Here's an example python template that uses several different capabilities of the argparse module.
+Here's an example Python template that uses several different capabilities of the argparse module.
 
 
 
@@ -4945,7 +4963,7 @@ Also, non-core: BioPython for bioinformatics, Numpy for mathematics, statistics,
 
 ## Your own modules
 
-You can also make your own modules. They are just text files containing python. The file name should end with `.py`. You need to put them in the right directory (same directory as your main script works for getting going). Then you can write your own import statement. For example
+You can also make your own modules. They are just text files containing Python. The file name should end with `.py`. You need to put them in the right directory (same directory as your main script works for getting going). Then you can write your own import statement. For example:
 ```
 #!/usr/bin/env python3
 import sequence_utilities    # import functions in your own file 'sequence_utilities.py'
@@ -5034,13 +5052,14 @@ class DNARecord(object):
   species_name = 'Drosophila melanogaster'
   
   # define methods
-  def reverse_complement(self): 
-    replacement1 = self.sequence.replace('A', 't') 
-    replacement2 = replacement1.replace('T', 'a')
-    replacement3 = replacement2.replace('C', 'g')
-    replacement4 = replacement3.replace('G', 'c') 
-    reverse_comp = replacement4[::-1]
-    return reverse_comp.upper()
+  def reverse_complement(self):
+    seq = self.sequence.upper()
+    seq = seq.replace('A', 't') 
+    seq = seq.replace('T', 'a')
+    seq = seq.replace('C', 'g')
+    seq = seq.replace('G', 'c') 
+    seq = seq[::-1]
+    return seq.upper()
   
   def get_AT(self): 
     length = len(self.sequence)
@@ -5087,13 +5106,14 @@ Next, we define our class methods:
 
 ```python
   # define methods
-  def reverse_complement(self): 
-    replacement1 = self.sequence.replace('A', 't') 
-    replacement2 = replacement1.replace('T', 'a')
-    replacement3 = replacement2.replace('C', 'g')
-    replacement4 = replacement3.replace('G', 'c') 
-    reverse_comp = replacement4[::-1]
-    return reverse_comp.upper()
+  def reverse_complement(self):
+    seq = self.sequence.upper()
+    seq = seq.replace('A', 't') 
+    seq = seq.replace('T', 'a')
+    seq = seq.replace('C', 'g')
+    seq = seq.replace('G', 'c') 
+    seq = seq[::-1]
+    return seq.upper()
   
   def get_AT(self): 
     length = len(self.sequence)
@@ -5186,7 +5206,7 @@ Let's make our class more generic, or in other words, make it so that a user can
 
 #### __\_\_init\_\___
 
-To do this we need to add an `__init__` function to our Object Rules, or Class. 
+To do this we need to add an `__init__` function to the class. 
 
 The `init` function will automatically get called when you create an object. 
 
@@ -5204,21 +5224,19 @@ class DNARecord(object):
   
   # define class attributes
   def __init__(self, sequence, gene_name, species_name): ## note that '__init__' is wrapped with two underscores
-    #sequence = 'ACGTAGCTGACGATC'
-    #gene_name = 'ABC1'
-    #species_name = 'Drosophila melanogaster'
     self.sequence = sequence
     self.gene_name = gene_name
     self.species_name = species_name
 
   # define methods
   def reverse_complement(self):
-    replacement1 = self.sequence.replace('A', 't')
-    replacement2 = replacement1.replace('T', 'a')
-    replacement3 = replacement2.replace('C', 'g')
-    replacement4 = replacement3.replace('G', 'c')
-    reverse_comp = replacement4[::-1]
-    return reverse_comp.upper()
+    seq = self.sequence.upper()
+    seq = seq.replace('A', 't') 
+    seq = seq.replace('T', 'a')
+    seq = seq.replace('C', 'g')
+    seq = seq.replace('G', 'c') 
+    seq = seq[::-1]
+    return seq.upper()
 
   def get_AT(self):
     length = len(self.sequence)
