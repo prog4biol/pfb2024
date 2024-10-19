@@ -222,7 +222,7 @@ Visit biopython.org to read about [Slicing a sequence](http://biopython.org/DIST
 ```python
 >>> seqobj=Seq('ATGCGATCGAGC')
 >>> seqobj[0:3]
-Seq('ATG')
+Seq('ATG', Alphabet())
 >>> print(seqobj[0:3])
 ATG
 ```
@@ -252,7 +252,7 @@ The Seq Object predicts that we want a string when we `print()` our seqobj or if
 >>> type(seqobj)
 <class 'Bio.Seq.Seq'>
 >>> seqobj
-Seq('ATGCGATCGAGC')
+Seq('ATGCGATCGAGC', Alphabet())
 >>> str(seqobj)
 'ATGCGATCGAGC'
 >>> type(str(seqobj))
@@ -261,7 +261,7 @@ Seq('ATGCGATCGAGC')
 
 ## Read a FASTA file
 
-Earlier in the course were learning how to read a fasta file line by line. We are going to go over the BioPython way to do this. `SeqIO.parse()` is the main method for reading from almost any file format. The examples will use [seq.nt.fa](https://raw.githubusercontent.com/prog4biol/pfb2018/master/files/seq.nt.fa): 
+Earlier in the course were learning how to read a fasta file line by line. We are going to go over the BioPython way to do this. `SeqIO.parse()` is the main method for reading from almost any file format. The examples will use [seq.nt.fa](https://raw.githubusercontent.com/prog4biol/pfb2024/master/files/seq.nt.fa): 
 
 ```
 >seq1
@@ -419,8 +419,8 @@ translation MLTKVSVRTCR*ATLKKETTCQIETINSAMEIRTTISLEIKIEITGTISLIT*CRIKGIINLIQVIRT
 Because one of our sample sequences is not a complete CDS we will get this message from biopython 
 
 ```
-/Users/smr/opt/anaconda3/lib/python3.9/site-packages/Bio/Seq.py:2334: BiopythonWarning: Partial codon, len(sequence) not a multiple of three. Explicitly trim the sequence or add trailing N before translation. This may become an error in future.
-  warnings.warn(
+/Users/pfb2024/mamba/envs/biopython/lib/python3.6/site-packages/Bio/Seq.py:2309: BiopythonWarning: Partial codon, len(sequence) not a multiple of three. Explicitly trim the sequence or add trailing N before translation. This may become an error in future.
+  BiopythonWarning)
  ```
  
 
@@ -455,7 +455,7 @@ translation MLTKVSVRTCR*ATLKKETTCQIETINSAMEIRTTISLEIKIEITGTISLIT*CRIKGIINLIQVIRT
 >>> from Bio import SeqIO
 >>> id_dict = SeqIO.to_dict(SeqIO.parse('../files/seq.nt.fa', 'fasta'))
 >>> id_dict
-{'seq1': SeqRecord(seq=Seq('AAGAGCAGCTCGCGCTAATGTGATAGATGGCGGTAAAGTAAATGTCCTATGGGC...AAC'), id='seq1', name='seq1', description='seq1', dbxrefs=[]), 'seq2': SeqRecord(seq=Seq('GCCACAGAGCCTAGGACCCCAACCTAACCTAACCTAACCTAACCTACAGTTTGA...TCT'), id='seq2', name='seq2', description='seq2', dbxrefs=[]), 'seq3': SeqRecord(seq=Seq('ATGAAAGTTACATAAAGACTATTCGATGCATAAATAGTTCAGTTTTGAAAACTT...AAT'), id='seq3', name='seq3', description='seq3', dbxrefs=[]), 'seq4': SeqRecord(seq=Seq('ATGCTAACCAAAGTTTCAGTTCGGACGTGTCGATGAGCGACGCTCAAAAAGGAA...GGT'), id='seq4', name='seq4', description='seq4', dbxrefs=[])}
+{'seq1': SeqRecord(seq=Seq('AAGAGCAGCTCGCGCTAATGTGATAGATGGCGGTAAAGTAAATGTCCTATGGGC...AAC', SingleLetterAlphabet()), id='seq1', name='seq1', description='seq1', dbxrefs=[]), 'seq2': SeqRecord(seq=Seq('GCCACAGAGCCTAGGACCCCAACCTAACCTAACCTAACCTAACCTACAGTTTGA...TCT', SingleLetterAlphabet()), id='seq2', name='seq2', description='seq2', dbxrefs=[]), 'seq3': SeqRecord(seq=Seq('ATGAAAGTTACATAAAGACTATTCGATGCATAAATAGTTCAGTTTTGAAAACTT...AAT', SingleLetterAlphabet()), id='seq3', name='seq3', description='seq3', dbxrefs=[]), 'seq4': SeqRecord(seq=Seq('ATGCTAACCAAAGTTTCAGTTCGGACGTGTCGATGAGCGACGCTCAAAAAGGAA...GGT', SingleLetterAlphabet()), id='seq4', name='seq4', description='seq4', dbxrefs=[])}
 
 ```
 
@@ -464,11 +464,11 @@ Let's retrieve some info from our new dictionary
 
 ```python
 >>> id_dict['seq4']
-SeqRecord(seq=Seq('ATGCTAACCAAAGTTTCAGTTCGGACGTGTCGATGAGCGACGCTCAAAAAGGAA...GGT'), id='seq4', name='seq4', description='seq4', dbxrefs=[])
+SeqRecord(seq=Seq('ATGCTAACCAAAGTTTCAGTTCGGACGTGTCGATGAGCGACGCTCAAAAAGGAA...GGT', SingleLetterAlphabet()), id='seq4', name='seq4', description='seq4', dbxrefs=[])
 >>> id_dict['seq4'].seq
-Seq('ATGCTAACCAAAGTTTCAGTTCGGACGTGTCGATGAGCGACGCTCAAAAAGGAA...GGT')
+Seq('ATGCTAACCAAAGTTTCAGTTCGGACGTGTCGATGAGCGACGCTCAAAAAGGAA...GGT', SingleLetterAlphabet())
 >>> str(id_dict['seq4'].seq)
-'ATGCTAACCAAAGTTTCAGTTCGGACGTGTCGATGAGCGACGCTCAAAAAGGAAACAACATGCCAAATAGAAACGATCAATTCGGCGATGGAAATCAGAACAACGATCAGTTTGGAAATCAAAATAGAAATAACGGGAACGATCAGTTTAATAACATGATGCAGAATAAAGGGAATAATCAATTTAATCCAGGTAATCAGAACAGAGGT'
+'ATGCTAACCAAAGTTTCAGTTCGGACGTGTCGATGAGCGACGCTCAAAAAGGAAACAACATGCCAAATAGAAACGATCAATTCGGCGATGGAAATCAGAACAACGATCAGTTTGGAAATCAAAATAGAAATAACGGGAACGATCAGTTTAATAACATGATGCAGAATAAAGGGAATAATCAATTTAATCCAGGTAATCAGAACAGAGGT
 >>>
 ```
 > need to use this format to get the string of the sequence: `str(id_dict['seq4'].seq)`
@@ -485,7 +485,7 @@ seqobj.count("A")  # counts how many As are in sequence
 seqobj.find("ATG") # find coordinate of ATG (-1 for not found)
 ```
 
-OR, as mentioned earlier in the interpreter you can use option+tab to find out what methods are available:
+OR, as mentioned earlier in the interpreter you can use tab to find out what methods are available:
 
 ```python
 >>> from Bio.Seq import Seq
@@ -627,7 +627,7 @@ seq3    ATGAAAGTTACATAAAGACTATTCGATGCATAAATAGTTCAGTTTTGAAAACTTACATTTTGTTAAAGTCAG
 seq4    ATGCTAACCAAAGTTTCAGTTCGGACGTGTCGATGAGCGACGCTCAAAAAGGAAACAACATGCCAAATAGAAACGATCAATTCGGCGATGGAAATCAGAACAACGATCAGTTTGGAAATCAAAATAGAAATAACGGGAACGATCAGTTTAATAACATGATGCAGAATAAAGGGAATAATCAATTTAATCCAGGTAATCAGAACAGAGGT
 ```
 
-Even easier is the convert() method. Let's try FASTQ to FASTA.
+Here it is again in one step using the convert() method. Let's try FASTQ to FASTA.
 
 ```python
 #!/usr/bin/env python3
@@ -665,15 +665,19 @@ Output:
 
 ```
 qid: Query_26141 hit_id: sp|Q13547.1| RecName: Full=Histone deacetylase 1; Short=HD1 [Homo sapiens] >sp|Q5RAG0.1| RecName: Full=Histone deacetylase 1; Short=HD1 [Pongo abelii] E: 0.0
-qid: Query_26141 hit_id: sp|O09106.1| RecName: Full=Histone deacetylase 1; Short=HD1 [Mus musculus] E: 0.0
-qid: Query_26141 hit_id: sp|Q4QQW4.1| RecName: Full=Histone deacetylase 1; Short=HD1 [Rattus norvegicus] E: 0.0
-qid: Query_26141 hit_id: sp|Q32PJ8.1| RecName: Full=Histone deacetylase 1; Short=HD1 [Bos taurus] E: 0.0
-qid: Query_26141 hit_id: sp|P56517.1| RecName: Full=Histone deacetylase 1; Short=HD1 [Gallus gallus] E: 0.0
-qid: Query_26141 hit_id: sp|O42227.1| RecName: Full=Probable histone deacetylase 1-B; Short=HD1-B; AltName: Full=RPD3 homolog [Xenopus laevis] E: 0.0
 ... etc
-
 ```
 
+tab-delimited print output ( `print(query_id, alignment.title, hsp.expect, sep="\t"` )  
+```
+Query_26141	sp|Q13547.1| RecName: Full=Histone deacetylase 1; Short=HD1 [Homo sapiens] >sp|Q5RAG0.1| RecName: Full=Histone deacetylase 1; Short=HD1 [Pongo abelii]	0.0
+Query_26141	sp|O09106.1| RecName: Full=Histone deacetylase 1; Short=HD1 [Mus musculus]	0.0
+Query_26141	sp|Q4QQW4.1| RecName: Full=Histone deacetylase 1; Short=HD1 [Rattus norvegicus]	0.0
+Query_26141	sp|Q32PJ8.1| RecName: Full=Histone deacetylase 1; Short=HD1 [Bos taurus]	0.0
+Query_26141	sp|P56517.1| RecName: Full=Histone deacetylase 1; Short=HD1 [Gallus gallus]	0.0
+Query_26141	sp|O42227.1| RecName: Full=Probable histone deacetylase 1-B; Short=HD1-B; AltName: Full=RPD3 homolog [Xenopus laevis]	0.0
+... etc
+```
 
 About BLAST Search Report and BioPython:
  - `blast_records` (type <class 'generator'>) can contain handle multiple queries (the sequence you are using as input)
