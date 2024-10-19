@@ -9,7 +9,9 @@ Biopython is a collection of python modules that contain code for manipulating b
 This is very straightforward once you have anaconda or minconda installed. I use miniconda because it's smaller. We are going to use `sudo`, because this will give us permission to install in the 'correct' directory python is expecting to find the modules. Other users will be able to use it too. Using `sudo` can cause problems, but it's ok here. You will need the administrator password for the machine. If you don't have this, ask the person who does administration on your machine.
 
 ```bash
-% mamba install --channel bioconda biopython 
+% mamba create --name bio
+% mamba activate bio
+(bio)% mamba install --channel conda-forge --channel bioconda biopython 
 bioconda/noarch                                             Using cache
 bioconda/osx-64                                             Using cache
 conda-forge/noarch                                          Using cache
