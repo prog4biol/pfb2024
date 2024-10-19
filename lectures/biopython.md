@@ -1,6 +1,6 @@
 # Biopython
 
-## What is biopython?
+## What is Biopython?
 
 Biopython is a collection of python modules that contain code for manipulating biological data. Many handle sequence data and common analysis and processing of the data including reading and writing all common file formats. Biopython will also run blast for you and parse the output into objects inside your script. This requires just a few lines of code.
 
@@ -123,7 +123,7 @@ You can use a range [0:3] to get the first codon
 Visit biopython.org to read about [Slicing a sequence](http://biopython.org/DIST/docs/tutorial/Tutorial.html#htoc19)
 
 ```python
->>> seqobj=Seq('ATGCGATCGAGC')
+>>> seqobj = Seq('ATGCGATCGAGC')
 >>> seqobj[0:3]
 Seq('ATG')
 >>> print(seqobj[0:3])
@@ -133,9 +133,9 @@ ATG
 Let's use Regular expressions in conjunction with BioPython to get every codon
 
 ```python
->>> seqobj=Seq('ATGCGATCGAGC')
+>>> seqobj = Seq('ATGCGATCGAGC')
 >>> import re
->>> for codon in re.findall(r"(.{3})",str(seqobj)):
+>>> for codon in re.findall(r"(.{3})", str(seqobj)):
 ...   print(codon)
 ...
 ATG
@@ -151,7 +151,7 @@ __Data types__
 The Seq Object predicts that we want a string when we `print()` our seqobj or if we try to caculate `len()` or if we try to take a substr `seqobj[0:3]` of our seqobj. The authors have coded this functionality into the Class rules. They did not predict, or write into the Class rules that if we use `findall()` that we want to search just the sequence. The Class does not know how to handle this. But it has predicted that if we use the `str()` we want to return the sequence that is contained within our object.
 
 ```python
->>> seqobj=Seq('ATGCGATCGAGC')
+>>> seqobj = Seq('ATGCGATCGAGC')
 >>> type(seqobj)
 <class 'Bio.Seq.Seq'>
 >>> seqobj
@@ -209,9 +209,9 @@ Here's a script to read fasta records and print out some information
 #!/usr/bin/env python3
 from Bio import SeqIO
 for seq_record in SeqIO.parse("../files/seq.nt.fa", "fasta"):   # give filename and format
-  print('ID',seq_record.id)
-  print('Sequence',seq_record.seq)
-  print('Length',len(seq_record))
+  print('ID', seq_record.id)
+  print('Sequence', seq_record.seq)
+  print('Length', len(seq_record))
     
 ```
 
@@ -262,7 +262,7 @@ The Seq Object and the SeqRecord Object two Objects are not the same. As you hav
 
 ```python
 >>> from Bio.Seq import Seq
->>> seqobj=Seq('ATGCGATCGAGC')
+>>> seqobj = Seq('ATGCGATCGAGC')
 >>> print(seqobj)
 ATGCGATCGAGC
 >>>
@@ -297,7 +297,7 @@ Here is another example of opening a FASTA file, retrieving each sequence record
 from Bio import SeqIO
 filename = "../files/seq.nt.fa"
 for seq_record in SeqIO.parse(filename, "fasta"):   
-  print('ID',seq_record.id)
+  print('ID', seq_record.id)
   print(f'len {len(seq_record)}')
   print(f'translation {seq_record.seq.translate(to_stop=False)}')
 ```
@@ -494,9 +494,9 @@ To read sequences from a genbank file instead, not much changes.
 #!/usr/bin/env python3
 from Bio import SeqIO
 for seq_record in SeqIO.parse("../files/sequence.gb", "genbank"):
-  print('ID',seq_record.id)
-  print('Sequence',str(seq_record.seq)[0:60],'...')
-  print('Length',len(seq_record))
+  print('ID', seq_record.id)
+  print('Sequence', str(seq_record.seq)[0:60], '...')
+  print('Length', len(seq_record))
 ```
 
 Output: 
@@ -656,7 +656,7 @@ Sample of BLAST XML output:
 * drawing pictures of genome and sequence features
 * population genetics
 
-## Why use biopython
+## Why use Biopython?
 
 Massive time saver once you know your way around the classes.
 
