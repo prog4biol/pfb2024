@@ -88,7 +88,7 @@ The purpose of this workshop is to gain experience working with the various file
     - Are there any over-represented sequences? If so, which?
 
 
-8. Write a python script to trim poor-quality bases from the ends of the FASTQ sequences and output a new FASTQ file and output the trimmed reads to a file named `SRR21901339.trim.fastq`. Your script should take as input from the command line: one FASTQ file name and one integer value (the minimum base quality threshold). ***HINT*: Use the following approach**:
+8. Write a python script to trim poor-quality bases from the ends of the FASTQ sequences and output a new FASTQ file and output the trimmed reads to a file named `SRR21901339.trim.fastq`. Your script should take as input from the command line: one FASTQ file name and one integer value (the minimum base quality threshold). (You can start your script from scratch or start from a [template](https://raw.githubusercontent.com/prog4biol/pfb2024/master/workshops/NGS/templates/trim-read-qualities.py).) ***HINT*: Use the following approach**:
     1. Iterate from the 3'-end of the read to the 5'-end, examining the quality values at each base position (see the [lecture notes](bio_info_formats.pdf) for how to convert quality string characters to numeric values;  
     2. `break` at the first base with a quality value greater-than or equal-to your inputted quality threshold;  
     3. then use string slicing to extract the high-quality portion of both the sequence and quality strings.  
@@ -175,7 +175,7 @@ The purpose of this workshop is to gain experience working with the various file
     > *NOTE*: Execute `samtools depth` without arguments for more options.
     
 
-15. Write a python script that computes the genome-wide [mean](https://en.wikipedia.org/wiki/Arithmetic_mean) and [standard deviation](https://en.wikipedia.org/wiki/Standard_deviation) parameters for read depth.
+15. Write a python script that computes the genome-wide [mean](https://en.wikipedia.org/wiki/Arithmetic_mean) and [standard deviation](https://en.wikipedia.org/wiki/Standard_deviation) parameters for read depth. (You can start your script from scratch or start from a [template](https://raw.githubusercontent.com/prog4biol/pfb2024/master/workshops/NGS/templates/calc-summary-stats.py).)
 
 
 16. Using command-line tools, extract CDS features present in `Ecoli.gff3` and create a new GFF3 file. Then use `bedtools intersect` to determine how many SNPs and InDels in the VCF file intersect these CDS features.
@@ -188,7 +188,7 @@ The purpose of this workshop is to gain experience working with the various file
 18. Find frame-shift mutations:
     1. Calculate variant consequence using the `bcftools csq` tool (inputting `Ecoli.gff3` and *NOT* the CDS-specific GFF3) and output to a new VCF file.
         > *NOTE*: Execute `samtools csq` without arguments for more options.
-    2. Write a python script to parse variant consequence annotations from the INFO BCSQ tag and calculate the [Z-score](https://en.wikipedia.org/wiki/Standard_score) from the Sample DP field in this new VCF; output this information to a tab-delimited file summarizing the framehift variants. Use the genome-wide mean and standard deviation calculated in Problem 14 as input parameters to your script to calculate the depth Z-score at each locus.
+    2. Write a python script to parse variant consequence annotations from the INFO BCSQ tag and calculate the [Z-score](https://en.wikipedia.org/wiki/Standard_score) from the Sample DP field in this new VCF; output this information to a tab-delimited file summarizing the framehift variants. Use the genome-wide mean and standard deviation calculated in Problem 14 as input parameters to your script to calculate the depth Z-score at each locus. (You can start your script from scratch or start from a [template](https://raw.githubusercontent.com/prog4biol/pfb2024/master/workshops/NGS/templates/extract-csq-info.py).)
         - How many variants induce frameshifts?
         - How many frameshifts cause stop codons to be lost? How many gained?
         - How many of these frameshift variants have read depth Z-scores between -2 and +2?
