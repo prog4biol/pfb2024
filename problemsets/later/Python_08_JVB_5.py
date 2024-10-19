@@ -52,7 +52,7 @@ output_nt_file = open(f"{output_prefix}.codons-6frames.nt", 'w')
 output_aa_file = open(f"{output_prefix}.translated.aa", 'w')
 
 sequence_name = None
-sequence_strings = {}
+sequence_records = {}
 for line in sequence_file:
     # leading and trailing whitespace in FASTA files is
     # meaningless, just remove it, then normalize all
@@ -67,22 +67,22 @@ for line in sequence_file:
         # line[1:] removes '>', then we split and take
         # only the first element (the sequence name):
         sequence_name = line[1:].split(maxsplit=1)[0]
-        sequence_strings[sequence_name] = ''
+        sequence_records[sequence_name] = ''
     else:
-        sequence_strings[sequence_name] += line.upper()
+        sequence_records[sequence_name] += line.upper()
 
 
-for sequence_name in sequence_strings:
+for sequence_name in sequence_records:
     # To avoid having to duplicate the loops to compute codons
     # twice (once for forward orientation and second for the
     # reverse complemented orientation), create a 2-tuple of
-    # sequences (forward and rev-comp'd):
-    sequences = (
-        sequence_strings[sequence_name],
-        sequence_strings[sequence_name][::-1].translate(_NUCLEOTIDE_COMPLEMENT)
+    # sequence_strings (forward and rev-comp'd):
+    sequence_strings = (
+        sequence_records[sequence_name],
+        sequence_records[sequence_name][::-1].translate(_NUCLEOTIDE_COMPLEMENT)
     )
     frame = 0
-    for sequence_string in sequences:
+    for sequence_string in sequence_strings:
         # To output three frames, that's three loops, each with
         # coordinate offset of `offset`
         for offset in range(3):
