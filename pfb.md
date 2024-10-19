@@ -4380,7 +4380,8 @@ dna = 'GTACCTTGATTTCGTATTCTGAGAGGCTGCTGCT'
 c_count = dna.count('C')  # count is a string method
 g_count = dna.count('G')
 dna_len = len(dna) # len is a function
-gc_content = (c_count + g_count) / dna_len # fraction from 0 to 1
+gc_content = (c_count + g_count) / dna_len # fra
+ction from 0 to 1
 print(gc_content)
 ```
 ### Defining a Function that calculates GC Content
@@ -4579,7 +4580,7 @@ Variables inside functions are local and therefore can only been accessed from w
 
 
 ```python
-#!/usr/bin/end python3
+#!/usr/bin/env python3
 
 def set_local_x_to_five(x):
   print('Inside def')
@@ -4590,7 +4591,6 @@ def set_local_x_to_five(x):
 
 print('After def')
 x = 100 # global x
-y = 100 # global
 print('x =', x)
 print('y =', y)
 
@@ -4952,6 +4952,36 @@ parser.add_argument('-f', "-fasta", required=True, help='Output fasta filename',
 ```
 
 Here's an example Python template that uses several different capabilities of the argparse module.
+
+```python
+#!/usr/bin/env python3
+import argparse
+parser = argparse.ArgumentParser(formatter_class=argparse.RawDescriptionHelpFormatter,
+                                 description='''
+This script
+
+''')
+#add some arguments
+parser.add_argument('-gb', required=True, help='Input Genbank filename', dest='infile')
+parser.add_argument('-f', "-fasta", required=True, help='Output fasta filename', dest='outfile')
+parser.add_argument('-type', help='extract protein or nucleotide sequence, required unless -genome', dest='type',
+                    choices=['prot','nucl'])
+parser.add_argument('-g' , '-genome', help = 'Just extract underlying genome sequence as fasta, defaults to nucl seq',
+                    dest='genome',
+                    action='store_true')
+parser.add_argument('-debug', help ='Turn on debugging information', dest ='debug', action ='store_true')
+# positional argument  (doesn't start with '--')
+parser.add_argument('fastafile', help = 'the input fasta filename')
+#parser.add_argument('fruits', help = 'Dummy list of fruits', nargs='*')
+
+# parse command line
+args = parser.parse_args()
+debug = args.debug
+fasta_file = args.fastafile
+out_file = args.outfile
+
+#rest of script...
+```
 
 
 
