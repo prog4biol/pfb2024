@@ -94,10 +94,10 @@ if test_number > 0:
 elif test_number < 50:
     print('number is smaller than 50')
 
-elif test_number % 2:
+elif (test_number % 2) == 0:
     print('number is even')
 
-elif test_number % 2 and test_number > 50:
+elif (test_number % 2) == 0 and test_number > 50:
     print('number is even and smaller than 50')
 
 elif test_number == 0:
@@ -119,7 +119,7 @@ if test_number > 0:
 elif test_number < 50:
     print('number is smaller than 50')
 
-elif test_number % 2:
+elif (test_number % 2) == 0:
     print('number is even')
 
 elif test_number % 2 and test_number > 50:
@@ -149,13 +149,13 @@ if test_number > 0:
 elif test_number < 50:
     print('number is smaller than 50')
 
-elif test_number % 2:
+elif (test_number % 2) == 0:
     print('number is even')
 
-elif test_number % 2 and test_number > 50:
+elif (test_number % 2) == 0 and test_number > 50:
     print('number is even and smaller than 50')
 
-elif test_number % 3 and test_number < 50:
+elif (test_number % 3) == 0 and test_number < 50:
     print('number is divisible by 3 and larger than 50')
 
 elif test_number == 0:
