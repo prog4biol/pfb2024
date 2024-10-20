@@ -73,13 +73,11 @@ for sequence_name in sequence_records:
     while sequence_stack:
         
         # create a sequence target for cutting on the forward strand:
-        cut_target_fwd = sequence_stack.pop()
-        # create a sequence target for cutting on the reverse strand:
-        cut_target_rev = cut_target_fwd
+        cut_target_sequence = sequence_stack.pop()
 
         # perform the binding and cuts on both forward and reverse strands:
-        cut_insert_fwd = restriction_site_fwd.sub(r'\1^\2',cut_target_fwd, count=1)
-        cut_insert_rev = restriction_site_rev.sub(r'\1^\2',cut_target_rev, count=1)
+        cut_insert_fwd = restriction_site_fwd.sub(r'\1^\2',cut_target_sequence, count=1)
+        cut_insert_rev = restriction_site_rev.sub(r'\1^\2',cut_target_sequence, count=1)
 
         # split at cut site:
         cut_frags_fwd = cut_insert_fwd.split('^')
