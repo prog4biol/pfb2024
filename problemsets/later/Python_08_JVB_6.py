@@ -108,9 +108,19 @@ for sequence_name in sequence_records:
                     
                     orf_aa.append(codon_aa)
                     if codon_aa == '*':
+                        # find the first Met amino acid, as ORFs don't
+                        # necessarily always start with Met, but all 
+                        # protein sequences do:
+                        if 'M' in orf_aa:
+                            met_position = orf_aa.index('M')
+                            orf_aa = orf_aa[met_position:]
+                        else:
+                            met_position = -1
+                            
                         # we've encountered a stop codon, this is the
                         # end of the ORF. But, is it the longest though?
-                        if orf_aa[0] == 'M' and len(orf_aa) > longest_orf_length:
+                        if met_position != -1 and \
+                           len(orf_aa) > longest_orf_length:
                             # The current ORF starts with a methionine
                             # and is longer than our previous longest
                             # ORF, so make this ORF our new longest:

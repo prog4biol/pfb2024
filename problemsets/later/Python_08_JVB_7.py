@@ -96,25 +96,38 @@ for sequence_name in sequence_records:
             strand = '+' if frame < 3 else '-'
             print(f"{sequence_name}-frame-{frame+1}-codons strand=[{strand}]", file=output_nt_file)
             print(f"{sequence_name}-frame-{frame+1}-codons strand=[{strand}]", file=output_aa_file)
+
             sep=''
             orf_nt = []
             orf_aa = []
             for i in range(0, len(sequence_string), 3):
                 codon_nt = sequence_string[offset+i:offset+i+3]
-            
+                
                 # The sequence lengths may not be all be in multiples
                 # of three, so omit last bit if sequence < 3 nt long:
                 if len(codon_nt) == 3:
                     codon_aa = _TRANSLATION_TABLE[codon_nt]
+
                     print(f"{sep:s}{codon_nt:s}", end='', file=output_nt_file)
                     print(codon_aa, end='', file=output_aa_file)
                     
                     orf_nt.append(codon_nt)
                     orf_aa.append(codon_aa)
                     if codon_aa == '*':
+                        # find the first Met amino acid, as ORFs don't
+                        # necessarily always start with Met, but all 
+                        # protein sequences do:
+                        if 'M' in orf_aa:
+                            met_position = orf_aa.index('M')
+                            orf_nt = orf_nt[met_position:]
+                            orf_aa = orf_aa[met_position:]
+                        else:
+                            met_position = -1
+                            
                         # we've encountered a stop codon, this is the
                         # end of the ORF. But, is it the longest though?
-                        if orf_aa[0] == 'M' and len(orf_aa) > longest_orf_length:
+                        if met_position != -1 and \
+                           len(orf_aa) > longest_orf_length:
                             # The current ORF starts with a methionine
                             # and is longer than our previous longest
                             # ORF, so make this ORF our new longest:
