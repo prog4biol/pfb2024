@@ -53,11 +53,6 @@ for line in input_file:
 
         
 for sequence_name in sequence_records:
-    sequence_strings = [
-        sequence_records[sequence_name],
-        None
-    ]
-
     # The trick to this question is that the restriction enzyme binding
     # sequence is reverse-complement symmetric, but the cut-site is not:
     #    
