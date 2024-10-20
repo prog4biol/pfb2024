@@ -1,9 +1,14 @@
 #!/usr/bin/env python3
-# 6. The enzyme ApoI has a restriction site: R^AATTY where R and Y are
-#    degenerate nucleotides. See the IUPAC table to identify the nucleotide
-#    possibilities for the R and Y. Write a regular expression to find
-#    and print all occurrences of the site in the following sequence
-#    Python_07_ApoI.fasta.
+# 7. Determine the site(s) of the physical cut(s) by ApoI in the above sequence. Print out the sequence with "^" at the cut site.
+# Hints:
+# Use sub()
+# 
+# Use subpatterns (parentheses and group() ) to find the cut site within the pattern.
+# Example: if the pattern is GACGT^CT the following sequence
+#    AAAAAAAAGACGTCTTTTTTTAAAAAAAAGACGTCTTTTTTT
+# we want to display the cut site like this:
+#
+#    AAAAAAAAGACGT^CTTTTTTTAAAAAAAAGACGT^CTTTTTTT
 
 import re
 import sys
@@ -46,22 +51,16 @@ for line in input_file:
     else:
         sequence_records[sequence_name] += line
 
-for sequence_name in sequence_records:
-    sequence_strings = (
-        sequence_records[sequence_name],
-        sequence_records[sequence_name][::-1].translate(_NUCLEOTIDE_COMPLEMENT)
-    )
-
-    sequence_count = 0
-    for sequence_string in sequence_strings:
-        strand = '-' if sequence_count else '+'
         
-        print(f">{sequence_name} strand=[{strand}]")
-        for match in restriction_site.finditer(sequence_string):
-            print(match.group(1) + '^' + match.group(2))
-        sequence_count += 1
-            
+for sequence_name in sequence_records:
+    sequence_string = sequence_records[sequence_name]
+    
+    sequence_string = restriction_site.sub(r'\1^\2', sequence_string)
+    sequence_strings[1] = sequence_string[::-1].translate(_NUCLEOTIDE_COMPLEMENT)
+        
+    # here sequence_strings[0] contains no carats and sequence_strings[1] contains
+    # our sequence with carats:
+    print(f">{sequence_name}")
+    print(sequence_strings[1])
 
     
-    
-
