@@ -4,17 +4,14 @@ A program to report the frequency of DNA nucleotides
 This version introduces a count() function and unit test
 """
 
-import sys
-import os
+import argparse
 
 # --------------------------------------------------
 def main():
-    args = sys.argv[1:]
-
-    if len(args) != 1:
-        sys.exit("usage: {} DNA".format(os.path.basename(sys.argv[0])))
-
-    count_a, count_c, count_g, count_t = count(args[0])
+    parser = argparse.ArgumentParser(description='Count DNA bases')
+    parser.add_argument('dna')
+    args = parser.parse_args()
+    count_a, count_c, count_g, count_t = count(args.dna)
 
     print(count_a, count_c, count_g, count_t)
 

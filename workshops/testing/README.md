@@ -16,8 +16,7 @@ We will write a Python program called _dna.py_.
 When given no arguments, it should print a "usage" statement:
 
 ```
-$ ./dna.py
-usage: dna.py DNA
+$ ./dna1.py
 ```
 
 When given string (that we hope is DNA), it should print the number of As, Cs, Ts, and Gs separated by spaces:
@@ -120,10 +119,12 @@ Specifically, the program should halt and print a helpful statement on proper _u
 
 ```
 $ ./dna.py
-usage: dna.py DNA
+usage: dna.py [-h] dna
+dna.py: error: the following arguments are required: dna
 
 $ ./dna.py ACG GGC
-usage: dna.py DNA
+usage: dna.py [-h] dna
+dna.py: error: unrecognized arguments: GGC
 ```
 
 Additionally, the [POSIX](https://pubs.opengroup.org/onlinepubs/9699919799/) specifies that a program's exit value of zero _conventionally indicates successful termination_.
@@ -145,7 +146,7 @@ $ ./dna.py ACG GGC
 usage: dna.py DNA
 
 $ echo $?
-1
+2
 ```
 
 The test for this behavior is as follows:
@@ -242,18 +243,14 @@ While it passes the integration tests, it does not contain any functions that re
 A program to report the frequency of DNA nucleotides # 2
 """
 
-import sys # 3
-import os
+import argparse # 3
 
-args = sys.argv[1:] # 4
+parser = argparse.ArgumentParser(description='Count DNA bases') # 4
+parser.add_argument('dna')                                      # 5
+args = parser.parse_args()                                      # 6
+count_a, count_c, count_g, count_t = 0, 0, 0, 0                 # 7
 
-if len(args) != 1:  # 5
-    sys.exit("usage: {} DNA".format(os.path.basename(sys.argv[0]))) # 6
-
-dna = args[0] # 7
-count_a, count_c, count_g, count_t = 0, 0, 0, 0 # 8
-
-for base in dna: # 9
+for base in args.dna: # 8
     if base == 'A':
         count_a += 1
     elif base == 'C':
@@ -263,19 +260,18 @@ for base in dna: # 9
     elif base == 'T':
         count_t += 1
 
-print(count_a, count_c, count_g, count_t) # 10
+print(count_a, count_c, count_g, count_t) # 9
 ```
 
 1. The _shebang_ line tells the shell to execute Python.
 2. A _docstring_ to explain what the code does.
-3. The `sys` and `os` modules allow us to interact with the filesystem and OS.
-4. Copy a _slice_ of the argument vector starting _after_ the name of the program. _Slices never fail!_
-5. Check that we have exactly one argument.
-6. Use [sys.exit](https://docs.python.org/3/library/sys.html#sys.exit) to print the give error message to `STDERR` and exit with a nonzero value.
-7. Copy the DNA string into a variable.
-8. Initialize counters for the number of As, Cs, Gs, and Ts.
-9. Iterate through each base in input and increment the correct counter.
-10. Print the results, separated by spaces.
+3. Import the [argparse](https://docs.python.org/3/library/argparse.html) module to validate and parse the command-line arguments.
+4. Create an [ArgumentParser](https://docs.python.org/3/library/argparse.html#argparse.ArgumentParser) object that will handle the arguments.
+5. Tell the parser to add a _positional_ argument for the DNA argument.
+6. Tell the parser to parse the arguments. The program will fail here and print error messages if the arguments are invalid.
+7. Initialize counters for the number of As, Cs, Gs, and Ts.
+8. Iterate through each base in the input `args.dna` and increment the correct counter.
+9. Print the results, separated by spaces.
 
 To test this program, copy the file to _dna.py_:
 
@@ -346,20 +342,16 @@ A program to report the frequency of DNA nucleotides
 This version introduces the main() function
 """
 
-import sys
-import os
+import argparse
 
 # --------------------------------------------------
 def main(): # 1
-    args = sys.argv[1:]
-
-    if len(args) != 1:
-        sys.exit("usage: {} DNA".format(os.path.basename(sys.argv[0])))
-
-    dna = args[0]
+    parser = argparse.ArgumentParser(description='Count DNA bases')
+    parser.add_argument('dna')
+    args = parser.parse_args()
     count_a, count_c, count_g, count_t = 0, 0, 0, 0
 
-    for base in dna:
+    for base in args.dna:
         if base == 'A':
             count_a += 1
         elif base == 'C':
@@ -385,7 +377,8 @@ Open the REPL and execute the following:
 
 ```
 >>> import dna1
-usage:  DNA
+usage: [-h] dna
+: error: the following arguments are required: dna
 ```
 
 Why did it print the usage?
@@ -395,7 +388,8 @@ Now run **`import dna2`** and notice there is no execution of the code unless we
 ```
 >>> import dna2
 >>> dna2.main()
-usage:  DNA
+usage: [-h] dna
+: error: the following arguments are required: dna
 ```
 
 When you _import_ a module, the _namespace_ (which is stored in the "__name__" variable) is that module's name, e.g., "dna1" or "dna2."
@@ -484,17 +478,15 @@ The `main` function changes as follows:
 
 ```
 def main():
-    args = sys.argv[1:]
-
-    if len(args) != 1:
-        sys.exit("usage: {} DNA".format(os.path.basename(sys.argv[0])))
-
-    count_a, count_c, count_g, count_t = count(args[0]) # 1
+    parser = argparse.ArgumentParser(description='Count DNA bases')
+    parser.add_argument('dna')
+    args = parser.parse_args()
+    count_a, count_c, count_g, count_t = count(args.dna) # 1
 
     print(count_a, count_c, count_g, count_t)
 ```
 
-1. Call the `count` function with the first argument.
+1. Call the `count` function with the `dna` argument.
 
 Again, I can copy the _dna3.py_ program to _dna.py_ and run `pytest` to verify this progr still passes the integration tests.
 
@@ -506,33 +498,6 @@ def count(dna):
     """ Count bases in DNA """
 
     return (dna.count('A'), dna.count('C'), dna.count('G'), dna.count('T'))
-```
-
-This is the only difference, which I can verify using the `diff` program:
-
-```
-$ diff dna3.py dna4.py
-4c4
-< This version introduces a count() function and unit test
----
-> The count() function in this version uses str.count()
-26,35c26
-<     count_a, count_c, count_g, count_t = 0, 0, 0, 0
-<     for base in dna:
-<         if base == 'A':
-<             count_a += 1
-<         elif base == 'C':
-<             count_c += 1
-<         elif base == 'G':
-<             count_g += 1
-<         elif base == 'T':
-<             count_t += 1
----
->     return (dna.count('A'), dna.count('C'), dna.count('G'), dna.count('T'))
-37d27
-<     return (count_a, count_c, count_g, count_t)
-39d28
-<
 ```
 
 I can run **`pytest dna4.py`** to verify my unit test still passes and copy the file to _dna.py_ and run the integration tests.
