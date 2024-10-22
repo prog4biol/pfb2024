@@ -2560,6 +2560,43 @@ These functions work on several other data types too!
 | `dict.values()`                        | Returns list of dictionary dict's values |
 
 
+
+### Sorting a Dictionary by values in a for loop
+
+To sort a dictionary by the values in a `for` loop use the `dict.get()` method without any arguments nested within the `sorted` function.  
+Remember that the `sorted()` function returns a sorted list of the given iterable object.  
+And that the optional key argument takes a function to provide items for the sort.
+
+Let's sort by the alphabetical order of the sequences of genes in a dictionary:
+Code:  
+```python
+genes={'Brca1': 'TTTAA', 'TP53': 'AAATT'}
+for gene in sorted(genes, key=genes.get):
+  print(gene, genes[gene])
+```
+Output:  
+```bash
+TP53 AAATT
+Brca1 TTTAA
+kmer:CCGC count:5
+```
+
+We can reverse the sort by using `reverse=True`:  
+Code:  
+```python
+genes={'Brca1': 'TTTAA', 'TP53': 'AAATT'}
+for gene in sorted(genes, key=genes.get, reverse=True):
+  print(gene, genes[gene])
+``` 
+
+Output:  
+```bash
+Brca1 TTTAA
+TP53 AAATT
+```
+
+Sort by the length we will see later in the Fuctions lecture
+
 ---
 ## [Link to Python 5 Problem Set](problemsets/Python_05_problemset.md)
 
