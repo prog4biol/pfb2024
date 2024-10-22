@@ -2578,7 +2578,6 @@ Output:
 ```bash
 TP53 AAATT
 Brca1 TTTAA
-kmer:CCGC count:5
 ```
 
 We can reverse the sort by using `reverse=True`:  
@@ -4530,6 +4529,22 @@ This prints:
 > The expression that acts on the variable is `kmers_tuple[1]`.  
 > This expression returns the value at index 1 of the tuple to the sort. This value is the count.  
  
+Instead of saving to a new dictionary, each sorted key,value pair can be used in a loop.  
+Code:  
+```python
+genes={'Brca1': 'TTTAA', 'TP53': 'AA'}
+for gene in sorted(genes, key=(lambda sequence : len(sequence))):
+  print(f"{gene} {genes[gene]} len={len(genes[gene])}")
+```
+Output:  
+```text
+TP53 AA len=2
+Brca1 TTTAA len=5
+```
+
+> Remember you can reverse the sort by adding reverse=True
+> `for gene in sorted(genes, key=(lambda sequence : len(sequence)), reverse=True):`
+
 
 List comprehensions can often be used instead of lambdas and may be easier to read. You can read more about `lambda`, particularly in relation to `map` which will perform an operation on a list, but generally  a `for` loop is easier to read.
 
