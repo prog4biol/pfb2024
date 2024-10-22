@@ -4479,7 +4479,7 @@ We will sort a dictionary of kmers and their counts from largest count to smalle
 
 ```python
 kmers_dict = {'ATGC': 3, 'TTAG': 5, 'CCGC': 1}
-kmers_dict = dict(sorted(kmers_dict.items() ,key=lambda kmer_tuple: kmer_tuple[1], reverse=True))
+kmers_dict = dict(sorted(kmers_dict.items() ,key=lambda kmers_tuple: kmers_tuple[1], reverse=True))
 print(kmers_dict)
 ```
 
@@ -4487,11 +4487,11 @@ This prints:
 ```text
 {'TTAG': 5, 'ATGC': 3, 'CCGC': 1}
 ```
-> dict.items() returns a `<class 'dict_items'>` object that contains a two item tuple: (key,value)
-> `kmers_dict.items()` returns: `dict_items([('ATGC', 3), ('TTAG', 5), ('CCGC', 1)])`
-> Each piece of the <dict_items> object, a single (key,value) tuple, gets passed into the `lambda` and that one tuple is stored in `kmer_counts`
-> The expression that acts on the variable is `kmer_counts[1]`.
-> This expression returns the value at index 1 of the tuple to the sort. This value is the count.
+> dict.items() returns a `<class 'dict_items'>` object that contains a two item tuple: (key,value)  
+> `kmers_dict.items()` returns: `dict_items([('ATGC', 3), ('TTAG', 5), ('CCGC', 1)])`  
+> Each piece of the <dict_items> object, a single (key,value) tuple, gets passed into the `lambda` and that one tuple is stored in `kmers_tuple`  
+> The expression that acts on the variable is `kmers_tuple[1]`.  
+> This expression returns the value at index 1 of the tuple to the sort. This value is the count.  
  
 
 List comprehensions can often be used instead of lambdas and may be easier to read. You can read more about `lambda`, particularly in relation to `map` which will perform an operation on a list, but generally  a `for` loop is easier to read.
