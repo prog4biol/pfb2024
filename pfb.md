@@ -22,7 +22,7 @@ Python has
 
 **Objects** group various data and functions (methods) that act on that data into a convenient and coherent programming paradigm.
 
-**Classes** are a way to encapsulate (organize) variables and functions. Objects get their variables and methods from the class they belong to. 
+**** are a way to encapsulate (organize) variables and functions. Objects get their variables and methods from the class they belong to. 
 
 **Methods** are just functions that belong to a class. Objects that belong to the a class can use methods from that class.
 
@@ -2560,6 +2560,42 @@ These functions work on several other data types too!
 | `dict.values()`                        | Returns list of dictionary dict's values |
 
 
+
+### Sorting a Dictionary by values in a for loop
+
+To sort a dictionary by the values in a `for` loop use the `dict.get()` method without any arguments nested within the `sorted` function.  
+Remember that the `sorted()` function returns a sorted list of the given iterable object.  
+And that the optional key argument takes a function to provide items for the sort.
+
+Let's sort by the alphabetical order of the sequences of genes in a dictionary:
+Code:  
+```python
+genes={'Brca1': 'TTTAA', 'TP53': 'AAATT'}
+for gene in sorted(genes, key=genes.get):
+  print(gene, genes[gene])
+```
+Output:  
+```bash
+TP53 AAATT
+Brca1 TTTAA
+```
+
+We can reverse the sort by using `reverse=True`:  
+Code:  
+```python
+genes={'Brca1': 'TTTAA', 'TP53': 'AAATT'}
+for gene in sorted(genes, key=genes.get, reverse=True):
+  print(gene, genes[gene])
+``` 
+
+Output:  
+```bash
+Brca1 TTTAA
+TP53 AAATT
+```
+
+Sort by the length we will see later in the Fuctions lecture
+
 ---
 ## [Link to Python 5 Problem Set](problemsets/Python_05_problemset.md)
 
@@ -3177,6 +3213,7 @@ g[gatc][gatc]t
 > only matche 3 digits followed by a dash followed by 4 digits, not extra characters anywhere are allowed
 <br> 
 
+[Find out about 867-5309](https://en.wikipedia.org/wiki/867-5309/Jenny) and [even more &#127925;](https://www.youtube.com/watch?v=6WTdTwcmxyo)
 
 
 ### Quantifiers
@@ -4471,6 +4508,44 @@ print(get_first_codon('ATGTTT'))
 ```
 > This also prints `ATG`. lambdas can only contain one line and there is no `return` statement.
 
+A common use for a lambda is for creating a new dictionary sorted by the values. 
+
+Let's sort a dictionary by the values instead of the keys.  
+We will sort a dictionary of kmers and their counts from largest count to smallest:  
+
+```python
+kmers_dict = {'ATGC': 3, 'TTAG': 5, 'CCGC': 1}
+kmers_dict = dict(sorted(kmers_dict.items() ,key=lambda kmers_tuple: kmers_tuple[1], reverse=True))
+print(kmers_dict)
+```
+
+This prints:  
+```text
+{'TTAG': 5, 'ATGC': 3, 'CCGC': 1}
+```
+> dict.items() returns a `<class 'dict_items'>` object that contains a two item tuple: (key,value)  
+> `kmers_dict.items()` returns: `dict_items([('ATGC', 3), ('TTAG', 5), ('CCGC', 1)])`  
+> Each piece of the <dict_items> object, a single (key,value) tuple, gets passed into the `lambda` and that one tuple is stored in `kmers_tuple`  
+> The expression that acts on the variable is `kmers_tuple[1]`.  
+> This expression returns the value at index 1 of the tuple to the sort. This value is the count.  
+ 
+Instead of saving to a new dictionary, each sorted key,value pair can be used in a loop.  
+Code:  
+```python
+genes={'Brca1': 'TTTAA', 'TP53': 'AA'}
+for gene in sorted(genes, key=(lambda sequence : len(sequence))):
+  print(f"{gene} {genes[gene]} len={len(genes[gene])}")
+```
+Output:  
+```text
+TP53 AA len=2
+Brca1 TTTAA len=5
+```
+
+> Remember you can reverse the sort by adding reverse=True
+> `for gene in sorted(genes, key=(lambda sequence : len(sequence)), reverse=True):`
+
+
 List comprehensions can often be used instead of lambdas and may be easier to read. You can read more about `lambda`, particularly in relation to `map` which will perform an operation on a list, but generally  a `for` loop is easier to read.
 
 ## Scope
@@ -5203,7 +5278,7 @@ class DNARecord(object):
     #sequence = 'ACGTAGCTGACGATC'
     #gene_name = 'ABC1'
     #species_name = 'Drosophila melanogaster'
-    self.sequence = sequence
+    self.sequence = sequence.upper()
     self.gene_name = gene_name
     self.species_name = species_name
 
