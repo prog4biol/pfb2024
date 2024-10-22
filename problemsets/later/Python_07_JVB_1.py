@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# 1. In the file Python_07_nobody.txt find every occurrence of
+#    'Nobody' and print out the position.
 
 import re
 import sys

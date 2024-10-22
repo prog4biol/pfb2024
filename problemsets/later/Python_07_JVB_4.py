@@ -1,4 +1,9 @@
 #!/usr/bin/env python3
+# 4. If a line matches the format of a FASTA header, extract the
+#    sequence name and description using sub patterns (groups).
+# 
+#    Print sequence information in this format:
+#        id:seqName desc:seqDescription
 
 import re
 import sys

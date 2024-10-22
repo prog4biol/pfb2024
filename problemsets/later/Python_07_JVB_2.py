@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+# 2. In the file Python_07_nobody.txt substitute every occurrence
+#    of 'Nobody' with your favorite name and write an output file
+#    with that person's name (ex. Michael.txt).
 
 import re
 import sys
