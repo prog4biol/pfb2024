@@ -274,11 +274,18 @@ Sofia Robb
          * [<strong>__init__</strong>](pfb.md/#__init__)
    * [<a href="problemsets/Python_11_problemset.md">Link to Python 11 Problem Set</a>](problemsets/Python_11_problemset.md)
    * [BioPython  -- Sofia Robb](lectures/biopython.md)
+ * Overviews
+   * [Mamba Overview -- Jessen Bredeson](https://github.com/prog4biol/pfb2024/blob/master/reviewsessions/mamba.md)
+   * [Pipe line Overview -- Simon Prochnick](https://github.com/prog4biol/pfb2024/blob/master/lectures/bioinfPipesLectureSimon.md)
+   * [Pandas overview -- Riley Kellermeyer](https://github.com/prog4biol/pfb2024/blob/master/lectures/Pandas.md)
+   * [Testing Overview -- Ken Clark]()
 * [Workshops](workshops.md/#workshops)
+   * [RNAseq -- Brian Haas](workshops.md/#rnaseq----brian-haas)
+   * [Genome Assembly -- Deb Triant](workshops.md/#genome-assembly----deb-triant) 
    * [NGS -- Anoja Perera](workshops.md/#ngs----anoja-perera)
    * [Bioinformatics and Useful Tools -- Simon Prochnik](workshops.md/#bioinformatics-and-useful-tools----simon-prochnik)
-   * [Genome Assembly -- Deb Triant](workshops.md/#genome-assembly----deb-triant)
-   * [RNAseq -- Brian Haas](workshops.md/#rnaseq----brian-haas)
+
+  
    * [Protein Function Annotation -- Paul Thomas](workshops.md/#protein-function-annotation----paul-thomas)
    * [GMOD -- Scott Cain](workshops.md/#gmod----scott-cain)
    * [Image Processing -- Jay Unruh](workshops.md/#image-processing----jay-unruh)
