@@ -35,12 +35,12 @@ The purpose of group projects is to reinforce the coding skills you have learned
 - All project groups should create a new github repository.
 
 ## Time line
-- Proposals due: Friday the 27th at 2pm. (smr -at- stowers.org prochnik -at- gmail.com  )
-- Project sign up: Friday 5PM 
-- Halloween Party: Friday 9-12
-- Halloween After Party: Friday 12...... 
-- Project sign up: Saturday 8:30AM - 9AM   
+- Proposals due: Thursday 24th at 10pm. (smr -at- stowers.org prochnik -at- gmail.com  )
+- Student Collaboration Night/TA Night Off: Friday 7-10pm
+- Project Sign up: Saturday 8:30AM - 9AM   
 - First group meeting: Saturday 9AM
+- Halloween Party: Saturday 26th 9PM-12AM
+- Halloween After Party: Saturday 12...... 
 - Final Presentaions: Monday 3-5pm
 - Banquet: Monday 5:45pm
 - Dance party Monday: 9pm
