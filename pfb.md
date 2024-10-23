@@ -1001,7 +1001,7 @@ ATGGGTCTAC
 
 Now, lets print a variable and a literal string.
 ```python
->>>dna = 'ATG'
+>>> dna = 'ATG'
 ATG
 >>> print(dna,'GGTCTAC')
 ATG GGTCTAC
@@ -1010,7 +1010,7 @@ ATG GGTCTAC
 
 How would we print the two without a space?
 ```python
->>>dna = 'ATG'
+>>> dna = 'ATG'
 ATG
 >>> print(dna + 'GGTCTAC')
 ATGGGTCTAC
@@ -1018,11 +1018,11 @@ ATGGGTCTAC
 
 Something to think about: Values of variables are variable. Or in other words, they are mutable or changeable.  
 ```python
->>>dna = 'ATG'
+>>> dna = 'ATG'
 ATG
 >>> print(dna)
 ATG
->>>dna = 'TTT'
+>>> dna = 'TTT'
 TTT
 >>> print(dna)
 TTT
@@ -2884,6 +2884,7 @@ Here's another way to read data in from a file. A `for` loop can be used to iter
 seq_file_obj = open("seq.nt.txt","r")
 for line in seq_file_obj: # Python magic: reads in a line from file
   print(line)
+seq_file_obj.close()
 ```
 
 Output:
@@ -2905,6 +2906,7 @@ seq_file_obj = open("seq.nt.txt","r")
 for line in seq_file_obj:
   line = line.rstrip()
   print(line)
+seq_file_obj.close()
 ```
 > `rstrip()` without any parameters returns a string with whitespace removed from the end.
 
@@ -3073,7 +3075,7 @@ Found an EcoRI site!
 Let's find out what is returned by the `search()` function. 
 ```python
 >>> dna = 'ACAAAATACGTTTTGTAAATGTTGTGCTGTTAACACTGCAAATAAACTTGGTAGCAAACACTTCCAAAAGGAATTCACCGGTTTCCAAAGACAGTCTTCTAATTCCTCATTAGTAATAAGTAAAATGTTTATTGTTGTAGCTCTGGACCGGTTTCCAAAGACAGTCTTCTAATTCCTCATTAGTAATAAGTAAAATGTTTATTGTTGTAGCTCTGG'
->>> found=re.search(r"GAATTC",dna)
+>>> found = re.search(r"GAATTC",dna)
 >>> print(found)
 <_sre.SRE_Match object; span=(70, 76), match='GAATTC'>
 ```
@@ -3113,7 +3115,7 @@ What about other potential matches in our DNA string? We can use `findall()` fun
 
 ```python
 >>> dna = 'ACAAAATACGTTTTGTAAATGTTGTGCTGTTAACACTGCAAATAAACTTGGTAGCAAACACTTCCAAAAGGAATTCACCGGTTTCCAAAGACAGTCTTCTAATTCCTCATTAGTAATAAGTAAAATGTTTATTGTTGTAGCTCTGGACCGGTTTCCAAAGACAGTCTTCTAATTCCTCATTAGTAATAAGTAAAATGTTTATTGTTGTAGCTCTGG'
->>> found=re.findall(r"[GA]C.?G",dna)
+>>> found = re.findall(r"[GA]C.?G",dna)
 >>> print(found)
 ['ACG', 'GCTG', 'ACTG', 'ACCG', 'ACAG', 'ACCG', 'ACAG']
 ```
@@ -3122,7 +3124,7 @@ What about other potential matches in our DNA string? We can use `findall()` fun
 A quick count of all the matching sites can be done by counting the length of the returned list.
 
 ```python
->>> len (re.findall(r"[GA]C.?G",dna))
+>>> len(re.findall(r"[GA]C.?G", dna))
 7
 ```
 
@@ -3156,7 +3158,7 @@ The pattern in made up of atoms.  Each atom represents **ONE** character.
 | Atom                               | Description                              |
 | ---------------------------------- | ---------------------------------------- |
 | a-z, A-Z, 0-9 and some punctuation | These are ordinary characters that match themselves |
-| "."                                | The dot, or period. This matches any single character except for the newline. |
+| `.`                                | The dot, or period. This matches any single character except for the newline. |
 
 
 ### Character Classes
@@ -3165,7 +3167,7 @@ A group of characters that are allowed to be matched one time. There are a few p
 
 | Atom  | Description                              |
 | ----- | ---------------------------------------- |
-| `[ ]` | A bracketed list of characters, like `[GA]`. This indicates a single character can match any character in the bracketed list. |
+| `[]`  | A bracketed list of characters, like `[GA]`. This indicates a single character can match any character in the bracketed list. |
 | `\d`  | Digits. Also can be written `[0-9]`      |
 | `\D`  | Not digits. Also can be written`[^0-9]`  |
 | `\w`  | Word character. Also can be written `[A-Za-z0-9_]` Note underscore is part of this class |
@@ -3185,7 +3187,6 @@ A pattern can be anchored to a region in the string:
 | `\b` | Matches a word boundary between `\w` and `\W` |
 
 Examples:
-
 ```
 g..t
 ```
@@ -3325,10 +3326,10 @@ __Let' Try It__
 Example FASTA sequence record.
 
 ```
-  >ID Optional Descrption
-  SEQUENCE
-  SEQUENCE
-  SEQUENCE 
+>ID Optional Descrption
+SEQUENCE
+SEQUENCE
+SEQUENCE 
 ```
 
 ### Using Subpatterns Inside the Regular Expression Match
@@ -3384,7 +3385,7 @@ The subpatterns are retrieved by a number. This will be the same number that cou
 Example:
 ```python
 >>> dna = 'ACAAAATACGTTTTGTAAATGTTGTGCTGTTAACACTGCAAATAAACTTGGTAGCAAACACTTCCAAAAGGAATTCACCGGTTTCCAAAGACAGTCTTCTAATTCCTCATTAGTAATAAGTAAAATGTTTATTGTTGTAGCTCTGGATATTATCCGGTTTCCAAAGACAGTCTTCTAATTCCTCATTAGTAATAAGTAAAATGTTTATTGTTGTAGCTCTGG'
->>> found=re.search( r"(.{50})TATTAT(.{25})"  , dna )
+>>> found = re.search(r"(.{50})TATTAT(.{25})", dna)
 >>> upstream = found.group(1)
 >>> print(upstream)
 TCTAATTCCTCATTAGTAATAAGTAAAATGTTTATTGTTGTAGCTCTGGA
@@ -3399,8 +3400,8 @@ CCGGTTTCCAAAGACAGTCTTCTAA
 
 If you want to find the upstream and downstream sequence of ALL 'TATTAT' sites, use the `findall()` function.
 ```python
->>> dna="ACAAAATACGTTTTGTAAATGTTGTGCTGTTAACACTGCAAATAAACTTGGTAGCAAACACTTCCAAAAGGAATTCACCGGTTTCCAAAGACAGTCTTCTAATTCCTCATTAGTAATAAGTAAAATGTTTATTGTTGTAGCTCTGGATATTATCCGGTTTCCAAAGACAGTCTTCTAATTCCTCATTAGTAATAAGTAAAATGTTTATTGTTGTAGCTCTGGACAAAATACGTTTTGTAAATGTTGTGCTGTTAACACTGCAAATAAACTTGGTAGCAAACACTTCCAAAAGGAATTCACCGGTTTCCAAAGACAGTCTTCTAATTCCTCATTAGTAATAAGTAAAATGTTTATTGTTGTAGCTCTGGATATTATCCGGTTTCCAAAGACAGTCTTCTAATTCCTCATTAGTAATAAGTAAAATGTTTATTGTTGTAGCTCTGG"
->>> found = re.findall( r"(.{50})TATTAT(.{25})"  , dna )
+>>> dna = "ACAAAATACGTTTTGTAAATGTTGTGCTGTTAACACTGCAAATAAACTTGGTAGCAAACACTTCCAAAAGGAATTCACCGGTTTCCAAAGACAGTCTTCTAATTCCTCATTAGTAATAAGTAAAATGTTTATTGTTGTAGCTCTGGATATTATCCGGTTTCCAAAGACAGTCTTCTAATTCCTCATTAGTAATAAGTAAAATGTTTATTGTTGTAGCTCTGGACAAAATACGTTTTGTAAATGTTGTGCTGTTAACACTGCAAATAAACTTGGTAGCAAACACTTCCAAAAGGAATTCACCGGTTTCCAAAGACAGTCTTCTAATTCCTCATTAGTAATAAGTAAAATGTTTATTGTTGTAGCTCTGGATATTATCCGGTTTCCAAAGACAGTCTTCTAATTCCTCATTAGTAATAAGTAAAATGTTTATTGTTGTAGCTCTGG"
+>>> found = re.findall(r"(.{50})TATTAT(.{25})", dna)
 >>> print(found)
 [('TCTAATTCCTCATTAGTAATAAGTAAAATGTTTATTGTTGTAGCTCTGGA', 'CCGGTTTCCAAAGACAGTCTTCTAA'), ('TCTAATTCCTCATTAGTAATAAGTAAAATGTTTATTGTTGTAGCTCTGGA', 'CCGGTTTCCAAAGACAGTCTTCTAA')]
 ```
@@ -3409,8 +3410,8 @@ If you want to find the upstream and downstream sequence of ALL 'TATTAT' sites, 
 Another option for retrieving the upstream and downstream subpatterns is to put the `findall()` in a for loop
 
 ```python
->>> dna="ACAAAATACGTTTTGTAAATGTTGTGCTGTTAACACTGCAAATAAACTTGGTAGCAAACACTTCCAAAAGGAATTCACCGGTTTCCAAAGACAGTCTTCTAATTCCTCATTAGTAATAAGTAAAATGTTTATTGTTGTAGCTCTGGATATTATCCGGTTTCCAAAGACAGTCTTCTAATTCCTCATTAGTAATAAGTAAAATGTTTATTGTTGTAGCTCTGGACAAAATACGTTTTGTAAATGTTGTGCTGTTAACACTGCAAATAAACTTGGTAGCAAACACTTCCAAAAGGAATTCACCGGTTTCCAAAGACAGTCTTCTAATTCCTCATTAGTAATAAGTAAAATGTTTATTGTTGTAGCTCTGGATATTATCCGGTTTCCAAAGACAGTCTTCTAATTCCTCATTAGTAATAAGTAAAATGTTTATTGTTGTAGCTCTGG"
->>> for (upstream, downstream) in re.findall( r"(.{50})TATTAT(.{25})"  , dna ):
+>>> dna = "ACAAAATACGTTTTGTAAATGTTGTGCTGTTAACACTGCAAATAAACTTGGTAGCAAACACTTCCAAAAGGAATTCACCGGTTTCCAAAGACAGTCTTCTAATTCCTCATTAGTAATAAGTAAAATGTTTATTGTTGTAGCTCTGGATATTATCCGGTTTCCAAAGACAGTCTTCTAATTCCTCATTAGTAATAAGTAAAATGTTTATTGTTGTAGCTCTGGACAAAATACGTTTTGTAAATGTTGTGCTGTTAACACTGCAAATAAACTTGGTAGCAAACACTTCCAAAAGGAATTCACCGGTTTCCAAAGACAGTCTTCTAATTCCTCATTAGTAATAAGTAAAATGTTTATTGTTGTAGCTCTGGATATTATCCGGTTTCCAAAGACAGTCTTCTAATTCCTCATTAGTAATAAGTAAAATGTTTATTGTTGTAGCTCTGG"
+>>> for (upstream, downstream) in re.findall(r"(.{50})TATTAT(.{25})", dna):
 ...   print("upstream:" , upstream)
 ...   print("downstream:" , downstream)
 ...
@@ -3419,24 +3420,22 @@ downstream: CCGGTTTCCAAAGACAGTCTTCTAA
 upstream: TCTAATTCCTCATTAGTAATAAGTAAAATGTTTATTGTTGTAGCTCTGGA
 downstream: CCGGTTTCCAAAGACAGTCTTCTAA
 ```
-> 1. This code executes the `findall()` function once 
-> 2. The subpatterns are returned in a tuple 
-> 3. The subpatterns are stored in the variables upstream and downstream  
-> 4. The for block of code is executed  
-> 5. The `findall()` searches again  
-> 6. A match is found 
-> 7.  New subpatterns are returned and stored in the variables upstream and downstream
-> 8. The for block of code gets executed again 
-> 9.  The `findall()` searches again, but no match is found  
-> 10. The for loop ends  
 
+1. This code executes the [re.findall()](https://docs.python.org/3/library/re.html#re.findall) function once 
+2. In the first iteration of the `for` loop, the first set of matched subpatterns are returned as a tuple 
+3. The subpatterns are stored in the variables upstream and downstream  
+4. The `for` block of code is executed, and the matches are printed  
+5. In the second interation of the loop, the next set of matched subpatterns are returned as a tuple
+6. New subpatterns are returned and stored in the variables upstream and downstream
+7. The `for` block of code gets executed again 
+8. There is not a 3rd iteration because there are no more matches  
+9. The `for` loop ends  
 
-
-Another way to get this done is with an iterator, use the `finditer()` function in a for loop. This allows you to not store all the matches in memory. `finditer()` also allows you to retrieve the postion of the match.
+Another way to get this done is with an iterator, use the [re.finditer()](https://docs.python.org/3/library/re.html#re.finditer) function in a for loop. This allows you to not store all the matches in memory. `re.finditer()` also allows you to retrieve the postion of the match.
 
 ```python
->>> dna="ACAAAATACGTTTTGTAAATGTTGTGCTGTTAACACTGCAAATAAACTTGGTAGCAAACACTTCCAAAAGGAATTCACCGGTTTCCAAAGACAGTCTTCTAATTCCTCATTAGTAATAAGTAAAATGTTTATTGTTGTAGCTCTGGATATTATCCGGTTTCCAAAGACAGTCTTCTAATTCCTCATTAGTAATAAGTAAAATGTTTATTGTTGTAGCTCTGGACAAAATACGTTTTGTAAATGTTGTGCTGTTAACACTGCAAATAAACTTGGTAGCAAACACTTCCAAAAGGAATTCACCGGTTTCCAAAGACAGTCTTCTAATTCCTCATTAGTAATAAGTAAAATGTTTATTGTTGTAGCTCTGGATATTATCCGGTTTCCAAAGACAGTCTTCTAATTCCTCATTAGTAATAAGTAAAATGTTTATTGTTGTAGCTCTGG"
->>> for match in re.finditer(r"(.{50})TATTAT(.{25})"  , dna):
+>>> dna = "ACAAAATACGTTTTGTAAATGTTGTGCTGTTAACACTGCAAATAAACTTGGTAGCAAACACTTCCAAAAGGAATTCACCGGTTTCCAAAGACAGTCTTCTAATTCCTCATTAGTAATAAGTAAAATGTTTATTGTTGTAGCTCTGGATATTATCCGGTTTCCAAAGACAGTCTTCTAATTCCTCATTAGTAATAAGTAAAATGTTTATTGTTGTAGCTCTGGACAAAATACGTTTTGTAAATGTTGTGCTGTTAACACTGCAAATAAACTTGGTAGCAAACACTTCCAAAAGGAATTCACCGGTTTCCAAAGACAGTCTTCTAATTCCTCATTAGTAATAAGTAAAATGTTTATTGTTGTAGCTCTGGATATTATCCGGTTTCCAAAGACAGTCTTCTAATTCCTCATTAGTAATAAGTAAAATGTTTATTGTTGTAGCTCTGG"
+>>> for match in re.finditer(r"(.{50})TATTAT(.{25})", dna):
 ...   print("upstream:" , match.group(1))
 ...   print("downstream:" , match.group(2))
 ...
@@ -3464,9 +3463,9 @@ The match object contains information about the match that can be retrieved with
 
 import re
 
-dna="ACAAAATACGTTTTGTAAATGTTGTGCTGTTAACACTGCAAATAAACTTGGTAGCAAACACTTCCAAAAGGAATTCACCGGTTTCCAAAGACAGTCTTCTAATTCCTCATTAGTAATAAGTAAAATGTTTATTGTTGTAGCTCTGGATATTATCCGGTTTCCAAAGACAGTCTTCTAATTCCTCATTAGTAATAAGTAAAATGTTTATTGTTGTAGCTCTGGACAAAATACGTTTTGTAAATGTTGTGCTGTTAACACTGCAAATAAACTTGGTAGCAAACACTTCCAAAAGGAATTCACCGGTTTCCAAAGACAGTCTTCTAATTCCTCATTAGTAATAAGTAAAATGTTTATTGTTGTAGCTCTGGATATTATCCGGTTTCCAAAGACAGTCTTCTAATTCCTCATTAGTAATAAGTAAAATGTTTATTGTTGTAGCTCTGG"
+dna = "ACAAAATACGTTTTGTAAATGTTGTGCTGTTAACACTGCAAATAAACTTGGTAGCAAACACTTCCAAAAGGAATTCACCGGTTTCCAAAGACAGTCTTCTAATTCCTCATTAGTAATAAGTAAAATGTTTATTGTTGTAGCTCTGGATATTATCCGGTTTCCAAAGACAGTCTTCTAATTCCTCATTAGTAATAAGTAAAATGTTTATTGTTGTAGCTCTGGACAAAATACGTTTTGTAAATGTTGTGCTGTTAACACTGCAAATAAACTTGGTAGCAAACACTTCCAAAAGGAATTCACCGGTTTCCAAAGACAGTCTTCTAATTCCTCATTAGTAATAAGTAAAATGTTTATTGTTGTAGCTCTGGATATTATCCGGTTTCCAAAGACAGTCTTCTAATTCCTCATTAGTAATAAGTAAAATGTTTATTGTTGTAGCTCTGG"
 
-for found in re.finditer(r"(.{50})TATTAT(.{25})"  , dna):
+for found in re.finditer(r"(.{50})TATTAT(.{25})", dna):
   whole    = found.group(0)
   up       = found.group(1)
   down     = found.group(2)
@@ -3518,14 +3517,14 @@ Extracting codons from a string of DNA can be accomplished by using a subpattern
 
 ```python
 >>> dna = 'GTTGCCTGAAATGGCGGAACCTTGAA'
->>> codons = re.findall(r"(.{3})",dna)
+>>> codons = re.findall(r"(.{3})", dna)
 >>> print(codons)
 ['GTT', 'GCC', 'TGA', 'AAT', 'GGC', 'GGA', 'ACC', 'TTG']
 ```
 
 Or you can use a for loop to do something to each match.
 ```python
->>> for codon in re.findall(r"(.{3})",dna):
+>>> for codon in re.findall(r"(.{3})", dna):
 ...   print(codon)
 ...
 GTT
@@ -3541,14 +3540,30 @@ TTG
 > `finditer()` would also work in this for loop.  
 >  Each codon can be accessed by using the `group()` method.
 
-  
+You could use this to find all the frame-shifted codons:
+
+```
+>>> for start in range(3):
+...   print(re.findall(r"(.{,3})", dna[start:]))
+...
+['GTT', 'GCC', 'TGA', 'AAT', 'GGC', 'GGA', 'ACC', 'TTG', 'AA', '']
+['TTG', 'CCT', 'GAA', 'ATG', 'GCG', 'GAA', 'CCT', 'TGA', 'A', '']
+['TGC', 'CTG', 'AAA', 'TGG', 'CGG', 'AAC', 'CTT', 'GAA', '']
+```
 
 ### Truth and Regular Expression Matches
 
-The `search()`, `match()`, `findall()`, and `finditer()` can be used in conditional tests. If a match is not found an empty list or 'None' is returned. These are both False.
+The `re.search()`, `re.match()`, `re.findall()`, and `re.finditer()` can be used in conditional tests. 
+When a match is not found:
+
+* `re.search()` and `re.match()` return the special value [None](https://docs.python.org/3/c-api/none.html).
+* `re.findall()` function returns an empty list
+* `re.finditer()` returns an _iterator_ that will return no values upon evaluation
+  
+All of the preceding values will evaluate to `False` in a Boolean context.
 
 ```python
->>> found=re.search( r"(.{50})TATTATZ(.{25})"  , dna )
+>>> found = re.search(r"(.{50})TATTATZ(.{25})", dna)
 >>> if found:
 ...    print("found it")
 ... else:
@@ -3558,12 +3573,12 @@ not found
 >>> print(found)
 None
 ```
-> None is False so the else block is executed and "not found" is printed
-
+`None` evaluates to `False`, so the else block is executed and "not found" is printed
 
 Nest it!
+
 ```python
->>> if re.search( r"(.{50})TATTATZ(.{25})"  , dna ):
+>>> if re.search(r"(.{50})TATTATZ(.{25})", dna):
 ...    print("found it")
 ... else:
 ...    print("not found")
@@ -3573,7 +3588,9 @@ not found
 
 ### Using Regular expressions in substitutions 
 
-Earlier we went over how to find an **exact pattern** and replace it using the `replace()` method. To find a pattern, or inexact match, and make a replacement the regular expression `sub()` function is used. This function takes the pattern, the replacement, the string to be searched, the number of times to do the replacement, and flags.
+Earlier we went over how to find an **exact pattern** and replace it using the [str.replace()](https://docs.python.org/3/library/stdtypes.html#str.replace) method. 
+To find a pattern, or inexact match, and make a replacement the regular expression [re.sub()](https://docs.python.org/3/library/re.html#re.sub) function is used. 
+This function takes the pattern, the replacement, the string to be searched, the number of times to do the replacement, and flags.
 
 ```python
 >>> phrase = "Who's afraid of the big bad wolf?"
@@ -3582,7 +3599,7 @@ Earlier we went over how to find an **exact pattern** and replace it using the `
 >>> print(phrase)
 Who's afraid of the big bad wolf?
 ```
-> The `sub()` function returns "Who's afraid of the big bad goat?"  
+> The `re.sub()` function returns "Who's afraid of the big bad goat?"  
 > The value of variable phrase has not been altered  
 > The new string can be stored in a new variable for later use.
 
@@ -3595,10 +3612,9 @@ He had a goate.
 >>> print(phrase)
 He had a wife.
 ```
+
 > The characters between 'w' and 'f' have been replaced with 'goat'.  
 > The new string is saved in new_phrase  
-
-
 
 ### Using subpatterns in the replacement
 
@@ -3610,8 +3626,8 @@ Sometimes you want to find a pattern and use it in the replacement.
 Who's afraid of the bad big wolf?
 ```
 > We found two words before 'wolf' and swapped the order.
-> \\2 refers to the second subpattern
-> \\1 refers to the first subpattern
+> `\2` refers to the second subpattern
+> `\1` refers to the first subpattern
 
 __Let' Try It__  
 ![try it](images/Try-It-Now.png)
@@ -3630,15 +3646,15 @@ __Let' Try It__
 
 ```python
 >>> dna = "atgcgtaatggc"
->>> re.search(r"ATG",dna)
+>>> re.search(r"ATG", dna)
 >>>
->>> re.search(r"ATG",dna , re.I)
+>>> re.search(r"ATG", dna, re.I)
 <_sre.SRE_Match object; span=(0, 3), match='atg'>
 >>>
 ```
 > We can make our search case insensitive by using the `re.I` or `re.IGNORECASE` flag.
 
-You can use more than one flag by concatenating them with `|`.  `re.search(r"ATG",dna , re.I|re.M)`
+You can combine multiple flags using `|`, e.g., `re.search(r"ATG",dna , re.I|re.M)`
 
 
 ## Helpful Regex tools
@@ -3670,10 +3686,10 @@ List of lists, often called a matrix are important for organizing and accessing 
 Here's a way to make a 3 x 3 table of values.
 
 ```python
->>> M = [[1,2,3], [4,5,6],[7,8,9]]
+>>> M = [[1,2,3], [4,5,6], [7,8,9]]
 >>> M[1] # second row (starts with index 0)
 [4,5,6]
->>>M[1][2] # second row, third element
+>>> M[1][2] # second row, third element
 6
 ```
 
@@ -3837,7 +3853,7 @@ To retrieve the A composition of every gene use a for loop.
 ```python
 >>> for gene in sorted(genes):
 ...   A_comp = genes[gene]['nt_comp']['A']
-...   print(gene+":","As=", A_comp)
+...   print(f"{gene}: As= {A_comp}")
 ...
 gene1: As= 2
 gene2: As= 3
@@ -4059,10 +4075,7 @@ This is what the data structure we just built looks likes
         }
     }
 }
-
 ```
-
-
 
 There are also specific data table and frame handling libraries like [Pandas](https://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.html).
 
@@ -4079,7 +4092,7 @@ Here is a very nice [interactive tutorial](https://www.learnpython.org/en/Pandas
 ## Exceptions
 
 
-There are a few different types of errors when coding. Syntax errors, logic errors, and exceptions. You have probably encountered all three. Syntax and logic errors are issues you need to deal with while coding. An exception is a special type of error that can be informative and used to write code to respond to this type of error. This is especially relavent when dealing with user input. What if they don't give you any, or it is the wrong kind of input. We want our code to be able to detect these types of errors and respond accordingly.
+There are a few different types of errors when coding. Syntax errors, logic errors, and exceptions. You have probably encountered all three. Syntax and logic errors are issues you need to deal with while coding. An exception is a special type of error that can be informative and used to write code to respond to this type of error. This is especially relevent when dealing with user input. What if they don't give you any, or it is the wrong kind of input? We want our code to be able to detect these types of errors and respond accordingly.
 
 ```python
 #!/usr/bin/env python3
@@ -4356,7 +4369,7 @@ File needs to be a FASTA file and end with .fa
 
 ## Functions
 
-Functions consist of several lines of code that do something useful and that you want to run more than once. There are built-in functions in python. You can also write your own. You also give your function a name so you can refer to it in your code. This avoids copying and pasting the same code to many places in your script and makes your code easier to read.
+Functions consist of several lines of code that do something useful and that you want to run more than once. There are built-in functions in Python. You can also write your own. You also give your function a name so you can refer to it in your code. This avoids copying and pasting the same code to many places in your script and makes your code easier to read.
 
 Let's see some examples.
 
@@ -4396,6 +4409,8 @@ def gc_content(dna):   # give our function a name and parameter 'dna'
    return gc_content # return the value to the code that called this function
 ```
 > Here is a custom function that you can use like a built in Python function
+
+NOTE: Any function that omits a `return` will return `None`.
 
 ### Using your function to calculate GC content
 
@@ -4496,14 +4511,13 @@ print(get_first_codon('ATGTTT'))
 The format for lambda is like this
 
 ```
-lambda <the variable you pass into the function> : <the expression that operates on your variable>
+lambda <the variable you pass into the function>: <the expression that operates on your variable>
 ```
 
 Here is the same function written as a lambda
 
 ```python
-get_first_codon = lambda dna : dna[0:3]  # pass data into 'dna' then extract 
-                                         # the first 3 characters
+get_first_codon = lambda dna: dna[0:3]  # pass data into 'dna', extract the first 3 characters
 print(get_first_codon('ATGTTT'))
 ```
 > This also prints `ATG`. lambdas can only contain one line and there is no `return` statement.
@@ -4619,19 +4633,18 @@ def set_local_x_to_five(x):
   print('Inside def')
   x = 5 # local to function set_local_x_to_five()
   y = 5   # also local
-  print("x =",x)
-  print("y = ",y)
+  print("x =", x)
+  print("y =", y)
 
 print('After def')
 x = 100 # global x
-y = 100 # global y
-print('x =',x)
-print('y =',y)
+print('x =', x)
+print('y =', y)
 
 set_local_x_to_five(500)
 print('After function call')
-print('x =',x)
-print('y =',y)
+print('x =', x)
+print('y =', y)
 
 ```
 > Here we have added a function `set_local_x_to_five()` with an argument named `x`. This variable exists only within the function where is replaces any variable with the same name outside the `def`. Inside the `def` we also initialize a variable `y` that also replaces any global `y` within the `def`
@@ -4767,7 +4780,7 @@ This is the current module for running command lines from python scripts
 
 ```python
 import subprocess
-subprocess.run(["ls","-l"])  # same as running ls -l on the command line
+subprocess.run(["ls", "-l"])  # same as running ls -l on the command line
 ```
 
 more complex than `os.system()`. You need to specify where input and output go. Let's look at this in some more detail. 
@@ -4796,7 +4809,7 @@ b'-rw-r--r--  1 amanda  staff       161952 Oct  2 18:03 test.subreads.fa\n-rw-r-
 You can covert by decoding the bytes object into a string 
 
 ```python3
->>>output.decode('utf-8')
+>>> output.decode('utf-8')
 '-rw-r--r--  1 amanda  staff       161952 Oct  2 18:03 test.subreads.fa\n-rw-r--r--  1 amanda  staff          126 Oct  2 13:23 test.txt\n'
 ```
 
@@ -4948,20 +4961,36 @@ Great (if quite complicated) tool for parsing command line arguments and automat
 
 #!/usr/bin/env python3
 import argparse
-parser = argparse.ArgumentParser(description="A test program that reads in some number of lines from an input file. The output can be screen or an output file")
+
+parser = argparse.ArgumentParser(
+    description=("A test program that reads in some number of "
+                 "lines from an input file. The output can be "
+                 "screen or an output file")
+)
+
 # we want the first argument to be the filename
 parser.add_argument("file", help="path to input fasta filename")
+
 # second argument will be line number
 # default type is string, need to specify if expecting an int
-parser.add_argument("lines", type=int, help ="how many lines to print")
-# optional outfile argument specified with -o or --outfile
-parser.add_argument("-o","--outfile", help = "optional: supply output filename, otherwise write to screen", dest = 'out')
+parser.add_argument("lines", type=int, help="how many lines to print")
+
+# optional outfile argument specified with -o or --out
+parser.add_argument(
+    "-o",
+    "--outfile",
+    help="optional: supply output filename, otherwise write to screen",
+    dest="out",
+)
+
 args = parser.parse_args()
+
 # arguments appear in args
 filename = args.file
 lines = args.lines
 if args.out:
-  print("writing output to", args.out)
+    print("writing output to", args.out)
+
 # rest of your script goes next
 with open(filename,'r') as fh:
   ...
@@ -4971,10 +5000,9 @@ With this module, -h help comes for free. --outfile type arguments are optional 
 
 ```
 parser.add_argument('-f', "-fasta", required=True, help='Output fasta filename', dest='outfile')
-
 ```
 
-Here's an example python template that uses several different capabilities of the argparse module.
+Here's an example Python template that uses several different capabilities of the argparse module.
 
 ```python
 #!/usr/bin/env python3
@@ -5016,7 +5044,7 @@ Also, non-core: BioPython for bioinformatics, Numpy for mathematics, statistics,
 
 ## Your own modules
 
-You can also make your own modules. They are just text files containing python. The file name should end with `.py`. You need to put them in the right directory (same directory as your main script works for getting going). Then you can write your own import statement. For example
+You can also make your own modules. They are just text files containing Python. The file name should end with `.py`. You need to put them in the right directory (same directory as your main script works for getting going). Then you can write your own import statement. For example:
 ```
 #!/usr/bin/env python3
 import sequence_utilities    # import functions in your own file 'sequence_utilities.py'
@@ -5105,13 +5133,14 @@ class DNARecord(object):
   species_name = 'Drosophila melanogaster'
   
   # define methods
-  def reverse_complement(self): 
-    replacement1 = self.sequence.replace('A', 't') 
-    replacement2 = replacement1.replace('T', 'a')
-    replacement3 = replacement2.replace('C', 'g')
-    replacement4 = replacement3.replace('G', 'c') 
-    reverse_comp = replacement4[::-1]
-    return reverse_comp.upper()
+  def reverse_complement(self):
+    seq = self.sequence.upper()
+    seq = seq.replace('A', 't') 
+    seq = seq.replace('T', 'a')
+    seq = seq.replace('C', 'g')
+    seq = seq.replace('G', 'c') 
+    seq = seq[::-1]
+    return seq.upper()
   
   def get_AT(self): 
     length = len(self.sequence)
@@ -5158,13 +5187,14 @@ Next, we define our class methods:
 
 ```python
   # define methods
-  def reverse_complement(self): 
-    replacement1 = self.sequence.replace('A', 't') 
-    replacement2 = replacement1.replace('T', 'a')
-    replacement3 = replacement2.replace('C', 'g')
-    replacement4 = replacement3.replace('G', 'c') 
-    reverse_comp = replacement4[::-1]
-    return reverse_comp.upper()
+  def reverse_complement(self):
+    seq = self.sequence.upper()
+    seq = seq.replace('A', 't') 
+    seq = seq.replace('T', 'a')
+    seq = seq.replace('C', 'g')
+    seq = seq.replace('G', 'c') 
+    seq = seq[::-1]
+    return seq.upper()
   
   def get_AT(self): 
     length = len(self.sequence)
@@ -5257,7 +5287,7 @@ Let's make our class more generic, or in other words, make it so that a user can
 
 #### __\_\_init\_\___
 
-To do this we need to add an `__init__` function to our Object Rules, or Class. 
+To do this we need to add an `__init__` function to the class. 
 
 The `init` function will automatically get called when you create an object. 
 
@@ -5275,6 +5305,7 @@ class DNARecord(object):
   
   # define class attributes
   def __init__(self, sequence, gene_name, species_name): ## note that '__init__' is wrapped with two underscores
+    # remove hard coded variables
     #sequence = 'ACGTAGCTGACGATC'
     #gene_name = 'ABC1'
     #species_name = 'Drosophila melanogaster'
@@ -5284,12 +5315,13 @@ class DNARecord(object):
 
   # define methods
   def reverse_complement(self):
-    replacement1 = self.sequence.replace('A', 't')
-    replacement2 = replacement1.replace('T', 'a')
-    replacement3 = replacement2.replace('C', 'g')
-    replacement4 = replacement3.replace('G', 'c')
-    reverse_comp = replacement4[::-1]
-    return reverse_comp.upper()
+    seq = self.sequence.upper()
+    seq = seq.replace('A', 't') 
+    seq = seq.replace('T', 'a')
+    seq = seq.replace('C', 'g')
+    seq = seq.replace('G', 'c') 
+    seq = seq[::-1]
+    return seq.upper()
 
   def get_AT(self):
     length = len(self.sequence)
