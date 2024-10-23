@@ -3197,34 +3197,18 @@ Quantifiers quantify how many atoms are to be found. By default an atom matches 
 Examples:  
 
 ```
->>> re.match("goa?t", "goat")
-<re.Match object; span=(0, 4), match='goat'>
->>> re.match("goa?t", "got")
-<re.Match object; span=(0, 3), match='got'>
+goa?t
 ```
 > matches "goat" and "got".  Also any text that contains these words.
 
 ```
->>> re.match("g.+t", "goat")
-<re.Match object; span=(0, 4), match='goat'>
->>> re.match("g.+t", "goot")
-<re.Match object; span=(0, 4), match='goot'>
->>> re.match("g.+t", "grant")
-<re.Match object; span=(0, 5), match='grant'>
+g.+t
 ```
 >  matches "goat", "goot", and "grant", among others.
 
 ```
->>> re.match("g.*t", "gt")
-<re.Match object; span=(0, 2), match='gt'>
->>> re.match("g.*t", "goat")
-<re.Match object; span=(0, 4), match='goat'>
->>> re.match("g.*t", "goot")
-<re.Match object; span=(0, 4), match='goot'>
->>> re.match("g.*t", "grant")
-<re.Match object; span=(0, 5), match='grant'>
+g.*t
 ```
-
 >  matches "gt", "goat", "goot", and "grant", among others.
 
 ```
