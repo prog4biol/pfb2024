@@ -3386,15 +3386,14 @@ downstream: CCGGTTTCCAAAGACAGTCTTCTAA
 ```
 
 1. This code executes the [re.findall()](https://docs.python.org/3/library/re.html#re.findall) function once 
-2. The subpatterns are returned in a tuple 
+2. In the first iteration of the `for` loop, the first set of matched subpatterns are returned as a tuple 
 3. The subpatterns are stored in the variables upstream and downstream  
-4. The `for` block of code is executed  
-5. The `re.findall()` searches again  
-6. A match is found 
-7. New subpatterns are returned and stored in the variables upstream and downstream
-8. The `for` block of code gets executed again 
-9.  The `re.findall()` searches again, but no match is found  
-10. The `for` loop ends  
+4. The `for` block of code is executed, and the matches are printed  
+5. In the second interation of the loop, the next set of matched subpatterns are returned as a tuple
+6. New subpatterns are returned and stored in the variables upstream and downstream
+7. The `for` block of code gets executed again 
+8. There is not a 3rd iteration because there are no more matches  
+9. The `for` loop ends  
 
 Another way to get this done is with an iterator, use the [re.finditer()](https://docs.python.org/3/library/re.html#re.finditer) function in a for loop. This allows you to not store all the matches in memory. `re.finditer()` also allows you to retrieve the postion of the match.
 
@@ -3538,7 +3537,7 @@ not found
 >>> print(found)
 None
 ```
-`None` is (sort of) `False`, so the else block is executed and "not found" is printed
+`None` evaluates to `False`, so the else block is executed and "not found" is printed
 
 Nest it!
 
@@ -4367,14 +4366,11 @@ We use `def` do define our own function. It is followed by the name of the funct
 
 ```python
 def gc_content(dna):   # give our function a name and parameter 'dna'
-    dna_len = len(dna)
-    if dna_len == 0:
-        return 0
-    else:
-        c_count = dna.count('C')
-        g_count = dna.count('G')
-        # return the value to the code that called this function
-        return (c_count + g_count) / dna_len
+   c_count = dna.count('C')
+   g_count = dna.count('G')
+   dna_len = len(dna)
+   gc_content = (c_count + g_count) / dna_len
+   return gc_content # return the value to the code that called this function
 ```
 > Here is a custom function that you can use like a built in Python function
 
@@ -4920,6 +4916,10 @@ filename = args.file
 lines = args.lines
 if args.out:
     print("writing output to", args.out)
+
+# rest of your script goes next
+with open(filename,'r') as fh:
+  ...
 ```
 
 With this module, -h help comes for free. --outfile type arguments are optional unless you write 'required=True' like this
@@ -5231,6 +5231,10 @@ class DNARecord(object):
   
   # define class attributes
   def __init__(self, sequence, gene_name, species_name): ## note that '__init__' is wrapped with two underscores
+    # remove hard coded variables
+    #sequence = 'ACGTAGCTGACGATC'
+    #gene_name = 'ABC1'
+    #species_name = 'Drosophila melanogaster'
     self.sequence = sequence
     self.gene_name = gene_name
     self.species_name = species_name
