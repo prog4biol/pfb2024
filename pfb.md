@@ -3151,42 +3151,35 @@ A pattern can be anchored to a region in the string:
 | `\b` | Matches a word boundary between `\w` and `\W` |
 
 Examples:
+```
+g..t
+```
+> matches "gaat", "goat", and "gotta get a goat" (twice)
 
 ```
->>> import re
->>> vals = ["gaat", "goat", "gotta get a goat"]
->>> for val in vals:
-...   print(val, re.findall("g..t", val))
-...
-gaat ['gaat']
-goat ['goat']
-gotta get a goat ['gott', 'goat']
+g[gatc][gatc]t
 ```
+> matches "gaat", "gttt", "gatt", and "gotta get an agatt" (once) 
 
 ```
->>> vals = ["gaat", "gttt", "gatt", "gotta get an agatt"]
->>> for val in vals:
-...   print(val, re.findall("g[gatc][gatc]t", val))
-...
-gaat ['gaat']
-gttt ['gttt']
-gatt ['gatt']
-gotta get an agatt ['gatt']
+\d\d\d-\d\d\d\d
 ```
+> matches 867-5309, and 5867-5309 but not 8-67-5309.
 
 ```
->>> vals = ["867-5309", "5867-5309", "8-67-5309"]
->>> for val in vals:
-...   print(val, re.findall(r"\d\d\d-\d\d\d\d", val))
-...
-867-5309 ['867-5309']
-5867-5309 ['867-5309']
-8-67-5309 []
+^\d\d\d-\d\d\d\d
+```
+>  matches 867-5309 and 867-53091 but not 5867-5309.
+
+```
+^\d\d\d-\d\d\d\d$
 ```
 
-The preceding pattern matches 3 digits followed by a dash followed by 4 digits.
-
+> only matche 3 digits followed by a dash followed by 4 digits, not extra characters anywhere are allowed
 <br> 
+
+[Find out about 867-5309](https://en.wikipedia.org/wiki/867-5309/Jenny) and [even more &#127925;](https://www.youtube.com/watch?v=6WTdTwcmxyo)
+
 
 ### Quantifiers
 
