@@ -1,14 +1,14 @@
 # Genome Assembly Workshop
 
-Lecture Notes: See [PDF](Triant_GenomeAssembly_PFB_2023.pdf)  
-Workshop Notes: See [PDF](Triant_AssemblyWorkshop_PFB2023.pdf)
+Lecture Notes: See [PDF](Triant_GenomeAssembly_PFB_2024.pdf)  
+Workshop Notes: See [PDF](Triant_AssemblyWorkshop_PFB2024.pdf)
 
 
 # Problem Set
 
 ## Exercise 1: Genome Stats
 
-Using [ecoli-0.25.contigs.fasta](ecoli_0.25.contigs.fasta), write a script that reports:
+Using [ecoli_0.25.contigs.fasta](ecoli_0.25.contigs.fasta), write a script that reports:
 
 1. The number of contigs in the file
 2. The shortest contig.
@@ -30,8 +30,15 @@ For the following exercise, write a python script that parses a FASTA file, _D. 
  3. What proportion of the genome is comprised of gaps?
 
 The fasta file for the exercise: 
-[D_melanogaster_genomic.fna](D_melanogaster_genomic.fna)
+[D_melanogaster_genomic.fna](D_melanogaster_genomic.fna) is a large file, see filtering below:
 
 
+```bash
+wc -l D_melanogaster_genomic.fna
+449842 lines
 
+grep -c ">" D_melanogaster_genomic.fna
+448 reads
+```
 
+Previously we used Unix split command, which you can use again or write a Python script to output a filtered dataset.
