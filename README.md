@@ -284,10 +284,9 @@ Sofia Robb
    * [Genome Assembly -- Deb Triant](workshops.md/#genome-assembly----deb-triant) 
    * [NGS -- Anoja Perera](workshops.md/#ngs----anoja-perera)
    * [Bioinformatics and Useful Tools -- Simon Prochnik](workshops.md/#bioinformatics-and-useful-tools----simon-prochnik)
-
-  
+   * [Ethics and Responsibility in Bioinformatics -- Simon Prochnik](workshops.md/#ethics-and-responsibility-in-bioinformatics----simon-prochnik)
    * [Protein Function Annotation -- Paul Thomas](workshops.md/#protein-function-annotation----paul-thomas)
    * [GMOD -- Scott Cain](workshops.md/#gmod----scott-cain)
    * [Image Processing -- Jay Unruh](workshops.md/#image-processing----jay-unruh)
    * [Sequence Homology -- Bill Pearson](workshops.md/#sequence-homology----bill-pearson)
-   * [Ethics and Responsibility in Bioinformatics -- Simon Prochnik](workshops.md/#ethics-and-responsibility-in-bioinformatics----simon-prochnik)
+
