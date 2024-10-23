@@ -16,7 +16,7 @@ Python 4 Problem Set -- Lists and Loops
 	l.  Use `join` to create a string. Join the elements on ', '  
 	m. **Exit the interpreter**
 	
-3. List manipulation: Create a new **script in vi**  
+2. List manipulation: Create a new **script in vi**   
     a. In the script, create a variable called `taxa_string` that contains this string:  `"sapiens : erectus : neanderthalensis"`  
     b. Print `taxa_string`  
     c. Split `taxa_string` into a list called `taxa_list`. Use `" : "` as your separator.  
@@ -26,7 +26,7 @@ Python 4 Problem Set -- Lists and Loops
     g. Sort the list alphabetically and print (hint: lookup the function `sorted()`).   
     h. Sort the list by length of each string and print. (The shortest string should be first). [Check out documentation of the key argument](https://www.programiz.com/python-programming/methods/built-in/sorted).  
 
-4. Lists and copy: Using the **Python interpreter**, interrogate the difference between these two ways to copy a list. Careful! One of these is NOT what you might expect. 
+3. Lists and copy: Using the **Python interpreter**, interrogate the difference between these two ways to copy a list. Careful! One of these is NOT what you might expect. 
    a. Method 1
      - Create a list. For example: `my_list = ['a', 'bb', 'ccc']`
      - Make a copy using the `=` assignment operator:  `list_copy = my_list`
@@ -41,23 +41,23 @@ Python 4 Problem Set -- Lists and Loops
      - Print the original list again `print(my_list2)`
      - **close the interpreter** 
 
-5. While loops: **Write a script with vi**.
+4. While loops: **Write a script with vi**.
    -  Use a `while` loop to print out the numbers 1 to 100.
    -  After you correctly print out each number in the body of the while loop, add in a variable, `sum` that is used to keep a running sum of each number.
    -  Outside the while loop print the total sum of all numbers 1 to 100.
    -  Verify that your sum is correct. The sum of every number between 1 to 100 is 5050.
    
 
-7. While loops: **Write a script**  
+5. While loops: **Write a script**  
    - Use a `while` loop to calculate the [factorial](https://en.wikipedia.org/wiki/Factorial) of 10.
    - Your result should be 3628800
 
-8. For Loops: **Write a script**  
+6. For Loops: **Write a script**  
    - Iterate through each element of this list using a `for` loop: `[101,2,15,22,95,33,2,27,72,15,52]`
    - Print only the values that are even (hint: use the modulus operator).
 
    
-9. For Loops: **Add to your previous script**  
+7. For Loops: **Add to your previous script**  
      - Sort the elements of the above list
      - Then iterate through each element using a `for` loop. Nested within the loop
        - Print each element.
@@ -70,30 +70,30 @@ Python 4 Problem Set -- Lists and Loops
          Sum of odds: 286
          ```
    
-10. For Loops and Ranges:  **Create a script**.  
+8. For Loops and Ranges:  **Create a script**.  
   -  Use `range()` in a `for` loop to print out every number between 0 and 99  
   -  Modify your loop to print out every number between 1 and 100.
       
-12. List Comprehension: **Create a script**.    
+9. List Comprehension: **Create a script**.    
    -  Create a list using list comprehension with every number between 0 and 99
    -  Create another list with every number between 1 and 100.
    -  Verifiy your lists have the correct values by printing the contents using a `for` loop
      
-11. User input, for loops, and Range: **Create a script**.    
+10. User input, for loops, and Range: **Create a script**.    
    -  Get the user provided minimum (`sys.argv[1]`) and maximum (`sys.argv[2]`).
    -  Print out every number between and including the min and max to your output.
 
-12. User input, Range, List Comprehension: **Create a script**.    
+11. User input, Range, List Comprehension: **Create a script**.    
    -  Get the user provided minimum (`sys.argv[1]`) and maximum (`sys.argv[2]`).
    -  Use list comprehension to create a list of all the numbers between and including the min and max
 
 
      
-13. User input, Range, List Comprehension, and Conditions: **Create a script**  
+12. User input, Range, List Comprehension, and Conditions: **Create a script**  
     -  Do the same as above to create a new list
     -  Add an `if` so that only odd numbers are added to the list
      
-14. Lists, for loops, and strings: **Create a script**  
+13. Lists, for loops, and strings: **Create a script**  
    - Create a list with the following data:
       `['ATGCCCGGCCCGGC','GCGTGCTAGCAATACGATAAACCGG', 'ATATATATCGAT','ATGGGCCC']`
    - Use a `for` loop to iterate through each element of this list
