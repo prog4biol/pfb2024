@@ -37,10 +37,13 @@ The purpose of group projects is to reinforce the coding skills you have learned
 ## Time line
 - Proposals due: Thursday 24th at 10pm. (smr -at- stowers.org prochnik -at- gmail.com  )
 - Student Collaboration Night/TA Night Off: Friday 7-10pm
+- Disco after conference, we are welcome to attend Friday 10pm
 - Project Sign up: Saturday 8:30AM - 9AM   
-- First group meeting: Saturday 9AM
+- Rearrange rooms saturday 9-9:30am
+- First group meeting: Saturday 9:30AM
 - Halloween Party: Saturday 26th 9PM-12AM
 - Halloween After Party: Saturday 12...... 
-- Final Presentaions: Monday 3-5pm
+- Final Presentations: Monday 3-5pm
 - Banquet: Monday 5:45pm
 - Dance party Monday: 9pm
+- Home travel day Tuesday 
