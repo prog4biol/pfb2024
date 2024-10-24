@@ -1,6 +1,6 @@
 # Image Processing with Jay Unruh
 
-1. Open the JupyterLab desktop application (in the `/Applications` folder).
+1. Open a Finder window and navigate to the `/Applications` folder, then double-click on the JupyterLab icon to launch the desktop application.
 
 2. At the bottom of the JupyterLab desktop application panel, where it says "Python environment not found," click the "Install using the bundled installer" link, then wait while JupyterLab builds a new environment.
 
@@ -12,7 +12,7 @@
     mamba install -c conda-forge jupyter numpy pandas scipy matplotlib tifffile pillow
     ```
     
-5. In JupterLab, click the "Python 3 (ipykernel)" button under the **Notebook** section and insert the following lines in the code block to test that all modules installed successfully:
+5. In JupyterLab, click the "Python 3 (ipykernel)" button under the **Notebook** section to start a new Jupyter Notebook, then insert the following lines into the code block:
     ```python
     import numpy
     import scipy
@@ -21,12 +21,13 @@
     import PIL
     import tifffile
     ```
-    Press `control`+`Return` to execute the code block. If you do not receive any errors, your install was successful.
+
+6. Press `control`+`Return` to execute the code block. If you do not receive any errors, your install was successful.
 
 
 __STOP HERE for the Jupyter Notebook intro__
 
-1. In your Terminal window, navigate somewhere outside of any Git repositories and clone the Jay's workshop GitHub repository: 
+1. In your Terminal window, navigate somewhere outside of any Git repositories and clone Jay's workshop repository from GitHub: 
     ```bash
     cd ~
     mdkir image_processing
