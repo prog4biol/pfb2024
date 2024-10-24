@@ -1,27 +1,15 @@
 # GMOD Workshop
 
-URLs for workshop:
-
-https://docs.google.com/presentation/d/1mHvEg12nNosGHAoD6ceDC3oDFpcq0PhZXplomj-fyEM/edit?usp=sharing
-   
+[Lecture slides](PfB2024_The_Generic_Model_Organism_Database_project.pdf)
 
 
-Apollo:
+## Demos:
 
-http://genomearchitect.github.io/demo/ 
+- [Lots o’worms](https://riccio.d2jjb0xowet5mr.amplifyapp.com/multiple_alignment.html)
 
+- [Structural variation](https://jbrowse.org/code/jb2/v2.16.0/?config=test_data%2Fconfig_demo.json&session=share-pjaAq1hNxB&password=Z9teR)
 
-```
-username: demo@demo.com 
-password: demo
-```
+- [Alliance variants](https://www.alliancegenome.org/jbrowse2/?session=share-QHEAVYBr_c&password=wTry6)
 
-JBrowse at Wormbase:
-
-https://www.wormbase.org/tools/genome/jbrowse-simple/?data=data%2Fc_elegans_PRJNA13758
-
-
-Site Using Tripal
-
-https://tripal.info/sites_using_tripal
+- [Interactive](http://jbrowse.programmingforbiology.org)
 
