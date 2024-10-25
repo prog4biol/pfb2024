@@ -37,13 +37,13 @@ Compares two **sorted** files and prints out content depending on the flags
 
 
 
-___Simon___
+__Simon___
 
 Quick way to see sequence identifiers in a fasta file
 
 `grep ">" sequences.fa`
 
-### Joe
+__Joe__
 
 
 `paste file1.txt file2.txt`
