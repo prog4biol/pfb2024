@@ -110,7 +110,7 @@ Create a command alias to `ll` to pretty print files and directories with color,
 Wrap the lines of a fasta file to 100 bp wide.
 
 
-cat input.fastq | paste - - - - | cut -f1,2 | tr '@\t' '>\n' >output.fasta`
+`cat input.fastq | paste - - - - | cut -f1,2 | tr '@\t' '>\n' >output.fasta`
 
 Convert a FASTQ file to FASTA file.
 
