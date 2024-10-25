@@ -13,3 +13,4 @@
 
 - [Interactive](http://jbrowse.programmingforbiology.org)
 
+- [JBrowse2 Tutorial](https://gmod.org/wiki/JBrowse2_Tutorial_PAG_2024) 
