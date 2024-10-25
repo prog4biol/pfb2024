@@ -30,7 +30,7 @@ __STOP HERE for the Jupyter Notebook intro__
 1. In your Terminal window, navigate somewhere outside of any Git repositories and clone Jay's workshop repository from GitHub: 
     ```bash
     cd ~
-    mdkir image_processing
+    mkdir image_processing
     
     git clone https://github.com/jayunruh/python_IP_course.git
     cd python_IP_course
