@@ -23,9 +23,9 @@ To git@github.com:myUsername/myRepo.git
 error: failed to push some refs to 'git@github.com:myUsername/myRepo.git'
 ```
 
-### Solution
+### Solution to remove from most-recent commit:
 ```
-$ git rm --cached giant_file
+$ git rm --cached giant_file_name
 # Stage our giant file for removal, but leave it on disk
 
 git commit --amend -CHEAD
@@ -35,4 +35,12 @@ git commit --amend -CHEAD
 
 git push
 # Push our rewritten, smaller commit
+```
+
+### Solution to remove from commit history:
+```
+$ git filter-branch -f --index-filter 'git rm --cached --ignore-unmatch giant_file_name'
+# traverses and deletes files from the commit tree without checking out the files at each step.
+# This will remove the file from the commit history entirely. This command also has the
+# side-effect of deleting the file on disk as well.
 ```
