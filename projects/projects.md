@@ -43,20 +43,23 @@ The main goals of the present project were to:
 
 
 ---
-# Title
+# LOLA-seq (snRNA-seq and ATAC-seq pipeline)
 ---
 
 ### Short summary: 
+The goal of this project was to run a snRNA-seq and snATAC-seq analysis on a dataset which is derived from the cells of a human patient with ischemic cardiomyopathy, or heart failure. The analysis also involved a peak calling algorithm to generate files not provided by the authors. 
 
-### TA: 
+### TA: Robert Dalipovic
 
 ### GitHub Repo: 
+[Project GC](https://github.com/rdalipo1/PFB-LOLA-seq)
 
 ### Participants:   
- - 
- - 
- - 
- - 
+ - Nathan Harper
+ - Rajendra Pangeni
+ - Henry Arnold
+ - Taylor Pio
+ - Upendra Chalise
 
 
 ---
