@@ -10,7 +10,7 @@ Help is available inside python interactive shell
 ```python
 >>>help()
 ```
-Just like for `man`, help text appears inside a pager like `more` or `less`.   
+Just like for `man`, help text appears inside a pager like `more` or `less`.  You can use the following commands: 
 space -> next page  
 b -> back a page  
 return -> next line  
@@ -69,7 +69,7 @@ awk is a simple unix utility for reformatting text files. An awk script would lo
 
 ```
 BEGIN { print "File\tOwner"}   # block executed before main script
-{ print $9, "\t", $3}          # main script
+{ print $9 "\t" $3}          # main script
 END { print " - DONE -" }      # block executed after main script
 ```
 
@@ -100,14 +100,18 @@ $1         $2 $3      $4     $5  $6  $7 $8    $9
 
 We want to print the file and the owner. Find the variables. The order can be whatever we want. The awk part would look like this 
 
-`awk '{print $9, "\t" , $3 }'`
+`awk '{print $9 "\t"  $3 }'`
+
+Note space-separated values would be coded like so
+
+`awk  '{print $9,  $3 }'`
 
 How do we get the long listing? `ls -l`
 
-Put these together with our friend pipe `|`
+Put these together with our friend pipe `|` and add a tab between columns
 
 ```
-% ls -l | awk '{print $9, "\t" , $3}'
+% ls -l | awk '{print $9 "\t"  $3}'   # no commas!! why??
 scope_global.py 	 simonp
 scope_global.py~ 	 simonp
 scope_w_function.py 	 simonp
@@ -115,23 +119,63 @@ scope_w_function.py~ 	 simonp
 test.nt.fa 	 simonp
 while.py 	 simonp
 while_else.py 	 simonp
+```
 
+Printing files modified on or after the 20th October
+
+```
+% ls -l | awk '$7 >= 20 && $6 == "Oct" {print $9 "\t" $3}'
+scope_global.py 	 simonp
+scope_global.py~ 	 simonp
+scope_w_function.py 	 simonp
+scope_w_function.py~ 	 simonp
+```
+
+How can you print the number of records in a fastq file? Each record is 4 lines long.
+
+```
+wc -l mouse_R7385F_*fastq | awk '{print $1/4 "\t" $2}'
+85534	mouse_R7385F_smpl1.fastq
+688103	mouse_R7385F_smpl10.fastq
+100668	mouse_R7385F_smpl2.fastq
+802370	mouse_R7385F_smpl3.fastq
+407677	mouse_R7385F_smpl4.fastq
+```
+
+Another example that counts how many reads align with score 60 or more (great alignment) to the first 5kb of the reference.
+
+```
+ samtools view /Users/simonp/src/samtools-1.14/test/mpileup/mpileup.2.bam | awk '$4 <=5000 && $5 >=60  {print $1 "\t" $2 "\t" $5}'  | wc -l
+```
+
+#### regular expressions in awk
+
+Much simpler than python, put the re between slashes
+
+```
+awk '/li/ { print $2 }' mail-list   # match on the whole line
+
+awk '{ if ($1 ~ /J/) print }' inventory-shipped  # match on a field (column 1)
+
+ls -l | awk ' /smpl[0-9]/ {print $9}'  # match a digit 0,1,2,3 etc
 ```
 
 
+
+Use awk if you want to reorder columns in a file, do simple filtering and calculations etc. Works great in piped command lines.
 
 ### Unix aliases
 
 Here's a way to save typing
 
-`alias` is a unix comand that goes in your ~/.profile file. Make one with VI if you don't have one already. 
+`alias` is a unix comand that goes in your ~/.profile file (bash) or ~/.zshrc (zsh). Make one with `vi` if you don't have one already. 
 
 ```bash
 alias ll='ls -l'
 alias lr='ls -ltrh'
 ```
 
-To get these changes, `source ~/.profile` or open a new window in terminal. Now you can type `lr` instead of `ls -ltrh` 
+To get these changes, `source ~/.profile` or `source ~/.zshrc` or open a new window in terminal. Now you can type `lr` instead of `ls -ltrh` 
 
 
 
@@ -152,10 +196,6 @@ Your coding day is time spent doing these things:
 
 Where do you spend most of your time? What can you save time on? The more you plan out coding and check your data, the faster you'll get to the important second half of this list.
 
-Assume your data is corrupted, even if it came from a good colleague. This will stress test your code before you start writing.
-
-Check for consistent numbers of columns in your data, files that end halfway through a line are truncated or corrupted. Is a column always numbers or mixed numbers and text? Be precise about numbers. `2000-3000` is not a number. Nor is `5kb`. Do some fields have quotes or other unusual characters, accents? Do the values seem reasonable? Are values for gene lengths between 1,000 and 10,000bp for example?
-
 * thinking: design   Lots of time!
 * preparation, testing  Lots of time!
 * writing code  Quick now that you've done the first two
@@ -165,29 +205,39 @@ Check for consistent numbers of columns in your data, files that end halfway thr
 * more writing, thinking
 * report results
 
+Assume your data is corrupted, even if it came from a good colleague. This will stress test your code before you start writing.
+
+Check for consistent numbers of columns in your data, files that end halfway through a line are truncated or corrupted. Is a column always numbers or mixed numbers and text? Be precise about numbers. `2000-3000` is not a number. Nor is `5kb`. Do some fields have quotes or other unusual characters, accents? Do the values seem reasonable? Are values for gene lengths between 1,000 and 10,000bp for example?
+
 Data consistency, corruption, sanity checks
   NGS data generation: illumina, pacbio  
   formats - see biopython  
   (un)compression  
+filesize and md5 checksums
 
 ## Designing and Implementing a Bioinformatics Pipeline
 
-Say you want to automate blast runs
+Say you want to automate blast runs. Here's an example of what we'd run in the terminal.
 
 ```
+# first you make a blast database from the fasta file of the sequences 
+#you want to blast against (target or subject sequences)
 makeblastdb -in EcoliO157.uniprot.fa -dbtype prot -parse_seqids
 
+# now you can run a protein blast search with your query ilvG
 blastp -query ilvG.bacteria.prot.fa -db EcoliO157.uniprot.fa -outfmt 7 -out ilvG.bacteria.prot.fa.blastp.out -evalue 1e-10
 
 ```
 
+Make sure these commands work ok before you start making a pipeline.
 
-
-Here's a script.
+Here are the steps we need our pipeline script to perform:
 
 We need to print a usage message
 
 We need to track when and how the script was run
+
+We need to format the blast database if it hasn't been done already. 
 
 We need to run blastp
 
@@ -200,10 +250,12 @@ Print summary table of hits
 import subprocess
 import sys
 import datetime 
+import os
 
 # help message
+# what's a better way to do this?
 if len(sys.argv) < 4:
-    print(f'Usage: {sys.argv[0]}   <query protein fasta>  <formatted database>  <min E-value>')
+    print(f'Usage: {sys.argv[0]}   <query protein fasta>  <subject protein fasta>  <min E-value>')
     exit(1)
 # get cmd line params
 query = sys.argv[1]
@@ -214,6 +266,11 @@ if not query.endswith( ('.fa','.fasta') ):
     print('Query input file needs to end with .fa or .fasta')
     exit(12)
 
+if not db.endswith( ('.fa','.fasta') ):
+    print('Subject input file needs to end with .fa or .fasta')
+    exit(12)
+
+
 # 2019-10-23 13:49:27.232603
 now = str(datetime.datetime.now())
 # cut down to 2019-10-23 13:49
@@ -223,11 +280,24 @@ now = now[0:16]
 print('#' , ' '.join(sys.argv))
 print('#' , 'was run on', now)
 
-#generate output file
-out = query + '.blastp.out'
+# see if we have a blast database and make one if not
+# let's figure out the next line in detail -> see terminal session
+if not os.path.exists(f'{db}.phr'):
+    makeblastdbcmd = f'makeblastdb -in {db} -dbtype prot -parse_seqids'
+    makeblastdb_run = subprocess.run(makeblastdbcmd, shell=True , stdout = subprocess.PIPE, stderr=subprocess.PIPE)
+    # Now we need to check the UNIX return code
+    # always do this!
+    # 0 = success
+    # non-zero =failure
+    if makeblastdb_run.returncode != 0:
+        print("FAILED!")
+        exit(5)
+
+#generate blast output filename
+blast_out = query + '.blastp.out'
 
 # run the command
-blastcmd = f'blastp -query {query} -db {db} -outfmt 7 -out {out} -evalue {evalue}'
+blastcmd = f'blastp -query {query} -db {db} -outfmt 7 -out {blast_out} -evalue {evalue}'
 
 # object is returned after run command
 blastcmd_run = subprocess.run(blastcmd, shell=True , stdout = subprocess.PIPE, stderr=subprocess.PIPE)
@@ -242,7 +312,7 @@ if blastcmd_run.returncode != 0:
 
 # now parse results, 
 homologs = {}
-with open(out,'r') as blast_results:
+with open(blast_out,'r') as blast_results:
     for line in blast_results:
         line = line.rstrip()
         if line.startswith('#'): # skip comment lines
@@ -263,9 +333,8 @@ print('Hit summary')
 for query in sorted(homologs):
     print('Query:',query)
     for data in homologs[query]:
-        query,evalue = data
-        print(f'{query} E-value={evalue}' )
-
+        subject,evalue = data
+        print(f'{subject} E-value={evalue}' )
 
 ```
 
