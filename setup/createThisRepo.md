@@ -14,7 +14,7 @@ https://docs.github.com/en/repositories/creating-and-managing-repositories/dupli
 4. Mirror-push to the new repository.  
    ```
    NEW_REPO_NAME=pfb2024.git
-   NEW_REPO_GIT=https://github.com/prog4biol/$NEW_REPO_NAME
+   NEW_REPO_GIT=git@github.com:prog4biol/$NEW_REPO_NAME
    cd $OLD_REPO_NAME 
    git push --mirror $NEW_REPO_GIT
    ```
