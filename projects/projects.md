@@ -43,20 +43,30 @@ The main goals of the present project were to:
 
 
 ---
-# Title
+# Bestie Bubbles Presents: Find a Friend, Find a Lab
 ---
 
 ### Short summary: 
+BestieBubble matches you to potential best friends, worst enemies, or future labs. 
 
-### TA: 
+1. A tkinter GUI to uptake new user information and inputs.
+2. Reads in 1) numerical survey 2) categorical survey data for users into complex data structures in Python.
+3. Leverages K-Nearest Neighbors Algorithm to determine top matches based on similarity and plot clusters.
+4. Calculates Simularity Scores using Euclidean Distances and plot simuleratiy.
+5. Extends GUI for visual disply of plotted outputs for BestieBubbles™.
+
+### TA: Riley Kellermeyer
 
 ### GitHub Repo: 
+[BestieBubble](https://github.com/rikellermeyer/Bestie-Bubble/tree/main)
 
 ### Participants:   
- - 
- - 
- - 
- - 
+ - Isobel
+ - Lola
+ - Bekah
+ - Konstantin
+ - Harshad
+
 
 
 ---
