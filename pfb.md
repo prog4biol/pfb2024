@@ -3664,6 +3664,7 @@ There are a lot of online tools for actually seeing what is happening in your re
  - [regex101](https://regex101.com/)  
  - [pyregex](http://www.pyregex.com/)
  - [pythex](https://pythex.org/)
+ - [pyrexp](https://pythonium.net/regex)
 
 ---
 ## [Link to Python 7 Problem Set](problemsets/Python_07_problemset.md)
